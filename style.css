@@ -102,7 +102,7 @@ section{
 
 
 .main-btn:hover{
-    background-color: #03558c;
+    background-color: #04a8fb;
     transform: scale(1.1);
     
 }
@@ -156,7 +156,7 @@ section{
 
 
 .Games{
-    background-color: #1b00b6;
+    background-color: #042bc5;
 }
 
 .Games .title {
@@ -251,7 +251,7 @@ section{
 }
 
 .footer{
-    background-color: #1b00b6;
+    background-color: #042bc5;
     color: #ffffff;
     padding: 1em;
     display: flex;
