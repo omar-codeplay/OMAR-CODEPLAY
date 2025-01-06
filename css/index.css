@@ -78,6 +78,24 @@ header {
     color: rgb(100, 100, 100);
 }
 
+.translate-button {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.translate-button:hover {
+    color: #cccccc;
+}
+
+#translate-en {
+    display: none;
+}
+
 .main {
     width: 100%;
     min-height: 100vh;
@@ -101,12 +119,11 @@ header {
 
 }
 
-.main h2 span {
-    display: inline-block;
-    margin-top: -10px;
+.main span {
     color: #ffffff;
-    font-size: 2.5em;
+    font-size: 4.5em;
     font-weight: 900;
+    white-space: nowrap;
 }
 
 .main h3 {
