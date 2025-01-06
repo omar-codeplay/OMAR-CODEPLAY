@@ -15,7 +15,7 @@
     <title> OMAR | عمر </title>
 </head>
 
-<body>
+<body dir="ltr">
     <header>
         <a href="" class="LOGO">OMAR</a>
         <nav class="navigation">
@@ -27,7 +27,8 @@
             PROJECTS
             </button>
             </a>
-
+            <button id="translate-en" class="translate-button">EN</button>
+            <button id="translate-ar" class="translate-button">AR</button>
         </nav>
 
         <button class="hamburger">
@@ -45,8 +46,8 @@
 
     <section class="main">
         <div>
-            <h2>Hello, My Name is<br><span>Omar</span></h2>
-            <h3>Game developer | Programmer | Content creator.</h3>
+            <h2 class="hello-myname">Hello, My Name is  </h2><br><span class="name-omar">Omar</span>
+            <h3 class="works-hoby">Game developer | Programmer | Content creator.</h3>
             <div class="social-icons">
                 <a target="_blank" href="https://www.youtube.com/@OMAR_CODEPLAY" class="Icon">
 
@@ -88,7 +89,7 @@
             <h4>Contact Info</h4>
             <p>Email : omar.oma.dou@gmail.com</p>
         </div>
-        
+
     <div class="copyrights">
         <div class="container">
             <p>Copyrights @OMAR_CODEPLAY</p>
@@ -116,6 +117,39 @@
         })
 
     </script>
+
+<script>
+    document.getElementById('translate-ar').addEventListener('click', function() {
+        document.querySelector('.main .hello-myname').textContent = 'اهلا اسمي هو';
+        document.querySelector('.main .name-omar').textContent = 'عمر';
+        document.querySelector('.main .works-hoby').textContent = 'مطور ألعاب | مبرمج | صانع محتوى';
+        document.querySelector('.social-media-alt .title').textContent = 'تابعني';
+        document.querySelector('.logo-text').textContent = 'Omar CodePlay';
+        document.querySelector('.about-me-fullscreen .title').textContent = 'عني';
+        document.querySelector('.about-me-fullscreen .content p').innerHTML = 'مرحباً يا رفاق! اسمي عمر،<br> أنا مطور و صانع محتوى. أتعلم البرمجة، وسأشارك رحلتي معكم.';
+        document.querySelector('.footer-contact h4').textContent = 'معلومات الاتصال';
+        document.querySelector('.footer-contact p').textContent = 'البريد الإلكتروني : omar.oma.dou@gmail.com';
+        document.querySelector('.copyrights p').textContent = 'حقوق النشر @OMAR_CODEPLAY';
+        document.getElementById('translate-ar').style.display = 'none';
+        document.getElementById('translate-en').style.display = 'inline-block';
+    });
+
+    document.getElementById('translate-en').addEventListener('click', function() {
+        document.querySelector('.main .hello-myname').textContent = 'Hello, My Name is';
+        document.querySelector('.main .name-omar').textContent = 'Omar';
+        document.querySelector('.main .works-hoby').textContent = 'Game developer | Programmer | Content creator.';
+        document.querySelector('.social-media-alt .title').textContent = 'Follow Me';
+        document.querySelector('.logo-text').textContent = 'Omar CodePlay';
+        document.querySelector('.about-me-fullscreen .title').textContent = 'About Me';
+        document.querySelector('.about-me-fullscreen .content p').innerHTML = 'Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I will share my journey with you guys.';
+        document.querySelector('.footer-contact h4').textContent = 'Contact Info';
+        document.querySelector('.footer-contact p').textContent = 'Email : omar.oma.dou@gmail.com';
+        document.querySelector('.copyrights p').textContent = 'Copyrights @OMAR_CODEPLAY';
+        document.getElementById('translate-en').style.display = 'none';
+        document.getElementById('translate-ar').style.display = 'inline-block';
+    });
+</script>
+
 </body>
 
 </html>
