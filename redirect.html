@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <script>
+        // Get the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedUrl = urlParams.get('url');
+
+        if (encodedUrl) {
+            const decodedUrl = atob(encodedUrl); // Base64 decode the URL
+            window.location.href = decodedUrl;
+        } else {
+            document.body.innerHTML = '<h1>Invalid URL</h1>';
+        }
+    </script>
+</body>
+</html>
