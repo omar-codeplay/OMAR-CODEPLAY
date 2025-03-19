@@ -14,13 +14,13 @@ html {
 }
 
 body {
-    color: rgb(0, 0, 0);
+    color: #ffffff;
 }
 
 header {
     background-color: rgb(0, 0, 0);
     width: 100%;
-    position: fixed;
+    position:relative;
     z-index: 999;
     display: flex;
     justify-content: space-between;
@@ -50,112 +50,88 @@ header {
     color: gray;
 }
 
-section {
-    text-align: center;
-    padding-top: 100px;
-    height: 100vh;
-}
-
-.Games{
-    background-color: #121212;  
-    padding: 20px;
-    height: 100%;
-}
-
-.Games .title {
-    color: #ffffff;
-    padding-top: 3em;
-    white-space: nowrap;
-}
-
-.content {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-
-
-.GameCard{
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    min-height: 14em;
-    width: 18em;
-    overflow: hidden;
-    border-radius: 10px;
-    margin: 25px;
-    transition: 0.7s ease;
-    margin-bottom: 50PX;
-}
-
-
-.GameCard:hover{
-    transform: scale(1.1);
-}
-.GameCard:hover .gameImage{
-    opacity: 0.9;
-    
-}
-
-.gameImage img{
-    width: 100%;
-}
-
-
-.gameInfo{
-    padding: 1em;
-    text-align: left;
-}
-
-.game-category{
-    font-size: 0.8em;
+section p {
+    font-size: 1.6em;
     font-weight: 700;
-    color: black;
+    padding: .5rem;
+} 
+
+.title {
+    font-size: 1.7em;
+    font-weight: 00;
+    padding: 2rem;
 }
 
-.gameTitle{
-    display: flex;
-    justify-content: space-between;
-    text-transform: uppercase;
+section {
+    padding: 2rem 10rem;
+    background-color: #121212;
+    justify-items: center;
+}
+section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+}
+
+section .p-about{
+    font-size: 1.4em;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+}
+
+section .a-title{
+    font-size: 1.8em;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+} 
+
+section .dow-tit{
+    font-size: 2em;
+    font-weight: 900;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+} 
+
+.j-color {
+    color: rgb(255, 0, 0);
+    font-size: 1.2em;
+    padding: 0;
+}
+
+section button {
+    margin: 1rem;
+    width: 150px;
+    height: 50px;
+    background: linear-gradient(45deg, #1E90FF, #00BFFF);
+    color: rgb(240, 240, 240);
     font-weight: 800;
-    margin-top: 10px;
-    white-space: nowrap;
-
-}
-
-.PlayNow{
-    text-decoration: none;
-    color: #03178c;
-}
-
-.PlayNow:hover{
-    color:#0465bf;
-}
-
-
-.content .C-Card{
-    box-shadow: 0 5px 25px rgba(1, 1, 1 ,50%);
-    border-radius: 15px;
-
-}
-
-.C-Card{
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    min-height: 6em;
-    width: 17em;
-    overflow: hidden;
+    border: none;
     border-radius: 10px;
-    transition: 0.7s ease;
-    margin-bottom: 60PX;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.C-Card:hover{
-    transform: scale(1.1);
+section button:hover {
+    background: linear-gradient(45deg, #00BFFF, #1E90FF);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-
-
+.thumbnail {
+    width: 100px;
+    cursor: pointer;
+    margin: 5px;
+}
+.highlight {
+    border: 2px solid rgb(0, 0, 0);
+}
 
 .hamburger {
     position: relative;
@@ -297,14 +273,15 @@ section {
 }
 
 @media (max-width:768px) {
-    .footer img {
-        min-width: 6em;
-        width: 6em;
+
+    section {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
     }
 
-    .footer {
-        display: flow-root;
-    }
+
 }
 
 @media (max-width:1023px) {
@@ -318,7 +295,7 @@ section {
     }
 
     .title {
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
 
     .content {
