@@ -11,6 +11,7 @@ html {
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    text-decoration: none;
 }
 
 body {
@@ -105,12 +106,14 @@ section {
 .gameInfo{
     padding: 1em;
     text-align: left;
+    
 }
 
 .game-category{
     font-size: 0.8em;
     font-weight: 700;
     color: black;
+    text-decoration: none;
 }
 
 .gameTitle{
@@ -120,6 +123,8 @@ section {
     font-weight: 800;
     margin-top: 10px;
     white-space: nowrap;
+    color: black;
+    
 
 }
 
