@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="images/MY LOGO.png">
+    <link rel="stylesheet" href="css/pro.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3758016323496227"
+     crossorigin="anonymous"></script>
+     <meta name="google-adsense-account" content="ca-pub-3758016323496227">
+     
+    <title> OMAR | عمر </title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="LOGO">OMAR</a>
+        <nav class="navigation">
+            <a href="index.html">HOME</a>
+            <a href="https://www.youtube.com/@OMAR_CODEPLAY">YOUTUBE</a>
+        </nav>
+
+        <button class="hamburger">
+            <div class="bar"></div>
+        </button>
+    </header>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-navB">HOME</a>
+        <a href="Games.html" class="mobile-navB">PROJECTS</a>
+        <a href="https://www.youtube.com/@OMAR_CODEPLAY" class="mobile-navB">YOUTUBE</a>
+    </nav>
+
+    <section>
+        <p class="title">
+          My Screen Recorder
+        </p>
+        <div>
+            <img id="mainImage" src="images/recorderH.png" alt="Main Image">
+        </div>
+        <div>
+            <img class="thumbnail" src="images/recorderH.png" alt="Thumbnail 1">
+        </div>
+
+        <p class="a-title">About</p>
+        <p class="p-about">
+            This is a website that contains a screen recorder that I have created using HTML, CSS, and JavaScript. The website is responsive and can be accessed on any device. The screen recorder is simple and easy to use, and it is suitable for all users. And it can record up to 4k 240fps with no lag. Enjoy!
+        </p>
+        <h1 class="dow-tit">Visit</h1>
+        <a href="https://omar-recordplay.netlify.app/" target="_blank">
+        <button>Visit</button>
+        </a>
+        <h1 class="dow-tit">Download</h1>
+        <button onclick="saveUrlAndNavigate(encodeURL('https://www.mediafire.com/file/1k1mbe3wzp3qd5r/Omar_CodePlay_-_Recorder.zip/file'))">Download</button>
+
+    </section>
+
+    <div class="copyrights">
+        <div class="container">
+            <p>Copyrights @OMAR_CODEPLAY</p>
+        </div>
+    </div>
+
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                mainImage.src = this.src;
+                thumbnails.forEach(img => img.classList.remove('highlight'));
+                this.classList.add('highlight');
+            });
+        });
+    </script>
+
+    <script>
+        const menu_btn = document.querySelector('.hamburger');
+        const mobile_menu = document.querySelector('.mobile-nav');
+    
+        menu_btn.addEventListener('click', function () {
+            menu_btn.classList.toggle('is-active')
+            mobile_menu.classList.toggle('is-active')
+        });
+    
+        document.querySelectorAll('.mobile-navB').forEach(item => {
+            item.addEventListener('click', event => {
+                menu_btn.classList.toggle('is-active')
+                mobile_menu.classList.toggle('is-active')
+            });
+        });
+    
+        function saveUrlAndNavigate(encodedUrl) {
+            localStorage.setItem('nextPageUrl', encodedUrl); // Save the encoded URL in local storage
+            window.location.href = 'wait.html'; // Navigate to wait.html
+        }
+    
+        function encodeURL(url) {
+            const randomString = Math.random().toString(36).substring(2, 15); // Generate a random string
+            const modifiedUrl = url + randomString; // Append the random string to the URL
+            return btoa(modifiedUrl); // Encode the modified URL
+        }
+    </script>
+</body>
+
+</html>
