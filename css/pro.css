@@ -11,6 +11,8 @@ html {
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    overflow: auto; /* Ensure scrolling is still possible */
+    scrollbar-width: none;
 }
 
 body {
@@ -62,15 +64,19 @@ section p {
     padding: 2rem;
 }
 
+.mainImage{
+    max-width: 400px;
+    max-height: 600px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
 section {
     padding: 2rem 10rem;
     background-color: #121212;
     justify-items: center;
 }
 section img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
     padding-top: 1rem;
     padding-bottom: 1rem;
 
@@ -125,13 +131,14 @@ section button:hover {
 }
 
 .thumbnail {
-    width: 100px;
+    max-width: 60px;
     cursor: pointer;
     margin: 5px;
 }
 .highlight {
     border: 2px solid rgb(0, 0, 0);
 }
+
 
 .hamburger {
     position: relative;

@@ -8,11 +8,12 @@
     <link rel="icon" href="images/MY LOGO.png">
     <link rel="stylesheet" href="css/index.css">
 
-    <meta name="description" content="OMAR | عمر - Game Developer, Programmer, and Content Creator. Follow my journey in game development and programming.">
+    <meta name="description"
+        content="OMAR | عمر - Game Developer, Programmer, and Content Creator. Follow my journey in game development and programming.">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3758016323496227"
-     crossorigin="anonymous"></script>
-     <meta name="google-adsense-account" content="ca-pub-3758016323496227">
+        crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-3758016323496227">
 
     <title> OMAR | عمر </title>
 </head>
@@ -24,15 +25,26 @@
 
             <a href="">HOME</a>
             <a href="https://www.youtube.com/@OMAR_CODEPLAY">YOUTUBE</a>
-            <a href="Games.html" class="proText" >
-            <button  class="projectsButton" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
-            PROJECTS
-            </button>
+            <a href="Games.html" class="proText">
+                <button class="projectsButton"
+                    style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                    PROJECTS
+                </button>
             </a>
-            <button id="translate-en" class="translate-button">EN</button>
-            <button id="translate-ar" class="translate-button">AR</button>
-        </nav>
+            <select id="language-select" class="translate-dropdown black-dropdown">
+                <option value="en">English</option>
+                <option value="ar">Arabic</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="zh">Chinese</option>
+                <option value="ja">Japanese</option>
+                <option value="ru">Russian</option>
+                <option value="it">Italian</option>
+                <option value="ko">Korean</option>
+            </select>
 
+        </nav>
         <button class="hamburger">
             <div class="bar"></div>
         </button>
@@ -42,15 +54,14 @@
     <nav class="mobile-nav">
         <a href="" class="mobile-navB">HOME</a>
         <a href="https://www.youtube.com/@OMAR_CODEPLAY" class="mobile-navB">YOUTUBE</a>
-        <a href="Games.html" class="mobile-navB" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">PROJECTS</a>
-        <button id="translate-en" class="translate-button">EN</button>
-        <button id="translate-ar" class="translate-button">AR</button>
+        <a href="Games.html" class="mobile-navB"
+            style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">PROJECTS</a>
         <!-- <a href="indexAR.html" class="mobile-navB">عربي</a> -->
     </nav>
 
     <section class="main">
         <div>
-            <h2 class="hello-myname">Hello, My Name is  </h2><br><span class="name-omar">Omar</span>
+            <h2 class="hello-myname">Hello, My Name is </h2><br><span class="name-omar">Omar</span>
             <h3 class="works-hoby">Game developer | Programmer | Content creator.</h3>
             <div class="social-icons">
                 <a target="_blank" href="https://www.youtube.com/@OMAR_CODEPLAY" class="Icon">
@@ -64,14 +75,17 @@
         <div class="social-media-content">
             <div class="logo-container">
                 <a href="https://www.youtube.com/@OMAR_CODEPLAY" class="youtube" target="_blank">
-                <img src="images/MY LOGO.png" alt="OMAR's Logo" class="logo">
+                    <img src="images/MY LOGO.png" alt="OMAR's Logo" class="logo">
                 </a>
                 <p class="logo-text">Omar CodePlay</p>
             </div>
             <div class="video-slots">
-                <iframe class="video-slot video1" src="https://www.youtube.com/embed/your_video_id1" frameborder="0" allowfullscreen></iframe>
-                <iframe class="video-slot video2" src="https://www.youtube.com/embed/your_video_id2" frameborder="0" allowfullscreen></iframe>
-                <iframe class="video-slot video3" src="https://www.youtube.com/embed/your_video_id3" frameborder="0" allowfullscreen></iframe>
+                <iframe class="video-slot video1" src="https://www.youtube.com/embed/your_video_id1" frameborder="0"
+                    allowfullscreen></iframe>
+                <iframe class="video-slot video2" src="https://www.youtube.com/embed/your_video_id2" frameborder="0"
+                    allowfullscreen></iframe>
+                <iframe class="video-slot video3" src="https://www.youtube.com/embed/your_video_id3" frameborder="0"
+                    allowfullscreen></iframe>
             </div>
         </div>
         <div class="social-icons">
@@ -84,7 +98,8 @@
     <section class="about-me-fullscreen" id="about-me">
         <h2 class="title">About Me</h2>
         <div class="content">
-            <p>Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I will share my journey with you guys.</p>
+            <p>Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I
+                will share my journey with you guys.</p>
         </div>
     </section>
 
@@ -94,65 +109,180 @@
             <p>Email : omar.oma.dou@gmail.com</p>
         </div>
 
-    <div class="copyrights">
-        <div class="container">
-            <p>Copyrights @OMAR_CODEPLAY</p>
+        <div class="copyrights">
+            <div class="container">
+                <p>Copyrights @OMAR_CODEPLAY</p>
+            </div>
         </div>
-    </div>
+
+        <script>
+
+            const translations = {
+
+                en: {
+                    hello: 'Hello, My Name is',
+                    name: 'Omar',
+                    roles: 'Game developer | Programmer | Content creator.',
+                    follow: 'Follow Me',
+                    logoText: 'Omar CodePlay',
+                    about: 'About Me',
+                    aboutDesc: 'Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I will share my journey with you guys.',
+                    contactTitle: 'Contact Info',
+                    contactEmail: 'Email : omar.oma.dou@gmail.com',
+                    copyright: 'Copyrights @OMAR_CODEPLAY'
+                },
+                ar: {
+                    hello: 'اهلا اسمي هو',
+                    name: 'عمر',
+                    roles: 'مطور ألعاب | مبرمج | صانع محتوى',
+                    follow: 'تابعني',
+                    logoText: 'Omar CodePlay',
+                    about: 'عني',
+                    aboutDesc: 'مرحباً يا رفاق! اسمي عمر،<br> أنا مطور و صانع محتوى. أتعلم البرمجة، وسأشارك رحلتي معكم.',
+                    contactTitle: 'معلومات الاتصال',
+                    contactEmail: 'البريد الإلكتروني : omar.oma.dou@gmail.com',
+                    copyright: 'حقوق النشر @OMAR_CODEPLAY'
+                },
+                es: {
+                    hello: 'Hola, mi nombre es',
+                    name: 'Omar',
+                    roles: 'Desarrollador de juegos | Programador | Creador de contenido.',
+                    follow: 'Sígueme',
+                    logoText: 'Omar CodePlay',
+                    about: 'Sobre mí',
+                    aboutDesc: '¡Hola chicos! Mi nombre es Omar,<br> soy desarrollador y creador de contenido. Estoy aprendiendo programación y compartiré mi viaje con ustedes.',
+                    contactTitle: 'Información de contacto',
+                    contactEmail: 'Correo: omar.oma.dou@gmail.com',
+                    copyright: 'Derechos de autor @OMAR_CODEPLAY'
+                },
+                fr: {
+                    hello: 'Bonjour, je m’appelle',
+                    name: 'Omar',
+                    roles: 'Développeur de jeux | Programmeur | Créateur de contenu.',
+                    follow: 'Suivez-moi',
+                    logoText: 'Omar CodePlay',
+                    about: 'À propos de moi',
+                    aboutDesc: 'Salut tout le monde ! Je m’appelle Omar,<br> je suis développeur et créateur de contenu. J’apprends la programmation et je partagerai mon parcours avec vous.',
+                    contactTitle: 'Infos de contact',
+                    contactEmail: 'Email : omar.oma.dou@gmail.com',
+                    copyright: 'Droits d’auteur @OMAR_CODEPLAY'
+                },
+                de: {
+                    hello: 'Hallo, mein Name ist',
+                    name: 'Omar',
+                    roles: 'Spieleentwickler | Programmierer | Content-Ersteller.',
+                    follow: 'Folge mir',
+                    logoText: 'Omar CodePlay',
+                    about: 'Über mich',
+                    aboutDesc: 'Hallo Leute! Ich heiße Omar,<br> ich bin Entwickler und Content-Ersteller. Ich lerne Programmieren und werde meine Reise mit euch teilen.',
+                    contactTitle: 'Kontaktinformationen',
+                    contactEmail: 'E-Mail: omar.oma.dou@gmail.com',
+                    copyright: 'Urheberrechte @OMAR_CODEPLAY'
+                },
+                zh: {
+                    hello: '你好，我的名字是',
+                    name: '奥马尔',
+                    roles: '游戏开发者 | 程序员 | 内容创作者。',
+                    follow: '关注我',
+                    logoText: 'Omar CodePlay',
+                    about: '关于我',
+                    aboutDesc: '大家好！我叫奥马尔，<br> 我是一名开发者和内容创作者。我正在学习编程，并会与你们分享我的旅程。',
+                    contactTitle: '联系信息',
+                    contactEmail: '邮箱：omar.oma.dou@gmail.com',
+                    copyright: '版权 © OMAR_CODEPLAY'
+                },
+                ja: {
+                    hello: 'こんにちは、私の名前は',
+                    name: 'オマール',
+                    roles: 'ゲーム開発者 | プログラマー | コンテンツクリエイター。',
+                    follow: 'フォローしてね',
+                    logoText: 'Omar CodePlay',
+                    about: '私について',
+                    aboutDesc: 'こんにちは皆さん！私はオマールです。<br> 開発者でありコンテンツクリエイターです。プログラミングを学んでおり、その旅を皆さんと共有します。',
+                    contactTitle: '連絡先情報',
+                    contactEmail: 'メール：omar.oma.dou@gmail.com',
+                    copyright: '著作権 © OMAR_CODEPLAY'
+                },
+                ru: {
+                    hello: 'Привет, меня зовут',
+                    name: 'Омар',
+                    roles: 'Разработчик игр | Программист | Создатель контента.',
+                    follow: 'Подписывайтесь',
+                    logoText: 'Omar CodePlay',
+                    about: 'Обо мне',
+                    aboutDesc: 'Привет, ребята! Меня зовут Омар,<br> я разработчик и создатель контента. Я изучаю программирование и делюсь этим с вами.',
+                    contactTitle: 'Контактная информация',
+                    contactEmail: 'Эл. почта: omar.oma.dou@gmail.com',
+                    copyright: 'Авторские права @OMAR_CODEPLAY'
+                },
+                it: {
+                    hello: 'Ciao, mi chiamo',
+                    name: 'Omar',
+                    roles: 'Sviluppatore di giochi | Programmatore | Creatore di contenuti.',
+                    follow: 'Seguimi',
+                    logoText: 'Omar CodePlay',
+                    about: 'Chi sono',
+                    aboutDesc: 'Ciao a tutti! Mi chiamo Omar,<br> sono uno sviluppatore e creatore di contenuti. Sto imparando a programmare e condividerò il mio percorso con voi.',
+                    contactTitle: 'Informazioni di contatto',
+                    contactEmail: 'Email: omar.oma.dou@gmail.com',
+                    copyright: 'Copyright © OMAR_CODEPLAY'
+                },
+                ko: {
+                    hello: '안녕하세요, 제 이름은',
+                    name: '오마르',
+                    roles: '게임 개발자 | 프로그래머 | 콘텐츠 크리에이터.',
+                    follow: '팔로우하기',
+                    logoText: 'Omar CodePlay',
+                    about: '소개',
+                    aboutDesc: '안녕하세요 여러분! 제 이름은 오마르입니다.<br> 저는 개발자이자 콘텐츠 제작자입니다. 프로그래밍을 배우고 있으며 여러분과 그 여정을 공유할 것입니다.',
+                    contactTitle: '연락처 정보',
+                    contactEmail: '이메일: omar.oma.dou@gmail.com',
+                    copyright: '저작권 © OMAR_CODEPLAY'
+                }
+
+            };
+
+            document.getElementById('language-select').addEventListener('change', function () {
+                const selectedLang = this.value;
+                const t = translations[selectedLang];
+
+                if (t) {
+                    document.querySelector('.hello-myname').textContent = t.hello;
+                    document.querySelector('.name-omar').textContent = t.name;
+                    document.querySelector('.works-hoby').textContent = t.roles;
+                    document.querySelector('.social-media-alt .title').textContent = t.follow;
+                    document.querySelector('.logo-text').textContent = t.logoText;
+                    document.querySelector('.about-me-fullscreen .title').textContent = t.about;
+                    document.querySelector('.about-me-fullscreen .content p').innerHTML = t.aboutDesc;
+                    document.querySelector('.footer-contact h4').textContent = t.contactTitle;
+                    document.querySelector('.footer-contact p').textContent = t.contactEmail;
+                    document.querySelector('.copyrights p').textContent = t.copyright;
+                }
+            });
+
+        </script>
+
+        <script>
+
+            const menu_btn = document.querySelector('.hamburger');
+            const mobile_menu = document.querySelector('.mobile-nav');
 
 
-    <script>
 
-        const menu_btn = document.querySelector('.hamburger');
-        const mobile_menu = document.querySelector('.mobile-nav');
-
-
-
-        menu_btn.addEventListener('click', function () {
-            menu_btn.classList.toggle('is-active')
-            mobile_menu.classList.toggle('is-active')
-        })
-
-        document.querySelectorAll('.mobile-navB').forEach(item => {
-            item.addEventListener('click', event => {
+            menu_btn.addEventListener('click', function () {
                 menu_btn.classList.toggle('is-active')
                 mobile_menu.classList.toggle('is-active')
             })
-        })
 
-    </script>
+            document.querySelectorAll('.mobile-navB').forEach(item => {
+                item.addEventListener('click', event => {
+                    menu_btn.classList.toggle('is-active')
+                    mobile_menu.classList.toggle('is-active')
+                })
+            })
 
-<script>
-    document.getElementById('translate-ar').addEventListener('click', function() {
-        document.querySelector('.main .hello-myname').textContent = 'اهلا اسمي هو';
-        document.querySelector('.main .name-omar').textContent = 'عمر';
-        document.querySelector('.main .works-hoby').textContent = 'مطور ألعاب | مبرمج | صانع محتوى';
-        document.querySelector('.social-media-alt .title').textContent = 'تابعني';
-        document.querySelector('.logo-text').textContent = 'Omar CodePlay';
-        document.querySelector('.about-me-fullscreen .title').textContent = 'عني';
-        document.querySelector('.about-me-fullscreen .content p').innerHTML = 'مرحباً يا رفاق! اسمي عمر،<br> أنا مطور و صانع محتوى. أتعلم البرمجة، وسأشارك رحلتي معكم.';
-        document.querySelector('.footer-contact h4').textContent = 'معلومات الاتصال';
-        document.querySelector('.footer-contact p').textContent = 'البريد الإلكتروني : omar.oma.dou@gmail.com';
-        document.querySelector('.copyrights p').textContent = 'حقوق النشر @OMAR_CODEPLAY';
-        document.getElementById('translate-ar').style.display = 'none';
-        document.getElementById('translate-en').style.display = 'inline-block';
-    });
+        </script>
 
-    document.getElementById('translate-en').addEventListener('click', function() {
-        document.querySelector('.main .hello-myname').textContent = 'Hello, My Name is';
-        document.querySelector('.main .name-omar').textContent = 'Omar';
-        document.querySelector('.main .works-hoby').textContent = 'Game developer | Programmer | Content creator.';
-        document.querySelector('.social-media-alt .title').textContent = 'Follow Me';
-        document.querySelector('.logo-text').textContent = 'Omar CodePlay';
-        document.querySelector('.about-me-fullscreen .title').textContent = 'About Me';
-        document.querySelector('.about-me-fullscreen .content p').innerHTML = 'Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I will share my journey with you guys.';
-        document.querySelector('.footer-contact h4').textContent = 'Contact Info';
-        document.querySelector('.footer-contact p').textContent = 'Email : omar.oma.dou@gmail.com';
-        document.querySelector('.copyrights p').textContent = 'Copyrights @OMAR_CODEPLAY';
-        document.getElementById('translate-en').style.display = 'none';
-        document.getElementById('translate-ar').style.display = 'inline-block';
-    });
-</script>
 
 </body>
 

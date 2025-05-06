@@ -11,11 +11,17 @@ html {
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    overflow: auto; /* Ensure scrolling is still possible */
+    scrollbar-width: none;
 
 }
 
 body {
     color: rgb(0, 0, 0);
+}
+
+body::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
 }
 
 header {
@@ -25,7 +31,6 @@ header {
     z-index: 999;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 1px 100px;
     box-shadow: 1px 1px 25px 2px rgba(255, 255, 255, 0.3);
 }
@@ -78,22 +83,19 @@ header {
     color: rgb(100, 100, 100);
 }
 
-.translate-button {
+.black-dropdown {
     background-color: transparent;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
-    margin-left: 10px;
     cursor: pointer;
     font-size: 1em;
+    
 }
 
-.translate-button:hover {
-    color: #cccccc;
-}
-
-#translate-en {
-    display: none;
+.black-dropdown option {
+    background-color: black;
+    color: white;
 }
 
 .main {
@@ -433,6 +435,11 @@ header {
 }
 
 @media (max-width:768px) {
+
+    .black-dropdown {
+        padding: 10px;
+    }
+    
     .footer img {
         min-width: 6em;
         width: 6em;
