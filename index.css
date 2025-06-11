@@ -155,23 +155,6 @@ header {
     margin-bottom: 20px;
 }
 
-.social-media-alt .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 10;
-}
-
-.social-media-alt .social-icon {
-    color: #000000;
-    font-size: 2.5em;
-    transition: transform 0.3s;
-}
-
-.social-media-alt .social-icon:hover {
-    transform: scale(1.2);
-}
-
 .social-media-alt .social-media-content {
     display: flex;
     align-items: center;
