@@ -105,7 +105,12 @@
                 <p>Copyrights @OMAR_CODEPLAY</p>
             </div>
         </div>
-
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("Service Worker Registered"));
+  }
+</script>
         <script>
 
             const translations = {
