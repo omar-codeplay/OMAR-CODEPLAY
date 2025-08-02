@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/MY LOGO.png">
     <link rel="stylesheet" href="index.css">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#000000">
+
     <meta name="description"
         content="OMAR | عمر - Game Developer, Programmer, and Content Creator. Follow my journey in game development and programming.">
 
@@ -19,11 +18,11 @@
         <a class="LOGO">OMAR</a>
         <nav class="navigation">
 
-            <a alt="Home">HOME</a>
-            <a alt="Youtube" href="https://www.youtube.com/@OMAR_CODEPLAY">YOUTUBE</a>
+            <a class="hover" href="#main" alt="Home">HOME</a>
+            <a class="hover" alt="Youtube" href="https://www.youtube.com/@OMAR_CODEPLAY">YOUTUBE</a>
             <a href="Games.html" class="proText">
                 <button alt="Projects" class="projectsButton">
-                    PROJECTS
+                <span>PROJECTS</span>
                 </button>
             </a>
             <select alt="translate page" id="language-select" class="translate-dropdown black-dropdown">
@@ -102,15 +101,10 @@
 
         <div class="copyrights">
             <div alt="copyrights" class="container">
-                <p>Copyrights @OMAR_CODEPLAY</p>
+                <p>Copyrights &#169;OMAR_CODEPLAY</p>
             </div>
         </div>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js")
-      .then(() => console.log("Service Worker Registered"));
-  }
-</script>
+
         <script>
 
             const translations = {

@@ -1,33 +1,20 @@
-
-html {
-    scroll-padding: 5rem;
-}
-
-
 * {
-    font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    overflow: auto; /* Ensure scrolling is still possible */
+    overflow: auto;
+    /* Ensure scrolling is still possible */
     scrollbar-width: none;
+    user-select: none;
 
-}
-
-body {
-    color: rgb(0, 0, 0);
-}
-
-body::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Edge */
 }
 
 header {
     background-color: rgb(0, 0, 0);
     width: 100%;
     position: fixed;
-    z-index: 999;
     display: flex;
     justify-content: space-between;
     padding: 1px 100px;
@@ -59,27 +46,34 @@ header {
 }
 
 .navigation .projectsButton {
+    position: relative;
+    overflow: hidden;
     border: none;
-    background: linear-gradient(to right, rgba(255, 0, 110, 1), rgba(255, 0, 0, 1));
+    background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 0, 255));
+    /* blue to pink gradient stays fixed */
     font-size: 1.1em;
     font-weight: 700;
     padding: 6px 12px;
     align-items: center;
     color: white;
-    transition: background 2s ease;
+    transition:
+        box-shadow 0.7s,
+        background 0.7s;
 }
 
-.navigation .projectsButton:hover {
-    background: linear-gradient(to right, rgba(255, 0, 0, 1), rgba(255, 0, 110, 1));
-    transition: background 2s ease;
+.navigation .projectsButton:hover{
+    box-shadow:
+        0px 0 32px 12px rgb(40, 40, 255);  
+        scale: 1.02;  /* left: blue */
 }
 
-.navigation .proText:hover {
-    color: rgb(255, 255, 255);
-}
-
-.navigation a:hover {
-    color: rgb(100, 100, 100);
+.navigation .hover:hover {
+    background: linear-gradient(90deg, blue, rgb(255, 0, 255));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
 }
 
 .black-dropdown {
@@ -89,7 +83,7 @@ header {
     padding: 10px 20px;
     cursor: pointer;
     font-size: 1em;
-    
+
 }
 
 .black-dropdown option {
@@ -139,7 +133,8 @@ header {
 .social-media-alt {
     background-color: #ffffff;
     color: #000000;
-    height: 100vh; /* Full screen height */
+    height: 100vh;
+    /* Full screen height */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -168,8 +163,10 @@ header {
 }
 
 .social-media-alt .logo {
-    width: 250px; /* Increased size */
-    height: auto; /* Increased size */
+    width: 250px;
+    /* Increased size */
+    height: auto;
+    /* Increased size */
     border-radius: 50%;
     margin-bottom: 10px;
 }
@@ -179,7 +176,7 @@ header {
     color: #000000;
     margin-bottom: 10px;
     font-weight: 750;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .social-media-alt .video-slots {
@@ -191,8 +188,10 @@ header {
 }
 
 .social-media-alt .video-slots iframe {
-    width: 150px; /* Decreased size */
-    height: 100px; /* Decreased size */
+    width: 150px;
+    /* Decreased size */
+    height: 100px;
+    /* Decreased size */
 }
 
 .social-media-alt .video1 {
@@ -212,7 +211,8 @@ header {
 .about-me-fullscreen {
     background-color: #000000;
     color: #ffffff;
-    height: 100vh; /* Full screen height */
+    height: 100vh;
+    /* Full screen height */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -272,7 +272,7 @@ header {
     background-color: #000000;
     color: #ffffff;
     display: flex;
-    justify-content:start;
+    justify-content: start;
     position: relative;
 }
 
@@ -281,12 +281,13 @@ header {
     color: #0000ff;
 
 }
-.footer p{
+
+.footer p {
     font-size: .9rem;
     font-weight: 100;
 }
 
-.footer h4{
+.footer h4 {
     font-size: .9rem;
     font-weight: 100;
 }
@@ -300,7 +301,7 @@ header {
 .copyrights {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
-    position:absolute;
+    position: absolute;
     bottom: 0;
     right: 0;
     padding: .4rem;
@@ -421,7 +422,7 @@ header {
     .black-dropdown {
         padding: 10px;
     }
-    
+
     .footer img {
         min-width: 6em;
         width: 6em;
@@ -478,7 +479,8 @@ header {
 @media (max-width: 768px) {
     .social-media-alt .social-media-content {
         flex-direction: column;
-        margin-left: 0; /* Reset margin for smaller screens */
+        margin-left: 0;
+        /* Reset margin for smaller screens */
     }
 
     .social-media-alt .video-slots {
@@ -488,12 +490,14 @@ header {
     }
 
     .social-media-alt .video-slot {
-        width: 100%; /* Full width for smaller screens */
+        width: 100%;
+        /* Full width for smaller screens */
         height: auto;
     }
 
     .social-media-alt .logo {
-        max-width: 200px; /* Adjust size for smaller screens */
+        max-width: 200px;
+        /* Adjust size for smaller screens */
     }
 }
 
@@ -503,7 +507,8 @@ header {
     }
 
     .social-media-alt .logo {
-        max-width: 150px; /* Adjust size for smaller screens */
+        max-width: 150px;
+        /* Adjust size for smaller screens */
     }
 
     .social-media-alt .logo-text {
@@ -511,7 +516,8 @@ header {
     }
 
     .social-media-alt .video-slot {
-        width: 100%; /* Full width for smaller screens */
+        width: 100%;
+        /* Full width for smaller screens */
         height: auto;
     }
 }
