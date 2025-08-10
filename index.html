@@ -1,278 +1,732 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/MY LOGO.png">
-    <link rel="stylesheet" href="index.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Omar CodePlay — Game dev • Programmer • Content Creator</title>
+  <meta name="description"
+    content="Omar CodePlay — Game developer, programmer and content creator. Browse projects, watch demos, and contact Omar." />
+  <link rel="icon" href="images/logo.svg" />
 
-    <meta name="description"
-        content="OMAR | عمر - Game Developer, Programmer, and Content Creator. Follow my journey in game development and programming.">
+  <!-- Basic Open Graph -->
+  <meta property="og:title" content="Omar CodePlay — Game dev • Programmer" />
+  <meta property="og:description"
+    content="Game developer, programmer and content creator. Projects, demos and contact." />
+  <meta property="og:type" content="website" />
 
-    <title> OMAR | عمر </title>
+  <style>
+    /* ---------- Reset & base ---------- */
+    :root {
+      --bg: #0b0b0d;
+      --panel: #0f1720;
+      --muted: #9aa6b2;
+      --accent: #5b8cff;
+      --accent-2: #a55eff;
+      --glass: rgba(255, 255, 255, 0.03);
+      --card: #0e1114;
+      --radius: 14px;
+      --maxw: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+      --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      scrollbar-width: none;
+      overflow: auto;
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--ui);
+      background: linear-gradient(180deg, #0b0b0d 0%, #070709 100%);
+      color: #e6eef6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.4;
+      -webkit-tap-highlight-color: transparent;
+      padding-top: 72px;
+      /* header space */
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(11, 12, 13, 0.6), rgba(11, 12, 13, 0.35));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--glass);
+      padding: 6px
+    }
+
+    .brand .name {
+      font-weight: 800;
+      letter-spacing: 0.6px
+    }
+
+    nav.desktop {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    nav.desktop a {
+      color: var(--muted);
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px
+    }
+
+    nav.desktop a:hover,
+    nav.desktop a:focus {
+      color: var(--accent);
+      outline: none;
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    .cta-primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      padding: 8px 14px;
+      border-radius: 10px;
+      color: #001137;
+      font-weight: 800
+    }
+
+    .cta-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 7px 12px;
+      border-radius: 10px;
+      color: var(--muted)
+    }
+
+    /* mobile button */
+    .hamb {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 800;
+      padding: 8px;
+      border-radius: 8px
+    }
+
+    /* ---------- Hero ---------- */
+    main {
+      max-width: var(--maxw);
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      display: block
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 28px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    h1 {
+      font-size: clamp(26px, 4.6vw, 44px);
+      margin: 0 0 8px;
+      line-height: 1.05
+    }
+
+    .lead {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 1rem
+    }
+
+    .roles {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 18px 0
+    }
+
+    .role-pill {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--muted);
+      font-size: .9rem;
+      border: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 6px
+    }
+
+    .small-meta {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 10px
+    }
+
+    /* hero right: profile card */
+    .profile {
+      background: linear-gradient(180deg, rgba(91, 140, 255, 0.06), rgba(165, 94, 255, 0.04));
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .profile .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 28px;
+      color: white
+    }
+
+    .profile .meta {
+      color: #dedefc;
+      text-align: center
+    }
+
+    .profile .meta p {
+      margin: 4px 0;
+      color: var(--muted)
+    }
+
+    /* ---------- Projects ---------- */
+    .section {
+      margin-top: 40px
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      margin: 0 0 14px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.025);
+      transition: transform .18s ease, box-shadow .18s ease;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(11, 20, 40, 0.6)
+    }
+
+    .card .title {
+      font-weight: 800
+    }
+
+    .card .desc {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 8px
+    }
+
+    .card .tags {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    /* ---------- About ---------- */
+    .about {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .about p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6
+    }
+
+    .skills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 18px
+    }
+
+    .contact-card {
+      padding: 18px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+      border: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .sbtn {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-weight: 700;
+      color: var(--muted)
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: #dfeaff
+    }
+
+    label {
+      font-size: .85rem;
+      color: var(--muted);
+      display: block;
+      margin: 8px 0
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 40px;
+      padding: 28px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      text-align: center;
+      border-radius: 10px
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:1000px) {
+      .hero {
+        grid-template-columns: 1fr 320px
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (max-width:720px) {
+      header {
+        height: 64px
+      }
+
+      .wrap {
+        padding: 0 14px
+      }
+
+      nav.desktop {
+        display: none
+      }
+
+      .hamb {
+        display: block
+      }
+
+      .hero {
+        grid-template-columns: 1fr
+      }
+
+      .profile {
+        order: 2
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      body {
+        padding-top: 64px
+      }
+    }
+
+    /* keyboard focus */
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 3px solid rgba(91, 140, 255, 0.14);
+      outline-offset: 2px
+    }
+
+    /* small utilities */
+    .muted {
+      color: var(--muted)
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+  </style>
 </head>
 
-<body dir="ltr">
-    <header>
-        <a class="LOGO">OMAR</a>
-        <nav class="navigation">
+<body>
 
-            <a class="hover" href="#main" alt="Home">HOME</a>
-            <a class="hover" alt="Youtube" href="https://www.youtube.com/@OMAR_CODEPLAY">YOUTUBE</a>
-            <a href="Games.html" class="proText">
-                <button alt="Projects" class="projectsButton">
-                <span>PROJECTS</span>
-                </button>
-            </a>
-            <select alt="translate page" id="language-select" class="translate-dropdown black-dropdown">
-                <option alt="English" value="en">English</option>
-                <option alt="Arabic" value="ar">Arabic</option>
-                <option alt="Spanish" value="es">Spanish</option>
-                <option alt="French" value="fr">French</option>
-                <option alt="German" value="de">German</option>
-                <option alt="Chinese" value="zh">Chinese</option>
-                <option alt="Japanese" value="ja">Japanese</option>
-                <option alt="Russian" value="ru">Russian</option>
-                <option alt="Italian" value="it">Italian</option>
-                <option alt="Korean" value="ko">Korean</option>
-            </select>
-
-        </nav>
-        <button alt="Menu" class="hamburger">
-            <div class="bar"></div>
-        </button>
-    </header>
-
-
-    <nav class="mobile-nav">
-        <a alt="Home" class="mobile-navB">HOME</a>
-        <a alt="Youtube" href="https://www.youtube.com/@OMAR_CODEPLAY" class="mobile-navB">YOUTUBE</a>
-        <a alt="Projects" href="Games.html" class="mobile-navB"
-            style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">PROJECTS</a>
-        <!-- <a href="indexAR.html" class="mobile-navB">عربي</a> -->
-    </nav>
-
-    <section class="main">
+  <header>
+    <div class="wrap">
+      <div class="brand" aria-label="Omar CodePlay">
+        <!-- Replace src with your logo if you have one -->
+        <img src="images/logo.svg" alt="Omar CodePlay logo" onerror="this.style.display='none'">
         <div>
-            <h2 alt="My name" class="hello-myname">Hello, My Name is </h2><br><span class="name-omar">Omar</span>
-            <h3 alt="My hobbies" class="works-hoby">Game developer | Programmer | Content creator.</h3>
-            <div alt="Youtube" class="social-icons">
+          <div class="name">OMAR <span class="muted" style="font-weight:600">| CodePlay</span></div>
+          <div class="small-meta muted" style="font-size:.78rem">Game Dev · Programmer · Creator</div>
         </div>
+      </div>
+
+      <nav class="desktop" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cta-ghost" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+        <a class="cta-primary" href="#contact">Hire / Collaborate</a>
+      </nav>
+
+      <button class="hamb" aria-expanded="false" aria-controls="mobile-menu" id="hamb-btn">MENU</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card" role="region" aria-labelledby="hero-title">
+        <h1 id="hero-title">I build games and websites.</h1>
+        <p class="lead">Hi, I'm Omar. I design games, write code (HTML, C#, CSS), and publish demos & tutorials. I
+          show the process — not just the highlights.</p>
+
+        <div class="roles" aria-hidden="false">
+          <div class="role-pill">Unity / C#</div>
+          <div class="role-pill">Game design</div>
+          <div class="role-pill">Web & APIs</div>
+          <div class="role-pill">Content creation</div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="cta-primary" href="#projects">See Projects</a>
+          <a class="cta-ghost" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
+        </div>
+
+        <div class="small-meta">Based in Egypt • Student • Open to internships & collabs</div>
+      </div>
+
+      <aside class="profile" aria-label="Profile">
+        <div class="avatar" aria-hidden="true">OM</div>
+        <div class="meta">
+          <div style="font-weight:800">Omar CodePlay</div>
+          <p class="muted">I make small games, I publish tutorials and progress videos
+            on YouTube.</p>
+        </div>
+
+        <div style="margin-top:8px;display:flex;gap:8px">
+          <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+          <a class="sbtn" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </aside>
     </section>
 
-    <section class="social-media-alt" id="social-media-alt">
-        <h2 alt="Follow me" class="title">Follow Me</h2>
-        <div class="social-media-content">
-            <div class="logo-container">
-                <a alt="Youtube" href="https://www.youtube.com/@OMAR_CODEPLAY" class="youtube" target="_blank">
-                    <img alt="Logo" src="images/MY LOGO.png" alt="OMAR's Logo" class="logo">
-                </a>
-                <p class="logo-text">Omar CodePlay</p>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2>Projects — selected</h2>
+      <div class="grid" role="list">
+        <!-- PROJECT CARD: copy and edit for each project -->
+        <article class="card" role="listitem" aria-labelledby="p1-title">
+          <div>
+            <div class="title" id="p1-title">None</div>
+            <div class="desc">
             </div>
-            <!--
-            <div alt="My videos" class="video-slots">
-                <iframe alt="video1" class="video-slot video1" src="https://www.youtube.com/embed/" frameborder="0"
-                    allowfullscreen></iframe>
-                <iframe alt="video2" class="video-slot video2" src="https://www.youtube.com/embed/" frameborder="0"
-                    allowfullscreen></iframe>
-                <iframe alt="video3" class="video-slot video3" src="https://www.youtube.com/embed/" frameborder="0"
-                    allowfullscreen></iframe>
+            <div class="tags">
+              <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Gameplay</span>
             </div>
-            -->
-        </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="sbtn" href="https://github.com/omar-codeplay/platformer-proto" target="_blank"
+              rel="noopener">Code</a>
+            <a class="sbtn" href="#" target="_blank" rel="noopener">Live</a> <!-- Replace with demo link -->
+          </div>
+        </article>
 
+        <article class="card" role="listitem" aria-labelledby="p2-title">
+          <div>
+            <div class="title" id="p2-title">None</div>
+            <div class="desc"></div>
+            <div class="tags"><span class="tag">Unity</span><span class="tag">AI</span></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="sbtn" href="https://github.com/omar-codeplay/ai-enemy" target="_blank" rel="noopener">Code</a>
+            <a class="sbtn" href="#" target="_blank" rel="noopener">Video</a> <!-- Replace -->
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="p3-title">
+          <div>
+            <div class="title" id="p3-title">none</div>
+            <div class="desc">
+            </div>
+            <div class="tags"><span class="tag">Web</span><span class="tag">Tools</span></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+            <a class="sbtn" href="#" target="_blank" rel="noopener">Demo</a>
+          </div>
+        </article>
+
+        <!-- Add more project cards here -->
+      </div>
+      <div style="margin-top:12px">
+        <a class="cta-ghost" href="Games.html">All projects →</a>
+      </div>
     </section>
 
-    <section class="about-me-fullscreen" id="about-me">
-        <h2 alt="About me" class="title">About Me</h2>
-        <div alt="Hello guys! My name is Omar, I am a developer and content creator. I am learning programming, and I
-                will share my journey with you guys." class="content">
-            <p>Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I
-                will share my journey with you guys.</p>
+    <!-- ABOUT -->
+    <section id="about" class="section" style="margin-top:28px">
+      <h2>About</h2>
+      <div class="about">
+        <div style="flex:1">
+          <p>
+            I'm Omar, a student and developer. I make Games, learn new systems fast, and publish process videos and
+            tutorials.
+            I'm comfortable with Unity, C#,
+            basic web stacks, Right now, I'm focused on building small games and tools, learning systems programming,
+            and collaborating on small teams.
+          </p>
+
+          <div class="skills">
+            <div class="tag">Unity</div>
+            <div class="tag">C#</div>
+            <div class="tag">HTML</div>
+            <div class="tag">Git</div>
+            <div class="tag">CSS</div>
+            <div class="tag">Game Design</div>
+          </div>
         </div>
+
+        <div style="width:260px">
+          <div
+            style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;">
+            <strong>Quick facts</strong>
+            <p class="muted" style="margin-top:8px">Student • Learning systems programming • Uploads progress videos on
+              YouTube</p>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <a class="sbtn" href="https://youtube.com/@omar_codeplay" target="_blank" rel="noopener">YouTube</a>
+              <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <div class="footer">
-        <div class="footer-contact">
-            <h4 alt="Contact Information">Contact Info</h4>
-            <p alt="Email">Email : omar.oma.dou@gmail.com</p>
-        </div>
+    <!-- CONTACT -->
+    <section id="contact" class="section" style="margin-top:28px">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <p class="muted">Want to work together or need a demo? Email me or message on socials.</p>
+          <div style="margin-top:12px">
+            <strong>Email</strong>
+            <p style="margin:.4rem 0"><a href="mailto:omar.oma.dou@gmail.com">omar.oma.dou@gmail.com</a></p>
 
-        <div class="copyrights">
-            <div alt="copyrights" class="container">
-                <p>Copyrights &#169;OMAR_CODEPLAY</p>
+            <strong>Socials</strong>
+            <div class="socials" style="margin-top:8px">
+              <a class="sbtn" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
+              <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+              <a class="sbtn" href="https://t.me/CP_OMAR_CodePlay" target="_blank" rel="noopener">Telegram</a>
             </div>
+          </div>
         </div>
 
-        <script>
+        <form class="contact-card" action="mailto:omar.oma.dou@gmail.com" method="GET" enctype="text/plain"
+          aria-label="Contact form">
+          <label for="name">Your name</label>
+          <input id="name" name="name" placeholder="Your name" required>
 
-            const translations = {
+          <label for="msg">Message</label>
+          <textarea id="msg" name="message" rows="5" placeholder="Short message / collab idea" required></textarea>
 
-                en: {
-                    hello: 'Hello, My Name is',
-                    name: 'Omar',
-                    roles: 'Game developer | Programmer | Content creator.',
-                    follow: 'Follow Me',
-                    logoText: 'Omar CodePlay',
-                    about: 'About Me',
-                    aboutDesc: 'Hello guys! My name is Omar,<br> I am a developer and content creator. I am learning programming, and I will share my journey with you guys.',
-                    contactTitle: 'Contact Info',
-                    contactEmail: 'Email : omar.oma.dou@gmail.com',
-                    copyright: 'Copyrights @OMAR_CODEPLAY'
-                },
-                ar: {
-                    hello: 'اهلا اسمي هو',
-                    name: 'عمر',
-                    roles: 'مطور ألعاب | مبرمج | صانع محتوى',
-                    follow: 'تابعني',
-                    logoText: 'Omar CodePlay',
-                    about: 'عني',
-                    aboutDesc: 'مرحباً يا رفاق! اسمي عمر،<br> أنا مطور و صانع محتوى. أتعلم البرمجة، وسأشارك رحلتي معكم.',
-                    contactTitle: 'معلومات الاتصال',
-                    contactEmail: 'البريد الإلكتروني : omar.oma.dou@gmail.com',
-                    copyright: 'حقوق النشر @OMAR_CODEPLAY'
-                },
-                es: {
-                    hello: 'Hola, mi nombre es',
-                    name: 'Omar',
-                    roles: 'Desarrollador de juegos | Programador | Creador de contenido.',
-                    follow: 'Sígueme',
-                    logoText: 'Omar CodePlay',
-                    about: 'Sobre mí',
-                    aboutDesc: '¡Hola chicos! Mi nombre es Omar,<br> soy desarrollador y creador de contenido. Estoy aprendiendo programación y compartiré mi viaje con ustedes.',
-                    contactTitle: 'Información de contacto',
-                    contactEmail: 'Correo: omar.oma.dou@gmail.com',
-                    copyright: 'Derechos de autor @OMAR_CODEPLAY'
-                },
-                fr: {
-                    hello: 'Bonjour, je m’appelle',
-                    name: 'Omar',
-                    roles: 'Développeur de jeux | Programmeur | Créateur de contenu.',
-                    follow: 'Suivez-moi',
-                    logoText: 'Omar CodePlay',
-                    about: 'À propos de moi',
-                    aboutDesc: 'Salut tout le monde ! Je m’appelle Omar,<br> je suis développeur et créateur de contenu. J’apprends la programmation et je partagerai mon parcours avec vous.',
-                    contactTitle: 'Infos de contact',
-                    contactEmail: 'Email : omar.oma.dou@gmail.com',
-                    copyright: 'Droits d’auteur @OMAR_CODEPLAY'
-                },
-                de: {
-                    hello: 'Hallo, mein Name ist',
-                    name: 'Omar',
-                    roles: 'Spieleentwickler | Programmierer | Content-Ersteller.',
-                    follow: 'Folge mir',
-                    logoText: 'Omar CodePlay',
-                    about: 'Über mich',
-                    aboutDesc: 'Hallo Leute! Ich heiße Omar,<br> ich bin Entwickler und Content-Ersteller. Ich lerne Programmieren und werde meine Reise mit euch teilen.',
-                    contactTitle: 'Kontaktinformationen',
-                    contactEmail: 'E-Mail: omar.oma.dou@gmail.com',
-                    copyright: 'Urheberrechte @OMAR_CODEPLAY'
-                },
-                zh: {
-                    hello: '你好，我的名字是',
-                    name: '奥马尔',
-                    roles: '游戏开发者 | 程序员 | 内容创作者。',
-                    follow: '关注我',
-                    logoText: 'Omar CodePlay',
-                    about: '关于我',
-                    aboutDesc: '大家好！我叫奥马尔，<br> 我是一名开发者和内容创作者。我正在学习编程，并会与你们分享我的旅程。',
-                    contactTitle: '联系信息',
-                    contactEmail: '邮箱：omar.oma.dou@gmail.com',
-                    copyright: '版权 © OMAR_CODEPLAY'
-                },
-                ja: {
-                    hello: 'こんにちは、私の名前は',
-                    name: 'オマール',
-                    roles: 'ゲーム開発者 | プログラマー | コンテンツクリエイター。',
-                    follow: 'フォローしてね',
-                    logoText: 'Omar CodePlay',
-                    about: '私について',
-                    aboutDesc: 'こんにちは皆さん！私はオマールです。<br> 開発者でありコンテンツクリエイターです。プログラミングを学んでおり、その旅を皆さんと共有します。',
-                    contactTitle: '連絡先情報',
-                    contactEmail: 'メール：omar.oma.dou@gmail.com',
-                    copyright: '著作権 © OMAR_CODEPLAY'
-                },
-                ru: {
-                    hello: 'Привет, меня зовут',
-                    name: 'Омар',
-                    roles: 'Разработчик игр | Программист | Создатель контента.',
-                    follow: 'Подписывайтесь',
-                    logoText: 'Omar CodePlay',
-                    about: 'Обо мне',
-                    aboutDesc: 'Привет, ребята! Меня зовут Омар,<br> я разработчик и создатель контента. Я изучаю программирование и делюсь этим с вами.',
-                    contactTitle: 'Контактная информация',
-                    contactEmail: 'Эл. почта: omar.oma.dou@gmail.com',
-                    copyright: 'Авторские права @OMAR_CODEPLAY'
-                },
-                it: {
-                    hello: 'Ciao, mi chiamo',
-                    name: 'Omar',
-                    roles: 'Sviluppatore di giochi | Programmatore | Creatore di contenuti.',
-                    follow: 'Seguimi',
-                    logoText: 'Omar CodePlay',
-                    about: 'Chi sono',
-                    aboutDesc: 'Ciao a tutti! Mi chiamo Omar,<br> sono uno sviluppatore e creatore di contenuti. Sto imparando a programmare e condividerò il mio percorso con voi.',
-                    contactTitle: 'Informazioni di contatto',
-                    contactEmail: 'Email: omar.oma.dou@gmail.com',
-                    copyright: 'Copyright © OMAR_CODEPLAY'
-                },
-                ko: {
-                    hello: '안녕하세요, 제 이름은',
-                    name: '오마르',
-                    roles: '게임 개발자 | 프로그래머 | 콘텐츠 크리에이터.',
-                    follow: '팔로우하기',
-                    logoText: 'Omar CodePlay',
-                    about: '소개',
-                    aboutDesc: '안녕하세요 여러분! 제 이름은 오마르입니다.<br> 저는 개발자이자 콘텐츠 제작자입니다. 프로그래밍을 배우고 있으며 여러분과 그 여정을 공유할 것입니다.',
-                    contactTitle: '연락처 정보',
-                    contactEmail: '이메일: omar.oma.dou@gmail.com',
-                    copyright: '저작권 © OMAR_CODEPLAY'
-                }
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button type="submit" class="sbtn">Send (mailto)</button>
+            <button type="button" class="sbtn" onclick="copyEmail()">Copy email</button>
+          </div>
+          <p class="muted" style="font-size:.85rem;margin-top:8px">Prefer DMs? Use YouTube or Telegram links above.</p>
+        </form>
+      </div>
+    </section>
 
-            };
+    <footer>
+      <div style="max-width:var(--maxw);margin:0 auto;padding:14px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <div class="muted">© <strong>OMAR_CODEPLAY</strong> • Built by Omar</div>
+          <div class="muted">Made with HTML , CSS
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
 
-            document.getElementById('language-select').addEventListener('change', function () {
-                const selectedLang = this.value;
-                const t = translations[selectedLang];
+  <script>
+    /* Mobile menu toggle */
+    const hamb = document.getElementById('hamb-btn');
+    let mobileOpen = false;
+    hamb?.addEventListener('click', () => {
+      mobileOpen = !mobileOpen;
+      hamb.setAttribute('aria-expanded', String(mobileOpen));
+      if (mobileOpen) {
+        // simple mobile fallback: show native nav
+        const menu = document.createElement('div');
+        menu.id = 'mobile-menu';
+        menu.style.position = 'fixed';
+        menu.style.top = '72px';
+        menu.style.left = '0';
+        menu.style.right = '0';
+        menu.style.bottom = '0';
+        menu.style.background = 'linear-gradient(180deg, rgba(11,12,13,0.98), rgba(11,12,13,0.98))';
+        menu.style.padding = '28px';
+        menu.style.zIndex = 120;
+        menu.innerHTML = `
+          <a href="#projects" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Projects</a>
+          <a href="#about" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">About</a>
+          <a href="#contact" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Contact</a>
+          <a href="https://github.com/omar-codeplay" target="_blank" style="display:block;padding:14px 0;color:#9aa6b2">GitHub</a>
+          <a href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" style="display:block;padding:14px 0;color:#9aa6b2">YouTube</a>
+          <button id="mobile-close" style="margin-top:20px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#9aa6b2">Close</button>
+        `;
+        document.body.appendChild(menu);
+        document.getElementById('mobile-close')?.addEventListener('click', () => {
+          mobileOpen = false;
+          hamb.setAttribute('aria-expanded', 'false');
+          document.getElementById('mobile-menu')?.remove();
+        });
+      } else {
+        document.getElementById('mobile-menu')?.remove();
+      }
+    });
 
-                if (t) {
-                    document.querySelector('.hello-myname').textContent = t.hello;
-                    document.querySelector('.name-omar').textContent = t.name;
-                    document.querySelector('.works-hoby').textContent = t.roles;
-                    document.querySelector('.social-media-alt .title').textContent = t.follow;
-                    document.querySelector('.logo-text').textContent = t.logoText;
-                    document.querySelector('.about-me-fullscreen .title').textContent = t.about;
-                    document.querySelector('.about-me-fullscreen .content p').innerHTML = t.aboutDesc;
-                    document.querySelector('.footer-contact h4').textContent = t.contactTitle;
-                    document.querySelector('.footer-contact p').textContent = t.contactEmail;
-                    document.querySelector('.copyrights p').textContent = t.copyright;
-                }
-            });
+    function copyEmail() {
+      navigator.clipboard?.writeText('omar.oma.dou@gmail.com').then(() => {
+        alert('Email copied');
+      }).catch(() => {
+        prompt('Copy email', 'omar.oma.dou@gmail.com');
+      })
+    }
 
-        </script>
-
-        <script>
-
-            const menu_btn = document.querySelector('.hamburger');
-            const mobile_menu = document.querySelector('.mobile-nav');
-
-
-
-            menu_btn.addEventListener('click', function () {
-                menu_btn.classList.toggle('is-active')
-                mobile_menu.classList.toggle('is-active')
-            })
-
-            document.querySelectorAll('.mobile-navB').forEach(item => {
-                item.addEventListener('click', event => {
-                    menu_btn.classList.toggle('is-active')
-                    mobile_menu.classList.toggle('is-active')
-                })
-            })
-
-        </script>
-
+    /* Small improvement: keyboard shortcut to open contact (g) */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'g' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
+        location.hash = '#contact';
+      }
+    });
+  </script>
 
 </body>
 
