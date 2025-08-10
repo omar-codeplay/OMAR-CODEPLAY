@@ -8,6 +8,7 @@
   <meta name="description"
     content="Omar CodePlay — Game developer, programmer and content creator. Browse projects, watch demos, and contact Omar." />
   <link rel="icon" href="images/MY LOGO.png" />
+    <link rel="manifest" href="/manifest.json">
 
   <!-- Basic Open Graph -->
   <meta property="og:title" content="Omar CodePlay — Game dev • Programmer" />
@@ -726,6 +727,13 @@
         location.hash = '#contact';
       }
     });
+  </script>
+
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
   </script>
 
 </body>
