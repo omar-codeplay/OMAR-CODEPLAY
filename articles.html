@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Articles & Tutorials — Omar CodePlay</title>
+  <meta name="description" content="Game development tutorials, programming articles, and technical guides by Omar CodePlay." />
+  <link rel="icon" href="images/MY LOGO.png" />
+
+  <style>
+    /* Copy all your existing CSS from index.html */
+    :root {
+      --bg: #0b0b0d;
+      --panel: #0f1720;
+      --muted: #9aa6b2;
+      --accent: #5b8cff;
+      --accent-2: #a55eff;
+      --glass: rgba(255, 255, 255, 0.03);
+      --card: #0e1114;
+      --radius: 14px;
+      --maxw: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+      --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      scrollbar-width: none;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: var(--ui);
+      background: linear-gradient(180deg, #0b0b0d 0%, #070709 100%);
+      color: #e6eef6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.4;
+      -webkit-tap-highlight-color: transparent;
+      padding-top: 72px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      left: 0; right: 0; top: 0;
+      height: 72px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 60;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(11, 12, 13, 0.6), rgba(11, 12, 13, 0.35));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .wrap {
+      width: 100%; max-width: var(--maxw);
+      padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .brand img {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: var(--glass); padding: 6px;
+    }
+
+    .brand .name {
+      font-weight: 800; letter-spacing: 0.6px;
+    }
+
+    nav.desktop {
+      display: flex; gap: 18px; align-items: center;
+    }
+
+    nav.desktop a {
+      color: var(--muted); font-weight: 700;
+      padding: 8px 12px; border-radius: 8px;
+    }
+
+    nav.desktop a:hover, nav.desktop a:focus {
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .cta-primary, .cta-ghost, .sbtn {
+      padding: 8px 14px; border-radius: 10px;
+      font-weight: 800; transition: all 0.2s ease;
+    }
+
+    .cta-primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #001137;
+    }
+
+    .cta-ghost, .sbtn {
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--muted); background: rgba(255, 255, 255, 0.02);
+    }
+
+    .sbtn:hover, .cta-ghost:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    main {
+      max-width: var(--maxw);
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    h1 { font-size: clamp(28px, 5vw, 42px); margin: 0 0 12px; }
+    h2 { font-size: 1.8rem; margin: 0 0 20px; }
+    h3 { font-size: 1.3rem; margin: 0 0 12px; }
+
+    .muted { color: var(--muted); }
+    .lead { color: var(--muted); font-size: 1.1rem; line-height: 1.5; }
+
+    /* Article Styles */
+    .article-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.025);
+      transition: transform .18s ease, box-shadow .18s ease;
+      margin-bottom: 20px;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(11, 20, 40, 0.4);
+    }
+
+    .article-meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin: 8px 0 16px 0;
+      display: flex; gap: 12px; align-items: center;
+    }
+
+    .article-excerpt {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 16px 0;
+      font-size: 1rem;
+    }
+
+    .read-more {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    .article-tag {
+      background: rgba(91, 140, 255, 0.1);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .articles-grid {
+      display: grid; gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding: 28px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      body { padding-top: 64px; }
+      header { height: 64px; }
+      .wrap { padding: 0 14px; }
+      nav.desktop { display: none; }
+      .hamb { display: block; }
+    }
+
+    .hamb {
+      display: none;
+      border: 0; background: transparent;
+      color: var(--muted); font-weight: 800;
+      padding: 8px; border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="brand" aria-label="Omar CodePlay">
+        <img src="images/logo.png" alt="Omar CodePlay logo" onerror="this.style.display='none'">
+        <div>
+          <div class="name">OMAR <span class="muted" style="font-weight:600">| CodePlay</span></div>
+          <div class="small-meta muted" style="font-size:.78rem">Game Dev · Programmer · Creator</div>
+        </div>
+      </div>
+
+      <nav class="desktop" aria-label="Primary navigation">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#articles" style="color: var(--accent);">Articles</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="cta-ghost" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+
+      <button class="hamb" aria-expanded="false" aria-controls="mobile-menu" id="hamb-btn">MENU</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section for Articles Page -->
+    <section class="section" style="margin-top: 20px;">
+      <h1>Articles & Tutorials</h1>
+      <p class="lead" style="max-width: 600px;">
+        Game development tutorials, programming insights, and technical guides. 
+        Learn from my journey and discover tips for Unity, web development, and game design.
+      </p>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="section">
+      <div class="articles-grid">
+        
+        <!-- Article 1 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <h3 style="margin: 0;">Building a 2D Platformer in Unity: Complete Guide</h3>
+            <span class="article-tag">Tutorial</span>
+          </div>
+          <div class="article-meta">
+            <span>March 15, 2024</span>
+            <span>•</span>
+            <span>8 min read</span>
+            <span>•</span>
+            <span>Unity</span>
+          </div>
+          <p class="article-excerpt">
+            A comprehensive step-by-step guide to creating a responsive 2D character controller with smooth movement, 
+            wall jumping, and dash mechanics. Perfect for beginners starting with Unity game development. 
+            Learn about Rigidbody2D, collision detection, and input handling.
+          </p>
+          <a href="articles/platformer-tutorial.html" class="read-more">Continue reading →</a>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <h3 style="margin: 0;">AI Enemy Systems: From Simple to Smart</h3>
+            <span class="article-tag">Game Dev</span>
+          </div>
+          <div class="article-meta">
+            <span>March 10, 2024</span>
+            <span>•</span>
+            <span>12 min read</span>
+            <span>•</span>
+            <span>AI Programming</span>
+          </div>
+          <p class="article-excerpt">
+            Learn how to implement different AI behaviors for game enemies - from basic patrol patterns to complex 
+            state machines and NavMesh integration. This guide covers Finite State Machines, behavior trees, 
+            and practical examples you can implement in your own games.
+          </p>
+          <a href="articles/ai-enemy-systems.html" class="read-more">Continue reading →</a>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <h3 style="margin: 0;">Optimizing Unity Games for Mobile Devices</h3>
+            <span class="article-tag">Performance</span>
+          </div>
+          <div class="article-meta">
+            <span>March 5, 2024</span>
+            <span>•</span>
+            <span>10 min read</span>
+            <span>•</span>
+            <span>Optimization</span>
+          </div>
+          <p class="article-excerpt">
+            Essential tips and techniques for optimizing your Unity games for mobile devices. 
+            Covering rendering optimization, memory management, asset bundling, and performance profiling tools. 
+            Make your games run smoothly on all devices.
+          </p>
+          <a href="articles/mobile-optimization.html" class="read-more">Continue reading →</a>
+        </article>
+
+        <!-- Article 4 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <h3 style="margin: 0;">CSS Grid for Game UI Layouts</h3>
+            <span class="article-tag">Web Dev</span>
+          </div>
+          <div class="article-meta">
+            <span>February 28, 2024</span>
+            <span>•</span>
+            <span>6 min read</span>
+            <span>•</span>
+            <span>CSS</span>
+          </div>
+          <p class="article-excerpt">
+            How to use modern CSS Grid to create responsive and flexible user interfaces for web-based games 
+            and applications. Learn grid template areas, responsive design patterns, and practical examples 
+            for game HUDs and menus.
+          </p>
+          <a href="articles/css-grid-ui.html" class="read-more">Continue reading →</a>
+        </article>
+
+        <!-- Article 5 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <h3 style="margin: 0;">C# Events and Delegates for Game Systems</h3>
+            <span class="article-tag">Programming</span>
+          </div>
+          <div class="article-meta">
+            <span>February 22, 2024</span>
+            <span>•</span>
+            <span>9 min read</span>
+            <span>•</span>
+            <span>C#</span>
+          </div>
+          <p class="article-excerpt">
+            Master C# events and delegates to create decoupled, maintainable game systems. 
+            Learn how to implement observer patterns, custom events, and create flexible architecture 
+            for your Unity games that scales as your project grows.
+          </p>
+          <a href="articles/csharp-events.html" class="read-more">Continue reading →</a>
+        </article>
+
+        <!-- Article 6 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <h3 style="margin: 0;">Building a Portfolio Website from Scratch</h3>
+            <span class="article-tag">Web Design</span>
+          </div>
+          <div class="article-meta">
+            <span>February 18, 2024</span>
+            <span>•</span>
+            <span>7 min read</span>
+            <span>•</span>
+            <span>HTML/CSS</span>
+          </div>
+          <p class="article-excerpt">
+            A practical guide to building a modern portfolio website using only HTML and CSS. 
+            Learn about responsive design, CSS Grid, Flexbox, and creating engaging layouts 
+            that showcase your work effectively.
+          </p>
+          <a href="articles/portfolio-website.html" class="read-more">Continue reading →</a>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width: var(--maxw); margin: 0 auto; padding: 14px 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <div class="muted">© 2024 <strong>OmarCodePlay</strong> • All rights reserved</div>
+        <div class="muted">Made with HTML, CSS & JavaScript • Built with passion for game development</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu functionality (same as index.html)
+    const hamb = document.getElementById('hamb-btn');
+    let mobileOpen = false;
+    hamb?.addEventListener('click', () => {
+      mobileOpen = !mobileOpen;
+      hamb.setAttribute('aria-expanded', String(mobileOpen));
+      if (mobileOpen) {
+        const menu = document.createElement('div');
+        menu.id = 'mobile-menu';
+        menu.style.position = 'fixed';
+        menu.style.top = '72px';
+        menu.style.left = '0';
+        menu.style.right = '0';
+        menu.style.bottom = '0';
+        menu.style.background = 'linear-gradient(180deg, rgba(11,12,13,0.98), rgba(11,12,13,0.98))';
+        menu.style.padding = '28px';
+        menu.style.zIndex = 120;
+        menu.innerHTML = `
+          <a href="index.html#projects" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Projects</a>
+          <a href="index.html#articles" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Articles</a>
+          <a href="index.html#about" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">About</a>
+          <a href="index.html#contact" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Contact</a>
+          <a href="https://github.com/omar-codeplay" target="_blank" style="display:block;padding:14px 0;color:#9aa6b2">GitHub</a>
+          <button id="mobile-close" style="margin-top:20px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#9aa6b2">Close</button>
+        `;
+        document.body.appendChild(menu);
+        document.getElementById('mobile-close')?.addEventListener('click', () => {
+          mobileOpen = false;
+          hamb.setAttribute('aria-expanded', 'false');
+          document.getElementById('mobile-menu')?.remove();
+        });
+      } else {
+        document.getElementById('mobile-menu')?.remove();
+      }
+    });
+  </script>
+
+</body>
+</html>
