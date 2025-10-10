@@ -8,13 +8,14 @@
   <meta name="description"
     content="Omar CodePlay — Game developer, programmer and content creator. Browse projects, watch demos, and contact Omar." />
   <link rel="icon" href="images/MY LOGO.png" />
-    <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Basic Open Graph -->
   <meta property="og:title" content="Omar CodePlay — Game dev • Programmer" />
   <meta property="og:description"
     content="Game developer, programmer and content creator. Projects, demos and contact." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og-image.jpg" />
 
   <style>
     /* ---------- Reset & base ---------- */
@@ -65,6 +66,23 @@
     img {
       max-width: 100%;
       display: block
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--accent);
+      color: white;
+      padding: 8px;
+      border-radius: 4px;
+      z-index: 100;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 6px;
     }
 
     /* ---------- Header ---------- */
@@ -180,6 +198,12 @@
       padding: 32px;
       border-radius: var(--radius);
       box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -234,6 +258,7 @@
       flex-direction: column;
       gap: 12px;
       align-items: center;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
     .profile .avatar {
@@ -318,6 +343,54 @@
       border: 1px solid rgba(255, 255, 255, 0.02)
     }
 
+    .status-badge {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .status-completed {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+    }
+
+    .status-inprogress {
+      background: rgba(234, 179, 8, 0.1);
+      color: #eab308;
+    }
+
+    .status-planning {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+    }
+
+    /* Skill bars */
+    .skill-bar {
+      margin: 8px 0;
+    }
+
+    .skill-bar span {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+
+    .skill-bar .bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-bar .bar div {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 3px;
+      transition: width 1s ease-in-out;
+    }
+
     /* ---------- About ---------- */
     .about {
       display: flex;
@@ -369,7 +442,13 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.03);
       font-weight: 700;
-      color: var(--muted)
+      color: var(--muted);
+      transition: all 0.2s ease;
+    }
+
+    .sbtn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-2px);
     }
 
     input,
@@ -379,7 +458,14 @@
       border-radius: 8px;
       background: transparent;
       border: 1px solid rgba(255, 255, 255, 0.04);
-      color: #dfeaff
+      color: #dfeaff;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
     }
 
     label {
@@ -387,6 +473,21 @@
       color: var(--muted);
       display: block;
       margin: 8px 0
+    }
+
+    /* Loading indicator */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* ---------- Footer ---------- */
@@ -447,6 +548,14 @@
         grid-template-columns: 1fr
       }
 
+      .about {
+        flex-direction: column;
+      }
+
+      .about > div:last-child {
+        width: 100%;
+      }
+
       body {
         padding-top: 64px
       }
@@ -476,10 +585,12 @@
 
 <body>
 
+  <!-- Skip to main content for accessibility -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <header>
     <div class="wrap">
       <div class="brand" aria-label="Omar CodePlay">
-        <!-- Replace src with your logo if you have one -->
         <img src="images/logo.png" alt="Omar CodePlay logo" onerror="this.style.display='none'">
         <div>
           <div class="name">OMAR <span class="muted" style="font-weight:600">| CodePlay</span></div>
@@ -499,7 +610,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- HERO -->
     <section class="hero">
       <div class="hero-card" role="region" aria-labelledby="hero-title">
@@ -517,6 +628,7 @@
         <div class="hero-actions">
           <a class="cta-primary" href="#projects">See Projects</a>
           <a class="cta-ghost" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
+          <a class="cta-ghost" href="#resume">Download CV</a>
         </div>
 
         <div class="small-meta">Based in Egypt • Student • Open to internships & collabs</div>
@@ -541,11 +653,14 @@
     <section id="projects" class="section">
       <h2>Projects — selected</h2>
       <div class="grid" role="list">
-        <!-- PROJECT CARD: copy and edit for each project -->
+        <!-- PROJECT CARD 1 -->
         <article class="card" role="listitem" aria-labelledby="p1-title">
           <div>
-            <div class="title" id="p1-title">None</div>
+            <div class="title" id="p1-title">2D Platformer Prototype
+              <span class="status-badge status-completed">Completed</span>
+            </div>
             <div class="desc">
+              A responsive 2D character controller with smooth movement, wall jumping, and dash mechanics built in Unity.
             </div>
             <div class="tags">
               <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Gameplay</span>
@@ -554,32 +669,39 @@
           <div style="display:flex;gap:10px;margin-top:12px">
             <a class="sbtn" href="https://github.com/omar-codeplay/platformer-proto" target="_blank"
               rel="noopener">Code</a>
-            <a class="sbtn" href="#" target="_blank" rel="noopener">Live</a> <!-- Replace with demo link -->
+            <a class="sbtn" href="https://youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">Demo Video</a>
           </div>
         </article>
 
+        <!-- PROJECT CARD 2 -->
         <article class="card" role="listitem" aria-labelledby="p2-title">
           <div>
-            <div class="title" id="p2-title">None</div>
-            <div class="desc"></div>
-            <div class="tags"><span class="tag">Unity</span><span class="tag">AI</span></div>
+            <div class="title" id="p2-title">AI Enemy System
+              <span class="status-badge status-completed">Completed</span>
+            </div>
+            <div class="desc">State-based AI with patrol, chase, and attack behaviors using Unity's NavMesh system and state machines.</div>
+            <div class="tags"><span class="tag">Unity</span><span class="tag">AI</span><span class="tag">C#</span></div>
           </div>
           <div style="display:flex;gap:10px;margin-top:12px">
             <a class="sbtn" href="https://github.com/omar-codeplay/ai-enemy" target="_blank" rel="noopener">Code</a>
-            <a class="sbtn" href="#" target="_blank" rel="noopener">Video</a> <!-- Replace -->
+            <a class="sbtn" href="https://youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">Video</a>
           </div>
         </article>
 
+        <!-- PROJECT CARD 3 -->
         <article class="card" role="listitem" aria-labelledby="p3-title">
           <div>
-            <div class="title" id="p3-title">none</div>
-            <div class="desc">
+            <div class="title" id="p3-title">Developer Tools Collection
+              <span class="status-badge status-inprogress">In Progress</span>
             </div>
-            <div class="tags"><span class="tag">Web</span><span class="tag">Tools</span></div>
+            <div class="desc">
+              Collection of web-based utilities for game developers including color palettes, UI components, and prototyping tools.
+            </div>
+            <div class="tags"><span class="tag">Web</span><span class="tag">Tools</span><span class="tag">JavaScript</span></div>
           </div>
           <div style="display:flex;gap:10px;margin-top:12px">
             <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
-            <a class="sbtn" href="#" target="_blank" rel="noopener">Demo</a>
+            <a class="sbtn" href="#" target="_blank" rel="noopener">Live Demo</a>
           </div>
         </article>
 
@@ -597,11 +719,26 @@
         <div style="flex:1">
           <p>
             I'm Omar, a student and developer. I make Games, learn new systems fast, and publish process videos and
-            tutorials.
-            I'm comfortable with Unity, C#,
-            basic web stacks, Right now, I'm focused on building small games and tools, learning systems programming,
-            and collaborating on small teams.
+            tutorials. I'm comfortable with Unity, C#, basic web stacks, Right now, I'm focused on building small games and tools, learning systems programming, and collaborating on small teams.
           </p>
+
+          <!-- Skill Bars -->
+          <div class="skill-bar">
+            <span>C# & Unity</span>
+            <div class="bar"><div style="width:85%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <span>HTML/CSS</span>
+            <div class="bar"><div style="width:75%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <span>Game Design</span>
+            <div class="bar"><div style="width:70%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <span>JavaScript</span>
+            <div class="bar"><div style="width:60%"></div></div>
+          </div>
 
           <div class="skills">
             <div class="tag">Unity</div>
@@ -610,6 +747,8 @@
             <div class="tag">Git</div>
             <div class="tag">CSS</div>
             <div class="tag">Game Design</div>
+            <div class="tag">JavaScript</div>
+            <div class="tag">UI/UX</div>
           </div>
         </div>
 
@@ -624,6 +763,20 @@
               <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME DOWNLOAD -->
+    <section id="resume" class="section" style="margin-top:28px">
+      <h2>Resume</h2>
+      <div class="contact-card">
+        <p class="muted">Download my resume to learn more about my experience and skills.</p>
+        <div style="margin-top:12px">
+          <a class="cta-primary" href="resume.pdf" download="Omar-CodePlay-Resume.pdf">
+            Download CV (PDF)
+          </a>
+          <p class="muted" style="font-size:.85rem;margin-top:8px">Make sure to replace resume.pdf with your actual resume file</p>
         </div>
       </div>
     </section>
@@ -647,16 +800,19 @@
           </div>
         </div>
 
-        <form class="contact-card" action="mailto:omar.oma.dou@gmail.com" method="GET" enctype="text/plain"
-          aria-label="Contact form">
+        <!-- Netlify Form -->
+        <form class="contact-card" name="contact" method="POST" data-netlify="true" aria-label="Contact form">
           <label for="name">Your name</label>
           <input id="name" name="name" placeholder="Your name" required>
+
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" placeholder="your.email@example.com" required>
 
           <label for="msg">Message</label>
           <textarea id="msg" name="message" rows="5" placeholder="Short message / collab idea" required></textarea>
 
           <div style="margin-top:12px;display:flex;gap:8px">
-            <button type="submit" class="sbtn">Send (mailto)</button>
+            <button type="submit" class="sbtn">Send Message</button>
             <button type="button" class="sbtn" onclick="copyEmail()">Copy email</button>
           </div>
           <p class="muted" style="font-size:.85rem;margin-top:8px">Prefer DMs? Use YouTube or Telegram links above.</p>
@@ -668,7 +824,7 @@
       <div style="max-width:var(--maxw);margin:0 auto;padding:14px 20px">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
           <div class="muted">© <strong>OMAR_CODEPLAY</strong> • Built by Omar</div>
-          <div class="muted">Made with HTML , CSS
+          <div class="muted">Made with HTML, CSS & JavaScript
           </div>
         </div>
       </div>
@@ -715,10 +871,45 @@
 
     function copyEmail() {
       navigator.clipboard?.writeText('omar.oma.dou@gmail.com').then(() => {
-        alert('Email copied');
+        alert('Email copied to clipboard!');
       }).catch(() => {
-        prompt('Copy email', 'omar.oma.dou@gmail.com');
+        prompt('Copy email:', 'omar.oma.dou@gmail.com');
       })
+    }
+
+    /* Loading states for external links */
+    document.querySelectorAll('a[target="_blank"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        // You could add a loading indicator here
+        console.log('Opening external link:', link.href);
+      });
+    });
+
+    /* Animate skill bars on scroll */
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-bar .bar div');
+      skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.width = width;
+        }, 100);
+      });
+    }
+
+    // Animate when about section comes into view
+    const aboutSection = document.getElementById('about');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateSkillBars();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (aboutSection) {
+      observer.observe(aboutSection);
     }
 
     /* Small improvement: keyboard shortcut to open contact (g) */
@@ -727,8 +918,25 @@
         location.hash = '#contact';
       }
     });
-  </script>
 
+    // Add structured data for SEO
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Omar CodePlay",
+      "jobTitle": "Game Developer & Programmer",
+      "url": "https://omar-codeplay.netlify.app",
+      "sameAs": [
+        "https://github.com/omar-codeplay",
+        "https://www.youtube.com/@OMAR_CODEPLAY"
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+  </script>
 
   <script>
     if ("serviceWorker" in navigator) {
@@ -737,6 +945,4 @@
   </script>
 
 </body>
-
-
 </html>
