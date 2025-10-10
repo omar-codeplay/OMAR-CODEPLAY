@@ -391,6 +391,60 @@
       transition: width 1s ease-in-out;
     }
 
+    .article-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.025);
+      transition: transform .18s ease, box-shadow .18s ease;
+      margin-bottom: 16px;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(11, 20, 40, 0.4);
+    }
+
+    .article-meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin: 8px 0;
+      display: flex;
+      gap: 12px;
+    }
+
+    .article-excerpt {
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 12px 0;
+    }
+
+    .read-more {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .article-tag {
+      background: rgba(91, 140, 255, 0.1);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .articles-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* ---------- About ---------- */
     .about {
       display: flex;
@@ -712,6 +766,87 @@
       </div>
     </section>
 
+    <!-- NEW ARTICLES SECTION -->
+    <section id="articles" class="section">
+      <h2>Latest Articles & Tutorials</h2>
+      <div class="articles-grid">
+        
+        <!-- Article 1 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 1.2rem;">Building a 2D Platformer in Unity</h3>
+            <span class="article-tag">Tutorial</span>
+          </div>
+          <div class="article-meta">
+            <span>March 15, 2024</span>
+            <span>•</span>
+            <span>8 min read</span>
+          </div>
+          <p class="article-excerpt">
+            Step-by-step guide to creating a responsive 2D character controller with smooth movement, wall jumping, and dash mechanics. Perfect for beginners starting with Unity game development.
+          </p>
+          <a href="articles/platformer-tutorial.html" class="read-more">Read full article →</a>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 1.2rem;">AI Enemy Systems: From Simple to Smart</h3>
+            <span class="article-tag">Game Dev</span>
+          </div>
+          <div class="article-meta">
+            <span>March 10, 2024</span>
+            <span>•</span>
+            <span>12 min read</span>
+          </div>
+          <p class="article-excerpt">
+            Learn how to implement different AI behaviors for game enemies - from basic patrol patterns to complex state machines and NavMesh integration.
+          </p>
+          <a href="articles/ai-enemy-systems.html" class="read-more">Read full article →</a>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 1.2rem;">Optimizing Unity Games for Mobile</h3>
+            <span class="article-tag">Performance</span>
+          </div>
+          <div class="article-meta">
+            <span>March 5, 2024</span>
+            <span>•</span>
+            <span>10 min read</span>
+          </div>
+          <p class="article-excerpt">
+            Essential tips and techniques for optimizing your Unity games for mobile devices, covering rendering, memory management, and performance profiling.
+          </p>
+          <a href="articles/mobile-optimization.html" class="read-more">Read full article →</a>
+        </article>
+
+        <!-- Article 4 -->
+        <article class="article-card" role="article">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 1.2rem;">CSS Grid for Game UI Layouts</h3>
+            <span class="article-tag">Web Dev</span>
+          </div>
+          <div class="article-meta">
+            <span>February 28, 2024</span>
+            <span>•</span>
+            <span>6 min read</span>
+          </div>
+          <p class="article-excerpt">
+            How to use modern CSS Grid to create responsive and flexible user interfaces for web-based games and applications.
+          </p>
+          <a href="articles/css-grid-ui.html" class="read-more">Read full article →</a>
+        </article>
+
+      </div>
+      <div style="margin-top: 20px; text-align: center;">
+        <a href="articles.html" class="cta-primary">View All Articles</a>
+      </div>
+    </section>
+
+    <!-- ... (keep your existing about, resume, and contact sections) ... -->
+
     <!-- ABOUT -->
     <section id="about" class="section" style="margin-top:28px">
       <h2>About</h2>
@@ -946,3 +1081,4 @@
 
 </body>
 </html>
+
