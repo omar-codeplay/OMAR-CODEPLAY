@@ -1,1084 +1,642 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Omar CodePlay — Game dev • Programmer • Content Creator</title>
-  <meta name="description"
-    content="Omar CodePlay — Game developer, programmer and content creator. Browse projects, watch demos, and contact Omar." />
-  <link rel="icon" href="images/MY LOGO.png" />
-  <link rel="manifest" href="/manifest.json">
-
-  <!-- Basic Open Graph -->
-  <meta property="og:title" content="Omar CodePlay — Game dev • Programmer" />
-  <meta property="og:description"
-    content="Game developer, programmer and content creator. Projects, demos and contact." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/og-image.jpg" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmarCodePlay | Gaming & Programming</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
   <style>
-    /* ---------- Reset & base ---------- */
+    /* 1. المتغيرات والألوان */
     :root {
-      --bg: #0b0b0d;
-      --panel: #0f1720;
-      --muted: #9aa6b2;
-      --accent: #5b8cff;
-      --accent-2: #a55eff;
-      --glass: rgba(255, 255, 255, 0.03);
-      --card: #0e1114;
-      --radius: 14px;
-      --maxw: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
-      --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --bg-dark: #0b0d10;
+      --bg-medium: #11161b; 
+      --bg-light: #14181f;
+      --text-primary: #d4d4d4;
+      --text-secondary: #aaa;
+      --accent-color: #00aaff;
+      --accent-hover: #66ccff;
+      --neon-glow: #00aaff50; 
     }
 
-    * {
-      box-sizing: border-box;
-      user-select: none;
-      scrollbar-width: none;
-      overflow: auto;
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
     }
-
-    html,
-    body {
-      height: 100%
+    
+    html { 
+      scroll-behavior: smooth; 
     }
 
     body {
-      margin: 0;
-      font-family: var(--ui);
-      background: linear-gradient(180deg, #0b0b0d 0%, #070709 100%);
-      color: #e6eef6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.4;
-      -webkit-tap-highlight-color: transparent;
-      padding-top: 72px;
-      /* header space */
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: font-family 0.3s ease;
+    }
+    
+    body.lang-en {
+      font-family: 'Poppins', 'Cairo', sans-serif;
+    }
+    body.lang-ar {
+      font-family: 'Cairo', 'Poppins', sans-serif;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none
-    }
-
-    img {
-      max-width: 100%;
-      display: block
-    }
-
-    /* Skip link for accessibility */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 6px;
-      background: var(--accent);
-      color: white;
-      padding: 8px;
-      border-radius: 4px;
-      z-index: 100;
-      transition: top 0.2s;
-    }
-
-    .skip-link:focus {
-      top: 6px;
-    }
-
-    /* ---------- Header ---------- */
+    /* --- Header & Nav --- */
     header {
-      position: fixed;
-      left: 0;
-      right: 0;
+      background: var(--bg-medium);
+      color: var(--accent-color);
+      padding: 18px 1rem; 
+      text-align: center;
+      position: sticky;
       top: 0;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 60;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(11, 12, 13, 0.6), rgba(11, 12, 13, 0.35));
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+      z-index: 10;
+      border-bottom: 1px solid var(--bg-light);
     }
-
-    .wrap {
-      width: 100%;
-      max-width: var(--maxw);
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px
-    }
-
-    .brand img {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: var(--glass);
-      padding: 6px
-    }
-
-    .brand .name {
-      font-weight: 800;
-      letter-spacing: 0.6px
-    }
-
-    nav.desktop {
-      display: flex;
-      gap: 18px;
-      align-items: center
-    }
-
-    nav.desktop a {
-      color: var(--muted);
+    header h1 { 
+      font-size: 1.8em; 
+      margin-bottom: 5px; 
       font-weight: 700;
-      padding: 8px 12px;
-      border-radius: 8px
+      text-shadow: 0 0 5px var(--neon-glow);
     }
-
-    nav.desktop a:hover,
-    nav.desktop a:focus {
-      color: var(--accent);
-      outline: none;
-      background: rgba(255, 255, 255, 0.02)
-    }
-
-    .cta-primary {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      padding: 8px 14px;
-      border-radius: 10px;
-      color: #001137;
-      font-weight: 800
-    }
-
-    .cta-ghost {
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 7px 12px;
-      border-radius: 10px;
-      color: var(--muted)
-    }
-
-    /* mobile button */
-    .hamb {
-      display: none;
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      font-weight: 800;
-      padding: 8px;
-      border-radius: 8px
-    }
-
-    /* ---------- Hero ---------- */
-    main {
-      max-width: var(--maxw);
-      margin: 40px auto 80px;
-      padding: 0 20px;
-      display: block
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 28px;
-      align-items: center;
-      margin-top: 18px;
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      padding: 32px;
-      border-radius: var(--radius);
-      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      font-size: clamp(26px, 4.6vw, 44px);
-      margin: 0 0 8px;
-      line-height: 1.05
-    }
-
-    .lead {
-      color: var(--muted);
-      margin-bottom: 18px;
-      font-size: 1rem
-    }
-
-    .roles {
+    nav {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
-      margin: 18px 0
-    }
-
-    .role-pill {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-weight: 700;
-      color: var(--muted);
-      font-size: .9rem;
-      border: 1px solid rgba(255, 255, 255, 0.02)
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
+      justify-content: center;
       align-items: center;
-      margin-top: 6px
+      gap: 8px 12px;
+    }
+    nav a {
+      color: var(--text-primary);
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative; 
+      padding-bottom: 5px;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      /* Adjust positioning for RTL in Arabic */
+      left: 0; 
+      background-color: var(--accent-color);
+      transition: width 0.3s ease-out;
+    }
+    /* RTL adjustments for nav links underline */
+    [dir="rtl"] nav a::after {
+        right: 0;
+        left: auto;
     }
 
-    .small-meta {
-      color: var(--muted);
-      font-size: .9rem;
-      margin-top: 10px
+    nav a:hover::after {
+      width: 100%; 
+    }
+    
+    nav a:hover { 
+      color: var(--accent-color); 
+    }
+    
+    #lang-switcher {
+      font-weight: 600;
+      padding: 4px 10px;
+      border: 1px solid var(--text-secondary);
+      border-radius: 5px;
+      font-size: 0.9em;
+      cursor: pointer;
+      user-select: none; /* Prevent text selection on switch */
+    }
+    #lang-switcher:hover {
+      background: var(--accent-color);
+      color: var(--bg-dark);
+      border-color: var(--accent-color);
+    }
+    body.lang-en #lang-switcher { font-family: 'Cairo', sans-serif; }
+    body.lang-ar #lang-switcher { font-family: 'Poppins', sans-serif; }
+    
+
+    /* --- Sections --- */
+    section {
+      padding: 70px 1rem; 
+      max-width: 1100px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 40px;
+      font-size: 2em;
+      font-weight: 700;
+      text-shadow: 0 0 5px var(--neon-glow);
+      transition: text-shadow 0.5s;
+    }
+    section:hover h2 {
+       text-shadow: 0 0 10px var(--accent-color), 0 0 20px #00aaff80;
     }
 
-    /* hero right: profile card */
-    .profile {
-      background: linear-gradient(180deg, rgba(91, 140, 255, 0.06), rgba(165, 94, 255, 0.04));
-      border-radius: 16px;
-      padding: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+    /* --- Hero Section --- */
+    #home {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      justify-content: center;
       align-items: center;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
+      min-height: 70vh;
+      text-align: center;
+      background-image: radial-gradient(#ffffff0a 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    #home h2 { font-size: 2.2em; }
+    #home p {
+      font-size: 1.1em;
+      max-width: 700px;
+      margin-top: 20px;
     }
 
-    .profile .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    /* --- About Me Section --- */
+    #about {
+        background-color: var(--bg-medium); 
+    }
+    .about-container {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 28px;
-      color: white
+      gap: 30px;
+      flex-wrap: wrap; 
+    }
+    .about-image {
+      flex: 1;
+      text-align: center;
+      min-width: 250px;
+    }
+    .about-image img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-color);
+      box-shadow: 0 0 20px var(--neon-glow);
+      transition: transform 0.3s;
+    }
+    .about-image img:hover {
+        transform: scale(1.05);
+    }
+    .about-text {
+      flex: 2;
+      min-width: 300px;
+    }
+    .about-text p {
+      font-size: 1.05em;
+      margin-bottom: 15px;
     }
 
-    .profile .meta {
-      color: #dedefc;
-      text-align: center
-    }
-
-    .profile .meta p {
-      margin: 4px 0;
-      color: var(--muted)
-    }
-
-    /* ---------- Projects ---------- */
-    .section {
-      margin-top: 40px
-    }
-
-    .section h2 {
-      font-size: 1.4rem;
-      margin: 0 0 14px
-    }
-
+    /* --- Grid System --- */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    /* NEW CSS FIX: Remove text decoration from anchor tags containing cards */
+    .grid a {
+        text-decoration: none;
+        color: inherit; /* Ensure text color is inherited */
     }
 
+    /* --- Card Design --- */
     .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.025);
-      transition: transform .18s ease, box-shadow .18s ease;
-      min-height: 140px;
+      background: var(--bg-light);
+      border-radius: 10px;
+      border: 1px solid var(--bg-medium); 
+      box-shadow: 0 4px 10px #00000030;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      cursor: pointer; 
     }
-
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(11, 20, 40, 0.6)
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 10px 30px var(--neon-glow);
+      background: var(--bg-medium); 
     }
-
-    .card .title {
-      font-weight: 800
-    }
-
-    .card .desc {
-      color: var(--muted);
-      font-size: .95rem;
-      margin-top: 8px
-    }
-
-    .card .tags {
-      margin-top: 10px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap
-    }
-
-    .tag {
-      font-size: 0.8rem;
-      padding: 6px 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--muted);
-      border: 1px solid rgba(255, 255, 255, 0.02)
-    }
-
-    .status-badge {
-      font-size: 0.7rem;
-      padding: 4px 8px;
-      border-radius: 999px;
-      font-weight: 700;
-      margin-left: 8px;
-    }
-
-    .status-completed {
-      background: rgba(34, 197, 94, 0.1);
-      color: #22c55e;
-    }
-
-    .status-inprogress {
-      background: rgba(234, 179, 8, 0.1);
-      color: #eab308;
-    }
-
-    .status-planning {
-      background: rgba(59, 130, 246, 0.1);
-      color: #3b82f6;
-    }
-
-    /* Skill bars */
-    .skill-bar {
-      margin: 8px 0;
-    }
-
-    .skill-bar span {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 0.9rem;
-    }
-
-    .skill-bar .bar {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .skill-bar .bar div {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      border-radius: 3px;
-      transition: width 1s ease-in-out;
-    }
-
-    .article-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.025);
-      transition: transform .18s ease, box-shadow .18s ease;
-      margin-bottom: 16px;
-    }
-
-    .article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(11, 20, 40, 0.4);
-    }
-
-    .article-meta {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin: 8px 0;
-      display: flex;
-      gap: 12px;
-    }
-
-    .article-excerpt {
-      color: var(--muted);
-      line-height: 1.5;
-      margin: 12px 0;
-    }
-
-    .read-more {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .article-tag {
-      background: rgba(91, 140, 255, 0.1);
-      color: var(--accent);
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .articles-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    @media (min-width: 768px) {
-      .articles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* ---------- About ---------- */
-    .about {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 18px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.02);
-    }
-
-    .about p {
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.6
-    }
-
-    .skills {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px
-    }
-
-    /* ---------- Contact ---------- */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 18px
-    }
-
-    .contact-card {
-      padding: 18px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
-      border: 1px solid rgba(255, 255, 255, 0.02)
-    }
-
-    .socials {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap
-    }
-
-    .sbtn {
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      font-weight: 700;
-      color: var(--muted);
-      transition: all 0.2s ease;
-    }
-
-    .sbtn:hover {
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-2px);
-    }
-
-    input,
-    textarea {
+    
+    .card img {
       width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: #dfeaff;
-      font-family: inherit;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: 1px;
-    }
-
-    label {
-      font-size: .85rem;
-      color: var(--muted);
+      aspect-ratio: 1.6 / 1;
+      object-fit: cover;
       display: block;
-      margin: 8px 0
+      border-bottom: 2px solid var(--accent-color);
     }
 
-    /* Loading indicator */
-    .loading {
+    .card-content {
+      padding: 20px;
+      flex-grow: 1;
+      color: inherit; 
+    }
+    
+    .card h3 { 
+      color: var(--accent-color); 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+    }
+    
+    .card p {
+      font-size: 0.95em;
+      color: var(--text-primary);
+    }
+    
+    /* --- New Primary Button Style --- */
+    .primary-button {
       display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s ease-in-out infinite;
+      padding: 10px 25px;
+      background: var(--accent-color);
+      color: var(--bg-dark);
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 5px;
+      border: 2px solid var(--accent-color);
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px var(--neon-glow);
+      cursor: pointer;
+      font-size: 1.1em;
+      /* Ensures button text uses correct font for language */
+      font-family: inherit; 
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .primary-button:hover {
+      background: var(--bg-dark);
+      color: var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--neon-glow);
     }
 
-    /* ---------- Footer ---------- */
-    footer {
-      margin-top: 40px;
-      padding: 28px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.02);
-      color: var(--muted);
+
+    /* --- Contact Section --- */
+    #contact {
       text-align: center;
-      border-radius: 10px
+    }
+    #contact p {
+      font-size: 1.1em;
+      margin-bottom: 25px;
+    }
+    .social-links a {
+      color: var(--text-secondary);
+      margin: 0 12px;
+      font-size: 2em;
+      transition: color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+    .social-links a.fa-github:hover { color: #f5f5f5; }
+    .social-links a.fa-discord:hover { color: #7289da; }
+    .social-links a.fa-youtube:hover { color: #ff0000; }
+    
+    /* --- Footer --- */
+    footer {
+      background: var(--bg-medium);
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 30px 1rem;
+      margin-top: 40px;
+      border-top: 1px solid var(--bg-light);
     }
 
-    /* ---------- Responsive ---------- */
-    @media (max-width:1000px) {
-      .hero {
-        grid-template-columns: 1fr 320px
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, 1fr)
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr
-      }
-    }
-
-    @media (max-width:720px) {
+    /* --- Responsiveness --- */
+    @media (max-width: 768px) {
       header {
-        height: 64px
+          padding: 12px 1rem; 
       }
-
-      .wrap {
-        padding: 0 14px
+      header h1 {
+          font-size: 1.5em; 
+          margin-bottom: 3px;
       }
-
-      nav.desktop {
-        display: none
-      }
-
-      .hamb {
-        display: block
-      }
-
-      .hero {
-        grid-template-columns: 1fr
-      }
-
-      .profile {
-        order: 2
-      }
-
-      .grid {
-        grid-template-columns: 1fr
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr
-      }
-
-      .about {
-        flex-direction: column;
-      }
-
-      .about > div:last-child {
-        width: 100%;
-      }
-
-      body {
-        padding-top: 64px
-      }
+      
+      nav { gap: 8px 12px; }
+      section { padding: 40px 1rem; }
+      section h2 { font-size: 1.8em; }
+      #home { min-height: 40vh; }
+      #home h2 { font-size: 2em; }
+      #home p { font-size: 1em; }
+      .about-container { flex-direction: column; }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     }
-
-    /* keyboard focus */
-    a:focus,
-    button:focus,
-    input:focus,
-    textarea:focus {
-      outline: 3px solid rgba(91, 140, 255, 0.14);
-      outline-offset: 2px
-    }
-
-    /* small utilities */
-    .muted {
-      color: var(--muted)
-    }
-
-    .row {
-      display: flex;
-      gap: 10px;
-      align-items: center
+    
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.5em; }
+      nav a { font-size: 0.9em; }
+      .card h3 { font-size: 1.2em; }
+      .social-links a { font-size: 1.8em; }
     }
   </style>
 </head>
 
-<body>
-
-  <!-- Skip to main content for accessibility -->
-  <a href="#main" class="skip-link">Skip to main content</a>
-
+<body class="lang-en">
+  
   <header>
-    <div class="wrap">
-      <div class="brand" aria-label="Omar CodePlay">
-        <img src="images/logo.png" alt="Omar CodePlay logo" onerror="this.style.display='none'">
-        <div>
-          <div class="name">OMAR <span class="muted" style="font-weight:600">| CodePlay</span></div>
-          <div class="small-meta muted" style="font-size:.78rem">Game Dev · Programmer · Creator</div>
-        </div>
-      </div>
-
-      <nav class="desktop" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a class="cta-ghost" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
-        <a class="cta-primary" href="#contact">Hire / Collaborate</a>
-      </nav>
-
-      <button class="hamb" aria-expanded="false" aria-controls="mobile-menu" id="hamb-btn">MENU</button>
-    </div>
+    <h1>OmarCodePlay</h1>
+    <nav>
+      <a href="#home" data-key="nav_home">Home</a>
+      <a href="#about" data-key="nav_about">About</a>
+      <a href="#projects" data-key="nav_projects">Projects</a>
+      <a href="#courses" data-key="nav_courses">Courses</a>
+      <a href="#articles" data-key="nav_articles">Articles</a>
+      <a href="#contact" data-key="nav_contact">Contact</a>
+      <a href="#" id="lang-switcher" data-key="nav_lang">عربي</a> 
+    </nav>
   </header>
 
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-card" role="region" aria-labelledby="hero-title">
-        <h1 id="hero-title">I build games and websites.</h1>
-        <p class="lead">Hi, I'm Omar. I design games, write code (HTML, C#, CSS), and publish demos & tutorials. I
-          show the process — not just the highlights.</p>
+  <section id="home">
+    <h2 data-key="home_title">Welcome to OmarCodePlay</h2>
+    <p data-key="home_desc">
+      Explore my projects, tutorials, and articles about <strong>gaming</strong> and <strong>programming</strong>.
+      Join me on my journey to create, learn, and play.
+    </p>
+  </section>
 
-        <div class="roles" aria-hidden="false">
-          <div class="role-pill">Unity / C#</div>
-          <div class="role-pill">Game design</div>
-          <div class="role-pill">Web & APIs</div>
-          <div class="role-pill">Content creation</div>
-        </div>
-
-        <div class="hero-actions">
-          <a class="cta-primary" href="#projects">See Projects</a>
-          <a class="cta-ghost" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
-          <a class="cta-ghost" href="#resume">Download CV</a>
-        </div>
-
-        <div class="small-meta">Based in Egypt • Student • Open to internships & collabs</div>
+  <section id="about">
+    <h2 data-key="about_title">About Me</h2>
+    <div class="about-container">
+      <div class="about-image">
+        <img src="images/MY LOGO.png" alt="OmarCodePlay Profile Picture">
       </div>
-
-      <aside class="profile" aria-label="Profile">
-        <div class="avatar" aria-hidden="true">OM</div>
-        <div class="meta">
-          <div style="font-weight:800">Omar CodePlay</div>
-          <p class="muted">I make small games, I publish tutorials and progress videos
-            on YouTube.</p>
-        </div>
-
-        <div style="margin-top:8px;display:flex;gap:8px">
-          <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
-          <a class="sbtn" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
-        </div>
-      </aside>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <h2>Projects — selected</h2>
-      <div class="grid" role="list">
-        <!-- PROJECT CARD 1 -->
-        <article class="card" role="listitem" aria-labelledby="p1-title">
-          <div>
-            <div class="title" id="p1-title">2D Platformer Prototype
-              <span class="status-badge status-completed">Completed</span>
-            </div>
-            <div class="desc">
-              A responsive 2D character controller with smooth movement, wall jumping, and dash mechanics built in Unity.
-            </div>
-            <div class="tags">
-              <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Gameplay</span>
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="sbtn" href="https://github.com/omar-codeplay/platformer-proto" target="_blank"
-              rel="noopener">Code</a>
-            <a class="sbtn" href="https://youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">Demo Video</a>
-          </div>
-        </article>
-
-        <!-- PROJECT CARD 2 -->
-        <article class="card" role="listitem" aria-labelledby="p2-title">
-          <div>
-            <div class="title" id="p2-title">AI Enemy System
-              <span class="status-badge status-completed">Completed</span>
-            </div>
-            <div class="desc">State-based AI with patrol, chase, and attack behaviors using Unity's NavMesh system and state machines.</div>
-            <div class="tags"><span class="tag">Unity</span><span class="tag">AI</span><span class="tag">C#</span></div>
-          </div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="sbtn" href="https://github.com/omar-codeplay/ai-enemy" target="_blank" rel="noopener">Code</a>
-            <a class="sbtn" href="https://youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">Video</a>
-          </div>
-        </article>
-
-        <!-- PROJECT CARD 3 -->
-        <article class="card" role="listitem" aria-labelledby="p3-title">
-          <div>
-            <div class="title" id="p3-title">Developer Tools Collection
-              <span class="status-badge status-inprogress">In Progress</span>
-            </div>
-            <div class="desc">
-              Collection of web-based utilities for game developers including color palettes, UI components, and prototyping tools.
-            </div>
-            <div class="tags"><span class="tag">Web</span><span class="tag">Tools</span><span class="tag">JavaScript</span></div>
-          </div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
-            <a class="sbtn" href="#" target="_blank" rel="noopener">Live Demo</a>
-          </div>
-        </article>
-
-        <!-- Add more project cards here -->
+      <div class="about-text">
+        <p data-key="about_p1">
+          Hello! I'm Omar, a passionate developer and gamer who loves blending the two worlds. My journey started with a simple "Hello, World!" and quickly evolved into building custom game mechanics in Unity. We will spend our journey learning a new programing language like HTML , CSS , JS and Dart .
+        </p>
+        <p data-key="about_p2">
+          This website is my digital playground—a place where I share my creations, document my learning process, and (hopefully) teach others a few things I've picked up along the way.
+        </p>
+        <p data-key="about_p3">
+          Whether you're here to grab some code, learn a new skill, or just see what I'm up to, I'm glad to have you.
+        </p>
       </div>
-      <div style="margin-top:12px">
-        <a class="cta-ghost" href="Games.html">All projects →</a>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- NEW ARTICLES SECTION -->
-    <section id="articles" class="section">
-      <h2>Latest Articles & Tutorials</h2>
-      <div class="articles-grid">
-        
-        <!-- Article 1 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-            <h3 style="margin: 0; font-size: 1.2rem;">Building a 2D Platformer in Unity</h3>
-            <span class="article-tag">Tutorial</span>
-          </div>
-          <div class="article-meta">
-            <span>March 15, 2024</span>
-            <span>•</span>
-            <span>8 min read</span>
-          </div>
-          <p class="article-excerpt">
-            Step-by-step guide to creating a responsive 2D character controller with smooth movement, wall jumping, and dash mechanics. Perfect for beginners starting with Unity game development.
-          </p>
-          <a href="articles/platformer-tutorial.html" class="read-more">Read full article →</a>
-        </article>
 
-        <!-- Article 2 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-            <h3 style="margin: 0; font-size: 1.2rem;">AI Enemy Systems: From Simple to Smart</h3>
-            <span class="article-tag">Game Dev</span>
-          </div>
-          <div class="article-meta">
-            <span>March 10, 2024</span>
-            <span>•</span>
-            <span>12 min read</span>
-          </div>
-          <p class="article-excerpt">
-            Learn how to implement different AI behaviors for game enemies - from basic patrol patterns to complex state machines and NavMesh integration.
-          </p>
-          <a href="articles/ai-enemy-systems.html" class="read-more">Read full article →</a>
-        </article>
-
-        <!-- Article 3 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-            <h3 style="margin: 0; font-size: 1.2rem;">Optimizing Unity Games for Mobile</h3>
-            <span class="article-tag">Performance</span>
-          </div>
-          <div class="article-meta">
-            <span>March 5, 2024</span>
-            <span>•</span>
-            <span>10 min read</span>
-          </div>
-          <p class="article-excerpt">
-            Essential tips and techniques for optimizing your Unity games for mobile devices, covering rendering, memory management, and performance profiling.
-          </p>
-          <a href="articles/mobile-optimization.html" class="read-more">Read full article →</a>
-        </article>
-
-        <!-- Article 4 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-            <h3 style="margin: 0; font-size: 1.2rem;">CSS Grid for Game UI Layouts</h3>
-            <span class="article-tag">Web Dev</span>
-          </div>
-          <div class="article-meta">
-            <span>February 28, 2024</span>
-            <span>•</span>
-            <span>6 min read</span>
-          </div>
-          <p class="article-excerpt">
-            How to use modern CSS Grid to create responsive and flexible user interfaces for web-based games and applications.
-          </p>
-          <a href="articles/css-grid-ui.html" class="read-more">Read full article →</a>
-        </article>
-
-      </div>
-      <div style="margin-top: 20px; text-align: center;">
-        <a href="articles.html" class="cta-primary">View All Articles</a>
-      </div>
-    </section>
-
-    <!-- ... (keep your existing about, resume, and contact sections) ... -->
-
-    <!-- ABOUT -->
-    <section id="about" class="section" style="margin-top:28px">
-      <h2>About</h2>
-      <div class="about">
-        <div style="flex:1">
-          <p>
-            I'm Omar, a student and developer. I make Games, learn new systems fast, and publish process videos and
-            tutorials. I'm comfortable with Unity, C#, basic web stacks, Right now, I'm focused on building small games and tools, learning systems programming, and collaborating on small teams.
-          </p>
-
-          <!-- Skill Bars -->
-          <div class="skill-bar">
-            <span>C# & Unity</span>
-            <div class="bar"><div style="width:85%"></div></div>
-          </div>
-          <div class="skill-bar">
-            <span>HTML/CSS</span>
-            <div class="bar"><div style="width:75%"></div></div>
-          </div>
-          <div class="skill-bar">
-            <span>Game Design</span>
-            <div class="bar"><div style="width:70%"></div></div>
-          </div>
-          <div class="skill-bar">
-            <span>JavaScript</span>
-            <div class="bar"><div style="width:60%"></div></div>
-          </div>
-
-          <div class="skills">
-            <div class="tag">Unity</div>
-            <div class="tag">C#</div>
-            <div class="tag">HTML</div>
-            <div class="tag">Git</div>
-            <div class="tag">CSS</div>
-            <div class="tag">Game Design</div>
-            <div class="tag">JavaScript</div>
-            <div class="tag">UI/UX</div>
+  <section id="projects">
+    <h2 data-key="projects_title">Projects</h2>
+    <div class="grid">
+      <a href="pro1.html">
+        <div class="card" data-link-url="#project-taqyim">
+          <img src="images/Untitled design_20251021_155417_0000.png" alt="Taqyim App Image">
+          <div class="card-content">
+            <h3 data-key="project1_title">Taqyim</h3>
+            <p data-key="project1_desc">An App made by Java in Sketchware to Alert you when new Taqyim arrives.</p>
           </div>
         </div>
-
-        <div style="width:260px">
-          <div
-            style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;">
-            <strong>Quick facts</strong>
-            <p class="muted" style="margin-top:8px">Student • Learning systems programming • Uploads progress videos on
-              YouTube</p>
-            <div style="margin-top:10px;display:flex;gap:8px">
-              <a class="sbtn" href="https://youtube.com/@omar_codeplay" target="_blank" rel="noopener">YouTube</a>
-              <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
-            </div>
+      </a>
+      
+      <a href="pro2.html">
+        <div class="card" data-link-url="#project-cp-color">
+          <img src="images/Logo.jpg" alt="CP Color App Image">
+          <div class="card-content">
+            <h3 data-key="project2_title">CP Color</h3>
+            <p data-key="project2_desc">An App to save the colors hex code to use it in the feature.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- RESUME DOWNLOAD -->
-    <section id="resume" class="section" style="margin-top:28px">
-      <h2>Resume</h2>
-      <div class="contact-card">
-        <p class="muted">Download my resume to learn more about my experience and skills.</p>
-        <div style="margin-top:12px">
-          <a class="cta-primary" href="resume.pdf" download="Omar-CodePlay-Resume.pdf">
-            Download CV (PDF)
-          </a>
-          <p class="muted" style="font-size:.85rem;margin-top:8px">Make sure to replace resume.pdf with your actual resume file</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section" style="margin-top:28px">
-      <h2>Contact</h2>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <p class="muted">Want to work together or need a demo? Email me or message on socials.</p>
-          <div style="margin-top:12px">
-            <strong>Email</strong>
-            <p style="margin:.4rem 0"><a href="mailto:omar.oma.dou@gmail.com">omar.oma.dou@gmail.com</a></p>
-
-            <strong>Socials</strong>
-            <div class="socials" style="margin-top:8px">
-              <a class="sbtn" href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" rel="noopener">YouTube</a>
-              <a class="sbtn" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
-              <a class="sbtn" href="https://t.me/CP_OMAR_CodePlay" target="_blank" rel="noopener">Telegram</a>
-            </div>
+      </a>
+      
+      <a href="pro3.html">
+        <div class="card" data-link-url="#project-recorder">
+          <img src="images/recorder.webp" alt="Screen Recorder Website Image">
+          <div class="card-content">
+            <h3 data-key="project3_title">Screen Recorder</h3>
+            <p data-key="project3_desc">A website to record screen 4k 240fps with no lag.</p>
           </div>
         </div>
+      </a>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="Games.html" class="primary-button" data-key="btn_more_projects">More Projects</a>
+    </div>
+  </section>
 
-        <!-- Netlify Form -->
-        <form class="contact-card" name="contact" method="POST" data-netlify="true" aria-label="Contact form">
-          <label for="name">Your name</label>
-          <input id="name" name="name" placeholder="Your name" required>
-
-          <label for="email">Your email</label>
-          <input id="email" name="email" type="email" placeholder="your.email@example.com" required>
-
-          <label for="msg">Message</label>
-          <textarea id="msg" name="message" rows="5" placeholder="Short message / collab idea" required></textarea>
-
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button type="submit" class="sbtn">Send Message</button>
-            <button type="button" class="sbtn" onclick="copyEmail()">Copy email</button>
-          </div>
-          <p class="muted" style="font-size:.85rem;margin-top:8px">Prefer DMs? Use YouTube or Telegram links above.</p>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <div style="max-width:var(--maxw);margin:0 auto;padding:14px 20px">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-          <div class="muted">© <strong>OMAR_CODEPLAY</strong> • Built by Omar</div>
-          <div class="muted">Made with HTML, CSS & JavaScript
+  <section id="courses">
+    <h2 data-key="courses_title">Courses</h2>
+    <div class="grid">
+      <a href="course1.html">
+        <div class="card" data-link-url="#course-html">
+          <img src="images/images.jpeg" alt="Learn HTML & CSS Basics">
+          <div class="card-content">
+            <h3 data-key="course1_title">Learn HTML & CSS</h3>
+            <p data-key="course1_desc">Perfect for beginners — understand core concepts and syntax.</p>
           </div>
         </div>
-      </div>
-    </footer>
-  </main>
+      </a>
+      
+      <a href="course2.html">
+        <div class="card" data-link-url="#course-unity">
+          <img src="images/images.jpeg" alt="Game Dev with Unity">
+          <div class="card-content">
+            <h3 data-key="course2_title">Game Dev with Unity</h3>
+            <p data-key="course2_desc">Create your first 3D game step by step, from idea to playtest.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="courses.html" class="primary-button" data-key="btn_more_courses">More Courses</a>
+    </div>
+  </section>
 
+  <section id="articles">
+    <h2 data-key="articles_title">Articles</h2>
+    <div class="grid">
+      <a href="feature.html">
+        <div class="card" data-link-url="#article-first-game">
+          <div class="card-content">
+            <h3 data-key="article1_title">Beware of the feature</h3>
+            <p data-key="article1_desc">The danger of using unclean energy.</p>
+          </div>
+        </div>
+      </a>
+      
+      <a href="article2.html">
+        <div class="card" data-link-url="#article-js-optimizing">
+          <div class="card-content">
+            <h3 data-key="article2_title">My journey</h3>
+            <p data-key="article2_desc">How I started learning programing.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="articles.html" class="primary-button" data-key="btn_more_articles">More Articles</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 data-key="contact_title">Contact & Socials</h2>
+    <p data-key="contact_desc">Connect with me or follow my work on these platforms:</p>
+    <div class="social-links">
+      <a href="https://github.com/omar-codeplay" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://discord.gg/e56xRbgF" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+      <a href="https://youtube.com/@omar_codeplay" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <p data-key="footer_text">© 2025 OmarCodePlay — Gaming & Programming</p>
+  </footer>
+
+  
   <script>
-    /* Mobile menu toggle */
-    const hamb = document.getElementById('hamb-btn');
-    let mobileOpen = false;
-    hamb?.addEventListener('click', () => {
-      mobileOpen = !mobileOpen;
-      hamb.setAttribute('aria-expanded', String(mobileOpen));
-      if (mobileOpen) {
-        // simple mobile fallback: show native nav
-        const menu = document.createElement('div');
-        menu.id = 'mobile-menu';
-        menu.style.position = 'fixed';
-        menu.style.top = '72px';
-        menu.style.left = '0';
-        menu.style.right = '0';
-        menu.style.bottom = '0';
-        menu.style.background = 'linear-gradient(180deg, rgba(11,12,13,0.98), rgba(11,12,13,0.98))';
-        menu.style.padding = '28px';
-        menu.style.zIndex = 120;
-        menu.innerHTML = `
-          <a href="#projects" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Projects</a>
-          <a href="#about" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">About</a>
-          <a href="#contact" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Contact</a>
-          <a href="https://github.com/omar-codeplay" target="_blank" style="display:block;padding:14px 0;color:#9aa6b2">GitHub</a>
-          <a href="https://www.youtube.com/@OMAR_CODEPLAY" target="_blank" style="display:block;padding:14px 0;color:#9aa6b2">YouTube</a>
-          <button id="mobile-close" style="margin-top:20px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#9aa6b2">Close</button>
-        `;
-        document.body.appendChild(menu);
-        document.getElementById('mobile-close')?.addEventListener('click', () => {
-          mobileOpen = false;
-          hamb.setAttribute('aria-expanded', 'false');
-          document.getElementById('mobile-menu')?.remove();
-        });
-      } else {
-        document.getElementById('mobile-menu')?.remove();
+    const translations = {
+      "en": {
+        "nav_home": "Home",
+        "nav_about": "About",
+        "nav_projects": "Projects",
+        "nav_courses": "Courses",
+        "nav_articles": "Articles",
+        "nav_contact": "Contact",
+        "nav_lang": "عربي",
+        "home_title": "Welcome to OmarCodePlay",
+        "home_desc": "Explore my projects, tutorials, and articles about <strong>gaming</strong> and <strong>programming</strong>. Join me on my journey to create, learn, and play.",
+        "about_title": "About Me",
+        "about_p1": "Hello! I'm Omar, a passionate developer and gamer who loves blending the two worlds. My journey started with a simple \"Hello, World!\" and quickly evolved into building custom game mechanics in Unity. We will spend our journey learning a new programing language like HTML , CSS , JS and Dart .",
+        "about_p2": "This website is my digital playground—a place where I share my creations, document my learning process, and (hopefully) teach others a few things I've picked up along the way.",
+        "about_p3": "Whether you're here to grab some code, learn a new skill, or just see what I'm up to, I'm glad to have you.",
+        "projects_title": "Projects",
+        "project1_title": "Taqyim",
+        "project1_desc": "An App made by Java in Sketchware to Alert you when new Taqyim arrives.",
+        "project2_title": "CP Color",
+        "project2_desc": "An App to save the colors hex code to use it in the feature.",
+        "project3_title": "Screen Recorder",
+        "project3_desc": "A website to record screen 4k 240fps with no lag.",
+        "courses_title": "Courses",
+        "course1_title": "Learn HTML & CSS",
+        "course1_desc": "Perfect for beginners — understand core concepts and syntax.",
+        "course2_title": "Game Dev with Unity",
+        "course2_desc": "Create your first 3D game step by step, from idea to playtest.",
+        "articles_title": "Articles",
+        // CORRECTED ARTICLE TRANSLATIONS START
+        "article1_title": "Beware of the feature",
+        "article1_desc": "The danger of using unclean energy.",
+        "article2_title": "My journey",
+        "article2_desc": "How I started learning programing.",
+        // CORRECTED ARTICLE TRANSLATIONS END
+        "contact_title": "Contact & Socials",
+        "contact_desc": "Connect with me or follow my work on these platforms:",
+        "footer_text": "© 2025 OmarCodePlay — Gaming & Programming",
+        "btn_more_projects": "More Projects", // Still uses the English key text
+        "btn_more_courses": "More Courses",   
+        "btn_more_articles": "More Articles" 
+      },
+      "ar": {
+        "nav_home": "الرئيسية",
+        "nav_about": "نبذة عني",
+        "nav_projects": "المشاريع",
+        "nav_courses": "الكورسات",
+        "nav_articles": "المقالات",
+        "nav_contact": "تواصل معي",
+        "nav_lang": "English",
+        "home_title": "أهلاً بك في OmarCodePlay",
+        "home_desc": "استكشف مشاريعي، دروسي، ومقالاتي حول <strong>الألعاب</strong> و <strong>البرمجة</strong>. انضم إلي في رحلتي للإبداع، التعلم، واللعب.",
+        "about_title": "نبذة عني",
+        "about_p1": "مرحباً! أنا عمر، مطور ولاعب شغوف أحب المزج بين العالمين. بدأت رحلتي بـ \"Hello, World!\" بسيطة وتطورت سريعاً لبناء آليات ألعاب مخصصة في Unity. سنقضي رحلتنا في تعلم لغات برمجة جديدة مثل HTML و CSS و JS و Dart.",
+        "about_p2": "هذا الموقع هو ملعبي الرقمي، مكان أشارك فيه إبداعاتي، وأوثق عملية تعلمي، وآمل أن أُعلّم الآخرين بعض الأشياء التي اكتسبتها على طول الطريق.",
+        "about_p3": "سواء كنت هنا للحصول على كود، أو لتعلم مهارة جديدة، أو لمجرد رؤية ما أفعله، أنا سعيد بوجودك.",
+        "projects_title": "المشاريع",
+        "project1_title": "تـقـيـيـم",
+        "project1_desc": "تطبيق مصنوع بلغة Java في Sketchware لتنبيهك بوصول تقييمات جديدة.",
+        "project2_title": "CP Color",
+        "project2_desc": "تطبيق لحفظ أكواد الألوان السداسية (Hex Code) لاستخدامها لاحقاً.",
+        "project3_title": "مسجل الشاشة",
+        "project3_desc": "موقع لتسجيل الشاشة بجودة 4K و 240 إطارًا في الثانية بدون تأخير.",
+        "courses_title": "الكورسات",
+        "course1_title": "تعلم أساسيات HTML و CSS",
+        "course1_desc": "مثالي للمبتدئين — لفهم المفاهيم الأساسية وبناء الجملة.",
+        "course2_title": "تطوير الألعاب بـ Unity",
+        "course2_desc": "أنشئ لعبتك ثلاثية الأبعاد الأولى خطوة بخطوة، من الفكرة إلى الاختبار.",
+        "articles_title": "المقالات",
+        // CORRECTED ARTICLE ARABIC TRANSLATIONS START
+        "article1_title": "احذر من المستقبل", 
+        "article1_desc": "خطر استخدام الطاقة غير النظيفة.",
+        "article2_title": "رحلتي",
+        "article2_desc": "كيف بدأت تعلم البرمجة.",
+        // CORRECTED ARTICLE ARABIC TRANSLATIONS END
+        "contact_title": "تواصل معي",
+        "contact_desc": "تواصل معي أو تابع أعمالي على هذه المنصات:",
+        "footer_text": "© 2025 OmarCodePlay — ألعاب وبرمجة",
+        "btn_more_projects": "المزيد من المشاريع", 
+        "btn_more_courses": "المزيد من الكورسات",   
+        "btn_more_articles": "المزيد من المقالات" 
       }
-    });
-
-    function copyEmail() {
-      navigator.clipboard?.writeText('omar.oma.dou@gmail.com').then(() => {
-        alert('Email copied to clipboard!');
-      }).catch(() => {
-        prompt('Copy email:', 'omar.oma.dou@gmail.com');
-      })
-    }
-
-    /* Loading states for external links */
-    document.querySelectorAll('a[target="_blank"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        // You could add a loading indicator here
-        console.log('Opening external link:', link.href);
-      });
-    });
-
-    /* Animate skill bars on scroll */
-    function animateSkillBars() {
-      const skillBars = document.querySelectorAll('.skill-bar .bar div');
-      skillBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0%';
-        setTimeout(() => {
-          bar.style.width = width;
-        }, 100);
-      });
-    }
-
-    // Animate when about section comes into view
-    const aboutSection = document.getElementById('about');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateSkillBars();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    if (aboutSection) {
-      observer.observe(aboutSection);
-    }
-
-    /* Small improvement: keyboard shortcut to open contact (g) */
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'g' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
-        location.hash = '#contact';
-      }
-    });
-
-    // Add structured data for SEO
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Omar CodePlay",
-      "jobTitle": "Game Developer & Programmer",
-      "url": "https://omar-codeplay.netlify.app",
-      "sameAs": [
-        "https://github.com/omar-codeplay",
-        "https://www.youtube.com/@OMAR_CODEPLAY"
-      ]
     };
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-  </script>
+    const langSwitcher = document.getElementById('lang-switcher');
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
 
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
+    // ----------------------------------------------------
+    // 1. الدالة الأساسية لتطبيق الترجمة
+    // ----------------------------------------------------
+    function applyLanguage(lang) {
+        // Set the primary attributes on the <html> element
+        htmlEl.setAttribute('lang', lang);
+        htmlEl.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        
+        // Set the class on the <body> element for CSS
+        bodyEl.className = `lang-${lang}`;
+
+        const elementsToTranslate = document.querySelectorAll('[data-key]');
+        
+        elementsToTranslate.forEach(el => {
+            const key = el.getAttribute('data-key');
+            const translation = translations[lang][key];
+            
+            if (translation) {
+                // Using innerHTML handles the <strong> tag in home_desc
+                el.innerHTML = translation; 
+            }
+        });
     }
+
+    // ----------------------------------------------------
+    // 2. الدالة المسؤولة عن تبديل وحفظ اللغة
+    // ----------------------------------------------------
+    function toggleLanguage() {
+        const currentLang = htmlEl.getAttribute('lang');
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+
+        // تطبيق اللغة الجديدة
+        applyLanguage(newLang);
+        
+        // حفظ اللغة الجديدة في التخزين المحلي
+        localStorage.setItem('userLang', newLang);
+    }
+
+    // ----------------------------------------------------
+    // 3. التحقق عند تحميل الصفحة (تطبيق اللغة المحفوظة)
+    // ----------------------------------------------------
+    (function checkStoredLanguage() {
+        // التحقق من وجود لغة محفوظة أو استخدام الافتراضية 'en'
+        const storedLang = localStorage.getItem('userLang');
+        const initialLang = storedLang || 'en';
+        
+        // تطبيق اللغة المحفوظة أو الافتراضية
+        applyLanguage(initialLang);
+        
+        // Ensure the correct lang attribute is set initially
+        htmlEl.setAttribute('lang', initialLang);
+    })();
+
+
+    langSwitcher.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default link behavior (like page reload)
+      toggleLanguage();
+    });
+    
+    // The previous JS click handler for cards is removed, relying only on HTML links.
+
   </script>
 
 </body>
 </html>
-
