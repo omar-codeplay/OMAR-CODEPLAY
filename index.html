@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OmarCodePlay | Gaming & Programming</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="OmarCodePlay - Where Gaming Meets Programming. Explore projects, tutorials, and articles about game development and programming.">
+  <meta name="keywords" content="programming, gaming, game development, unity, web development, omar code play">
+  <meta name="author" content="OmarCodePlay">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="OmarCodePlay - Gaming & Programming">
+  <meta property="og:description" content="Where Gaming Meets Programming. Explore projects, tutorials, and articles.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omarcodeplay.com">
+  <meta property="og:image" content="https://omarcodeplay.com/images/og-image.jpg">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00aaff">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +50,24 @@
       --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
+    /* Light Theme Variables */
+    [data-theme="light"] {
+      --bg-dark: #f0f2f5;
+      --bg-medium: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --accent-color: #3182ce;
+      --accent-secondary: #e53e3e;
+      --accent-tertiary: #38a169;
+      --accent-hover: #4299e1;
+      --neon-glow: #3182ce50;
+      --gradient-primary: linear-gradient(135deg, #3182ce 0%, #38a169 100%);
+      --gradient-secondary: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
+      --gradient-dark: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
     * { 
       margin: 0; 
       padding: 0; 
@@ -46,7 +82,7 @@
       background-color: var(--bg-dark);
       color: var(--text-primary);
       line-height: 1.7;
-      transition: font-family 0.3s ease;
+      transition: var(--transition-smooth);
       overflow-x: hidden;
       background-image: 
         radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
@@ -59,6 +95,21 @@
     }
     body.lang-ar {
       font-family: 'Cairo', 'Poppins', sans-serif;
+    }
+
+    /* Parallax Background */
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+      transform: translateZ(0);
+      pointer-events: none;
     }
 
     /* --- Header & Nav --- */
@@ -75,6 +126,11 @@
       border-bottom: 1px solid rgba(20, 24, 31, 0.5);
       backdrop-filter: blur(10px);
       transition: var(--transition-smooth);
+    }
+    
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
     
     header.scrolled {
@@ -230,7 +286,7 @@
     }
     
     section:hover h2 {
-       text-shadow: 0 0 15px var(--accent-color), 0 0 30px #00aaff80;
+       text-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--neon-glow);
     }
 
     /* --- Hero Section --- */
@@ -348,7 +404,15 @@
       transition: var(--transition-smooth);
       position: relative;
       z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
     }
+    
+    .about-image img.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     .about-image img:hover {
         transform: scale(1.05) rotate(5deg);
         box-shadow: 0 0 40px var(--accent-color);
@@ -443,8 +507,15 @@
       display: block;
       border-bottom: 2px solid var(--accent-color);
       transition: var(--transition-smooth);
+      opacity: 0;
+      transform: translateY(20px);
     }
     
+    .card img.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .card:hover img {
       transform: scale(1.05);
     }
@@ -658,6 +729,7 @@
       filter: blur(40px);
       z-index: 0;
       pointer-events: none;
+      transition: transform 0.1s linear;
     }
     
     .floating-1 {
@@ -861,6 +933,18 @@
       color: var(--accent-color);
     }
 
+    /* --- Loading States --- */
+    .loading {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* --- Responsiveness --- */
     @media (max-width: 768px) {
       header {
@@ -988,6 +1072,9 @@
     <span id="toastMessage">Language changed successfully!</span>
   </div>
   
+  <!-- Parallax Background -->
+  <div class="parallax-bg"></div>
+  
   <!-- Floating Background Elements -->
   <div class="floating-element floating-1"></div>
   <div class="floating-element floating-2"></div>
@@ -1035,7 +1122,7 @@
     </div>
     <div class="about-container">
       <div class="about-image fade-in float">
-        <img src="images/MY LOGO.png" alt="OmarCodePlay Profile Picture">
+        <img src="images/MY LOGO.png" alt="OmarCodePlay Profile Picture" data-src="images/MY LOGO.png" class="loading">
       </div>
       <div class="about-text fade-in delay-1">
         <p data-key="about_p1">
@@ -1067,7 +1154,10 @@
     <div class="grid">
       <a href="pro1.html" class="fade-in">
         <div class="card" data-link-url="#project-taqyim">
-          <img src="images/Untitled design_20251021_155417_0000.png" alt="Taqyim App Image">
+          <picture>
+            <source srcset="images/Untitled design_20251021_155417_0000.webp" type="image/webp">
+            <img src="images/Untitled design_20251021_155417_0000.png" alt="Taqyim App Image" data-src="images/Untitled design_20251021_155417_0000.png" class="loading">
+          </picture>
           <div class="card-content">
             <h3 data-key="project1_title">Taqyim</h3>
             <p data-key="project1_desc">An App made by Java in Sketchware to Alert you when new Taqyim arrives.</p>
@@ -1081,7 +1171,10 @@
       
       <a href="pro2.html" class="fade-in delay-1">
         <div class="card" data-link-url="#project-cp-color">
-          <img src="images/Logo.jpg" alt="CP Color App Image">
+          <picture>
+            <source srcset="images/Logo.webp" type="image/webp">
+            <img src="images/Logo.jpg" alt="CP Color App Image" data-src="images/Logo.jpg" class="loading">
+          </picture>
           <div class="card-content">
             <h3 data-key="project2_title">CP Color</h3>
             <p data-key="project2_desc">An App to save the colors hex code to use it in the feature.</p>
@@ -1095,7 +1188,10 @@
       
       <a href="pro3.html" class="fade-in delay-2">
         <div class="card" data-link-url="#project-recorder">
-          <img src="images/recorder.webp" alt="Screen Recorder Website Image">
+          <picture>
+            <source srcset="images/recorder.webp" type="image/webp">
+            <img src="images/recorder.webp" alt="Screen Recorder Website Image" data-src="images/recorder.webp" class="loading">
+          </picture>
           <div class="card-content">
             <h3 data-key="project3_title">Screen Recorder</h3>
             <p data-key="project3_desc">A website to record screen 4k 240fps with no lag.</p>
@@ -1119,7 +1215,10 @@
     <div class="grid">
       <a href="course1.html" class="fade-in">
         <div class="card" data-link-url="#course-html">
-          <img src="images/studio_square_thumbnail.jpg" alt="Learn HTML & CSS Basics">
+          <picture>
+            <source srcset="images/studio_square_thumbnail.webp" type="image/webp">
+            <img src="images/studio_square_thumbnail.jpg" alt="Learn HTML & CSS Basics" data-src="images/studio_square_thumbnail.jpg" class="loading">
+          </picture>
           <div class="card-content">
             <h3 data-key="course1_title">Learn HTML & CSS</h3>
             <p data-key="course1_desc">Perfect for beginners — understand core concepts and syntax.</p>
@@ -1133,7 +1232,10 @@
       
       <a href="course2.html" class="fade-in delay-1">
         <div class="card" data-link-url="#course-unity">
-          <img src="images/images.jpeg" alt="Game Dev with Unity">
+          <picture>
+            <source srcset="images/images.webp" type="image/webp">
+            <img src="images/images.jpeg" alt="Game Dev with Unity" data-src="images/images.jpeg" class="loading">
+          </picture>
           <div class="card-content">
             <h3 data-key="course2_title">Game Dev with Unity</h3>
             <p data-key="course2_desc">Create your first 3D game step by step, from idea to playtest.</p>
@@ -1303,9 +1405,116 @@
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
     const particlesContainer = document.getElementById('particles');
+    const parallaxBg = document.querySelector('.parallax-bg');
 
     // ----------------------------------------------------
-    // 1. الدالة الأساسية لتطبيق الترجمة
+    // 1. نظام الألوان الفاتح/الداكن
+    // ----------------------------------------------------
+    function toggleTheme() {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      htmlEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // تحديث الأيقونة
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      
+      showToast('toast_theme');
+    }
+
+    // التحقق من السمة المحفوظة
+    (function checkStoredTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      htmlEl.setAttribute('data-theme', savedTheme);
+      
+      // تحديث الأيقونة بناءً على السمة
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    })();
+
+    // ----------------------------------------------------
+    // 2. العناصر العائمة المتفاعلة
+    // ----------------------------------------------------
+    function initFloatingElements() {
+      const floatingElements = document.querySelectorAll('.floating-element');
+      
+      document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        floatingElements.forEach((el, index) => {
+          const speed = (index + 1) * 0.5;
+          const x = (mouseX - 0.5) * 20 * speed;
+          const y = (mouseY - 0.5) * 20 * speed;
+          
+          el.style.transform = `translate(${x}px, ${y}px)`;
+        });
+      });
+    }
+
+    // ----------------------------------------------------
+    // 3. تأثير Parallax للخلفية
+    // ----------------------------------------------------
+    function initParallax() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        if (parallaxBg) {
+          parallaxBg.style.transform = `translate3d(0px, ${rate}px, 0px)`;
+        }
+      });
+    }
+
+    // ----------------------------------------------------
+    // 4. التحميل المتقطع للصور (Lazy Loading)
+    // ----------------------------------------------------
+    function initLazyLoading() {
+      const images = document.querySelectorAll('img[data-src]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            
+            // تحميل الصورة
+            img.src = img.dataset.src;
+            
+            // إضافة حدث عند اكتمال التحميل
+            img.onload = () => {
+              img.classList.add('loaded');
+            };
+            
+            imageObserver.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+      });
+
+      images.forEach(img => imageObserver.observe(img));
+    }
+
+    // ----------------------------------------------------
+    // 5. Service Worker للتخزين المؤقت
+    // ----------------------------------------------------
+    function registerServiceWorker() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      }
+    }
+
+    // ----------------------------------------------------
+    // 6. الدالة الأساسية لتطبيق الترجمة
     // ----------------------------------------------------
     function applyLanguage(lang) {
         // Set the primary attributes on the <html> element
@@ -1329,7 +1538,7 @@
     }
 
     // ----------------------------------------------------
-    // 2. الدالة المسؤولة عن تبديل وحفظ اللغة
+    // 7. الدالة المسؤولة عن تبديل وحفظ اللغة
     // ----------------------------------------------------
     function toggleLanguage() {
         const currentLang = htmlEl.getAttribute('lang');
@@ -1346,7 +1555,7 @@
     }
 
     // ----------------------------------------------------
-    // 3. التحقق عند تحميل الصفحة (تطبيق اللغة المحفوظة)
+    // 8. التحقق عند تحميل الصفحة (تطبيق اللغة المحفوظة)
     // ----------------------------------------------------
     (function checkStoredLanguage() {
         // التحقق من وجود لغة محفوظة أو استخدام الافتراضية 'en'
@@ -1361,7 +1570,7 @@
     })();
 
     // ----------------------------------------------------
-    // 4. تأثير التمرير على الهيدر وشريط التقدم
+    // 9. تأثير التمرير على الهيدر وشريط التقدم
     // ----------------------------------------------------
     window.addEventListener('scroll', () => {
         // Header scroll effect
@@ -1387,7 +1596,7 @@
     });
 
     // ----------------------------------------------------
-    // 5. تأثيرات الظهور عند التمرير
+    // 10. تأثيرات الظهور عند التمرير
     // ----------------------------------------------------
     function checkScroll() {
         const fadeElements = document.querySelectorAll('.fade-in');
@@ -1414,7 +1623,7 @@
     window.addEventListener('load', checkScroll);
 
     // ----------------------------------------------------
-    // 6. Back to Top functionality
+    // 11. Back to Top functionality
     // ----------------------------------------------------
     backToTop.addEventListener('click', () => {
         window.scrollTo({
@@ -1424,37 +1633,7 @@
     });
 
     // ----------------------------------------------------
-    // 7. Theme Toggle functionality
-    // ----------------------------------------------------
-    themeToggle.addEventListener('click', () => {
-        // Toggle between dark and light theme
-        const isDark = bodyEl.classList.contains('dark-theme');
-        
-        if (isDark) {
-            bodyEl.classList.remove('dark-theme');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            bodyEl.classList.add('dark-theme');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('theme', 'light');
-        }
-        
-        // Show toast notification
-        showToast('toast_theme');
-    });
-
-    // Check for saved theme preference
-    (function checkStoredTheme() {
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'light') {
-            bodyEl.classList.add('dark-theme');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-    })();
-
-    // ----------------------------------------------------
-    // 8. Toast Notification functionality
+    // 12. Toast Notification functionality
     // ----------------------------------------------------
     function showToast(messageKey) {
         toastMessage.textContent = translations[htmlEl.getAttribute('lang')][messageKey];
@@ -1466,7 +1645,7 @@
     }
 
     // ----------------------------------------------------
-    // 9. Particle Background
+    // 13. Particle Background
     // ----------------------------------------------------
     function createParticles() {
         const particleCount = 30;
@@ -1494,15 +1673,84 @@
         }
     }
     
-    createParticles();
+    // ----------------------------------------------------
+    // 14. Google Analytics
+    // ----------------------------------------------------
+    function initGoogleAnalytics() {
+      // Replace with your GA4 measurement ID
+      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+      
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    }
 
     // ----------------------------------------------------
-    // 10. إضافة مستمعي الأحداث
+    // 15. نظام متابعة الزوار
     // ----------------------------------------------------
+    function initVisitorTracking() {
+      const stats = JSON.parse(localStorage.getItem('visitorStats') || '{"pageViews": 0, "lastVisit": null}');
+      
+      // زيادة عدد المشاهدات
+      stats.pageViews = (stats.pageViews || 0) + 1;
+      stats.lastVisit = new Date().toISOString();
+      
+      localStorage.setItem('visitorStats', JSON.stringify(stats));
+      
+      // تتبع النقرات
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('a');
+        if (target) {
+          const linkStats = JSON.parse(localStorage.getItem('linkStats') || '{}');
+          const href = target.getAttribute('href');
+          linkStats[href] = (linkStats[href] || 0) + 1;
+          localStorage.setItem('linkStats', JSON.stringify(linkStats));
+        }
+      });
+      
+      // تتبع التمرير
+      let maxScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        if (currentScroll > maxScroll) {
+          maxScroll = currentScroll;
+          localStorage.setItem('maxScrollDepth', Math.round(maxScroll));
+        }
+      });
+    }
+
+    // ----------------------------------------------------
+    // 16. تهيئة جميع الميزات
+    // ----------------------------------------------------
+    function initAllFeatures() {
+      initFloatingElements();
+      initParallax();
+      initLazyLoading();
+      registerServiceWorker();
+      createParticles();
+      initGoogleAnalytics();
+      initVisitorTracking();
+      
+      // تحميل الصور الموجودة مباشرة في الصفحة
+      document.querySelectorAll('img[src]:not([data-src])').forEach(img => {
+        img.classList.add('loaded');
+      });
+    }
+
+    // ----------------------------------------------------
+    // 17. إضافة مستمعي الأحداث
+    // ----------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      initAllFeatures();
+    });
+
     langSwitcher.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevent default link behavior (like page reload)
+      e.preventDefault();
       toggleLanguage();
     });
+
+    themeToggle.addEventListener('click', toggleTheme);
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
