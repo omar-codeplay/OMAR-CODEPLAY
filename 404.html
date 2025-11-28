@@ -1,0 +1,42 @@
+<!-- 404.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Page Not Found - OmarCodePlay</title>
+  <style>
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .error-code {
+      font-size: 8rem;
+      font-weight: bold;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    
+    .error-message {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body class="lang-en">
+  <div class="error-container">
+    <div class="error-code">404</div>
+    <h1 class="error-message" data-key="error_404">Oops! Page not found</h1>
+    <a href="/" class="primary-button" data-key="error_home">Back to Home</a>
+  </div>
+</body>
+</html>
