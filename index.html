@@ -5,20 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OmarCodePlay | Gaming & Programming</title>
   
-  <!-- SEO Meta Tags -->
   <meta name="description" content="OmarCodePlay - Where Gaming Meets Programming. Explore projects, tutorials, and articles about game development and programming.">
   <meta name="keywords" content="programming, gaming, game development, unity, web development, omar code play">
   <meta name="author" content="OmarCodePlay">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="OmarCodePlay - Gaming & Programming">
   <meta property="og:description" content="Where Gaming Meets Programming. Explore projects, tutorials, and articles.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://omarcodeplay.com">
   <meta property="og:image" content="https://omarcodeplay.com/images/og-image.jpg">
 
-  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#00aaff">
   <link rel="apple-touch-icon" href="images/icon-192.png">
@@ -1051,36 +1048,29 @@
 
 <body class="lang-en">
   
-  <!-- Scroll Progress Bar -->
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
   
-  <!-- Theme Toggle -->
   <div class="theme-toggle" id="themeToggle">
     <i class="fas fa-moon"></i>
   </div>
   
-  <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </div>
   
-  <!-- Notification Toast -->
   <div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Language changed successfully!</span>
   </div>
   
-  <!-- Parallax Background -->
   <div class="parallax-bg"></div>
   
-  <!-- Floating Background Elements -->
   <div class="floating-element floating-1"></div>
   <div class="floating-element floating-2"></div>
   <div class="floating-element floating-3"></div>
   
-  <!-- Particle Background -->
   <div class="particles" id="particles"></div>
   
   <header id="mainHeader">
@@ -1217,7 +1207,7 @@
         <div class="card" data-link-url="#course-html">
           <picture>
             <source srcset="images/studio_square_thumbnail.webp" type="image/webp">
-            <img src="images/studio_square_thumbnail.jpg" alt="Learn HTML & CSS Basics" data-src="images/studio_square_thumbnail.jpg" class="loading">
+            <img src="images/studio_square_thumbnail.jpg" alt="Learn HTML & CSS Basics" class="loading"> 
           </picture>
           <div class="card-content">
             <h3 data-key="course1_title">Learn HTML & CSS</h3>
@@ -1234,7 +1224,7 @@
         <div class="card" data-link-url="#course-unity">
           <picture>
             <source srcset="images/images.webp" type="image/webp">
-            <img src="images/images.jpeg" alt="Game Dev with Unity" data-src="images/images.jpeg" class="loading">
+            <img src="images/images.jpeg" alt="Game Dev with Unity" class="loading">
           </picture>
           <div class="card-content">
             <h3 data-key="course2_title">Game Dev with Unity</h3>
@@ -1469,10 +1459,11 @@
     }
 
     // ----------------------------------------------------
-    // 4. التحميل المتقطع للصور (Lazy Loading)
+    // 4. التحميل المتقطع للصور (Lazy Loading) - UPDATED
     // ----------------------------------------------------
     function initLazyLoading() {
-      const images = document.querySelectorAll('img[data-src]');
+      // Select only <img> tags with data-src that are NOT inside a <picture> tag
+      const images = document.querySelectorAll('img[data-src]:not(picture img)');
       
       const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -1678,12 +1669,12 @@
     // ----------------------------------------------------
     function initGoogleAnalytics() {
       // Replace with your GA4 measurement ID
-      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+      const GA_MEASUREMENT_ID = 'G-3XK98YF9PW'';
       
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', G-3XK98YF9PW);
+      gtag('config', GA_MEASUREMENT_ID); // Adjusted to remove user-provided string template
     }
 
     // ----------------------------------------------------
@@ -1732,9 +1723,26 @@
       initGoogleAnalytics();
       initVisitorTracking();
       
-      // تحميل الصور الموجودة مباشرة في الصفحة
+      // Explicitly load images inside <picture> tags (the ones without data-src)
+      document.querySelectorAll('picture img').forEach(img => {
+        img.onload = () => { // ensure .loaded class is added after load
+            img.classList.add('loaded');
+        };
+        // If image is already loaded from src attribute, just add the class
+        if (img.complete) {
+            img.classList.add('loaded');
+        }
+      });
+
+      // Also ensure existing images without data-src (like the logo) get the loaded class
       document.querySelectorAll('img[src]:not([data-src])').forEach(img => {
-        img.classList.add('loaded');
+          if (img.complete) {
+            img.classList.add('loaded');
+          } else {
+            img.onload = () => {
+                img.classList.add('loaded');
+            };
+          }
       });
     }
 
@@ -1776,5 +1784,3 @@
 
 </body>
 </html>
-
-
