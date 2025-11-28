@@ -1,120 +1,1356 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="icon" href="images/MY LOGO.png">
-    <link rel="stylesheet" href="css/pro.css">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3758016323496227"
-        crossorigin="anonymous"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3758016323496227" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-3758016323496227">
+    
+    <title>OMAR | Minecraft Resource Pack</title>
+    
+    <style>
+        /* 1. المتغيرات والألوان المحسنة */
+        :root {
+          --bg-dark: #0b0d10;
+          --bg-medium: #11161b; 
+          --bg-light: #14181f;
+          --text-primary: #e8e8e8;
+          --text-secondary: #b0b0b0;
+          --accent-color: #00aaff;
+          --accent-secondary: #ff6b6b;
+          --accent-tertiary: #00ffcc;
+          --accent-hover: #66ccff;
+          --neon-glow: #00aaff50; 
+          --gradient-primary: linear-gradient(135deg, #00aaff 0%, #00ffcc 100%);
+          --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+          --gradient-dark: linear-gradient(135deg, #0b0d10 0%, #11161b 100%);
+          --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+          --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
 
-    <title> OMAR | عمر </title>
+        /* Light Theme Variables */
+        [data-theme="light"] {
+          --bg-dark: #f0f2f5;
+          --bg-medium: #ffffff;
+          --bg-light: #f8f9fa;
+          --text-primary: #2d3748;
+          --text-secondary: #4a5568;
+          --accent-color: #3182ce;
+          --accent-secondary: #e53e3e;
+          --accent-tertiary: #38a169;
+          --accent-hover: #4299e1;
+          --neon-glow: #3182ce50;
+          --gradient-primary: linear-gradient(135deg, #3182ce 0%, #38a169 100%);
+          --gradient-secondary: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
+          --gradient-dark: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+          --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * { 
+          margin: 0; 
+          padding: 0; 
+          box-sizing: border-box; 
+        }
+        
+        html { 
+          scroll-behavior: smooth; 
+        }
+
+        body {
+          background-color: var(--bg-dark);
+          color: var(--text-primary);
+          line-height: 1.7;
+          transition: var(--transition-smooth);
+          overflow-x: hidden;
+          background-image: 
+            radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
+            radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
+            radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+        }
+        
+        body.lang-en {
+          font-family: 'Poppins', 'Cairo', sans-serif;
+        }
+        body.lang-ar {
+          font-family: 'Cairo', 'Poppins', sans-serif;
+        }
+
+        /* Parallax Background */
+        .parallax-bg {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          background-image: 
+            radial-gradient(circle at 20% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+          transform: translateZ(0);
+          pointer-events: none;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+          background: rgba(17, 22, 27, 0.95);
+          color: var(--accent-color);
+          padding: 18px 1rem; 
+          text-align: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          border-bottom: 1px solid rgba(20, 24, 31, 0.5);
+          backdrop-filter: blur(10px);
+          transition: var(--transition-smooth);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        [data-theme="light"] header {
+          background: rgba(255, 255, 255, 0.95);
+          border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        header.scrolled {
+          padding: 12px 1rem;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        
+        .logo-icon {
+          width: 40px;
+          height: 40px;
+          background: var(--gradient-primary);
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--bg-dark);
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+        
+        .logo h1 {
+          font-size: 1.5em;
+          font-weight: 700;
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .main-title {
+            color: var(--accent-color);
+            text-align: center;
+            /* تم حذف padding-top: 120px; */
+            padding-top: 0; /* تم التعديل */
+            padding-bottom: 40px;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-title h1 { 
+          font-size: 2.5em; 
+          font-weight: 700;
+          text-shadow: 0 0 10px var(--neon-glow);
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          display: inline-block;
+          margin-bottom: 10px;
+        }
+        
+        .main-title p {
+          font-size: 1.2em;
+          color: var(--text-secondary);
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        
+        nav {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+        
+        nav a {
+          color: var(--text-primary);
+          text-decoration: none;
+          font-weight: 500;
+          transition: var(--transition-smooth);
+          position: relative; 
+          padding-bottom: 5px;
+        }
+        
+        nav a::after {
+          content: '';
+          position: absolute;
+          width: 0%;
+          height: 2px;
+          bottom: 0;
+          left: 0; 
+          background: var(--gradient-primary);
+          transition: width 0.3s ease-out;
+        }
+        
+        /* RTL adjustments for nav links underline */
+        [dir="rtl"] nav a::after {
+            right: 0;
+            left: auto;
+        }
+
+        nav a:hover::after {
+          width: 100%; 
+        }
+        
+        nav a:hover { 
+          color: var(--accent-color); 
+        }
+        
+        #lang-switcher {
+          font-weight: 600;
+          padding: 6px 12px;
+          border: 1px solid var(--text-secondary);
+          border-radius: 30px;
+          font-size: 0.9em;
+          cursor: pointer;
+          user-select: none;
+          transition: var(--transition-smooth);
+        }
+        
+        #lang-switcher:hover {
+          background: var(--accent-color);
+          color: var(--bg-dark);
+          border-color: var(--accent-color);
+          transform: translateY(-2px);
+        }
+        
+        body.lang-en #lang-switcher { font-family: 'Cairo', sans-serif; }
+        body.lang-ar #lang-switcher { font-family: 'Poppins', sans-serif; }
+        
+        /* --- Sections --- */
+        section {
+          padding: 80px 1rem; 
+          max-width: 1200px;
+          margin: auto;
+          position: relative;
+        }
+        
+        /* *** تعديل جديد: لإضافة مساحة علوية للقسم الأول بعد الهيدر الثابت *** */
+        .first-section {
+            padding-top: 100px; 
+        }
+        
+        .section-title {
+          text-align: center;
+          margin-bottom: 60px;
+          position: relative;
+        }
+        
+        section h2 {
+          color: var(--accent-color);
+          font-size: 2.5em;
+          font-weight: 700;
+          text-shadow: 0 0 10px var(--neon-glow);
+          transition: text-shadow 0.5s;
+          display: inline-block;
+          position: relative;
+          margin-bottom: 15px;
+        }
+        
+        .section-title::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 3px;
+          background: var(--gradient-primary);
+          border-radius: 3px;
+        }
+        
+        section:hover h2 {
+           text-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--neon-glow);
+        }
+
+        /* --- Project Detail Section --- */
+        .project-detail {
+          background-color: var(--bg-medium); 
+          position: relative;
+          overflow: hidden;
+          border-radius: 20px;
+          margin: 20px;
+          box-shadow: var(--card-shadow);
+        }
+        
+        .project-detail::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          right: -10%;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(0, 170, 255, 0.1) 0%, transparent 70%);
+          z-index: 0;
+        }
+        
+        .project-container {
+          display: flex;
+          align-items: center;
+          gap: 50px;
+          flex-wrap: wrap; 
+          position: relative;
+          z-index: 1;
+          padding: 40px;
+        }
+        
+        .project-image {
+          flex: 1;
+          text-align: center;
+          min-width: 250px;
+          position: relative;
+        }
+        
+        .project-image::before {
+          content: '';
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          right: -10px;
+          bottom: -10px;
+          background: var(--gradient-primary);
+          border-radius: 15px;
+          z-index: -1;
+          opacity: 0.3;
+          filter: blur(10px);
+        }
+        
+        #mainImage {
+          width: 100%;
+          max-width: 500px;
+          border-radius: 15px;
+          object-fit: cover;
+          border: 4px solid var(--accent-color);
+          box-shadow: 0 0 30px var(--neon-glow);
+          transition: var(--transition-smooth);
+          position: relative;
+          z-index: 1;
+        }
+        
+        #mainImage:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px var(--accent-color);
+        }
+        
+        .thumbnails-container {
+          display: flex;
+          gap: 15px;
+          margin-top: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        
+        .thumbnail {
+          width: 80px;
+          height: 80px;
+          border-radius: 10px;
+          object-fit: cover;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+          border: 2px solid transparent;
+        }
+        
+        .thumbnail:hover {
+          transform: translateY(-5px);
+          border-color: var(--accent-color);
+        }
+        
+        .thumbnail.highlight {
+          border-color: var(--accent-color);
+          box-shadow: 0 0 10px var(--neon-glow);
+        }
+        
+        .project-text {
+          flex: 2;
+          min-width: 300px;
+        }
+        
+        .project-text p {
+          font-size: 1.1em;
+          margin-bottom: 20px;
+          line-height: 1.8;
+        }
+        
+        .j-color {
+          color: var(--accent-secondary);
+          font-weight: bold;
+        }
+        
+        .dow-tit {
+          margin-top: 40px;
+          margin-bottom: 20px;
+          color: var(--accent-color);
+          font-size: 1.8em;
+        }
+        
+        .download-section {
+          margin-top: 30px;
+        }
+        
+        .download-section p {
+          margin-bottom: 10px;
+          color: var(--text-secondary);
+          font-size: 1.1em;
+        }
+        
+        /* --- New Primary Button Style --- */
+        .primary-button {
+          display: inline-block;
+          padding: 12px 30px;
+          background: var(--gradient-primary);
+          color: var(--bg-dark);
+          text-decoration: none;
+          font-weight: 700;
+          border-radius: 30px;
+          border: none;
+          transition: var(--transition-smooth);
+          box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+          cursor: pointer;
+          font-size: 1.1em;
+          font-family: inherit; 
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+        }
+        
+        .primary-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--gradient-secondary);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+
+        .primary-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+        }
+        
+        .primary-button:hover::before {
+          opacity: 1;
+        }
+        
+        /* Back Button */
+        .back-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 20px;
+          background: var(--bg-light);
+          color: var(--text-primary);
+          text-decoration: none;
+          border-radius: 30px;
+          font-weight: 600;
+          transition: var(--transition-smooth);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          margin-bottom: 30px;
+        }
+        
+        .back-button:hover {
+          background: var(--accent-color);
+          color: var(--bg-dark);
+          transform: translateX(-5px);
+        }
+        
+        [dir="rtl"] .back-button:hover {
+          transform: translateX(5px);
+        }
+
+        /* --- Footer --- */
+        footer {
+          background: var(--bg-medium);
+          color: var(--text-secondary);
+          text-align: center;
+          padding: 40px 1rem;
+          margin-top: 40px;
+          border-top: 1px solid var(--bg-light);
+          position: relative;
+        }
+        
+        footer::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: var(--gradient-primary);
+        }
+
+        /* --- Floating Elements --- */
+        .floating-element {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(0, 170, 255, 0.1);
+          filter: blur(40px);
+          z-index: 0;
+          pointer-events: none;
+          transition: transform 0.1s linear;
+        }
+        
+        .floating-1 {
+          width: 200px;
+          height: 200px;
+          top: 10%;
+          left: 5%;
+        }
+        
+        .floating-2 {
+          width: 150px;
+          height: 150px;
+          bottom: 20%;
+          right: 10%;
+          background: rgba(255, 107, 107, 0.1);
+        }
+        
+        .floating-3 {
+          width: 100px;
+          height: 100px;
+          top: 40%;
+          right: 20%;
+          background: rgba(0, 255, 204, 0.1);
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+        
+        .fade-in {
+          animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .float {
+          animation: float 5s ease-in-out infinite;
+        }
+        
+        .pulse {
+          animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .delay-1 {
+          animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+          animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+          animation-delay: 0.6s;
+        }
+
+        /* --- Scroll Progress Bar --- */
+        .progress-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background: transparent;
+          z-index: 1001;
+        }
+        
+        .progress-bar {
+          height: 100%;
+          background: var(--gradient-primary);
+          width: 0%;
+          transition: width 0.3s ease;
+        }
+
+        /* --- Back to Top Button --- */
+        .back-to-top {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          width: 50px;
+          height: 50px;
+          background: var(--gradient-primary);
+          color: var(--bg-dark);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2em;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+          opacity: 0;
+          visibility: hidden;
+          z-index: 999;
+          box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+        
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        
+        .back-to-top:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+        }
+
+        /* --- Theme Toggle --- */
+        .theme-toggle {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+          background: var(--bg-light);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 1002;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+          transition: var(--transition-smooth);
+        }
+        
+        .theme-toggle:hover {
+          transform: rotate(30deg);
+        }
+        
+        .theme-toggle i {
+          font-size: 1.2em;
+          color: var(--accent-color);
+        }
+
+        /* --- Notification Toast --- */
+        .toast {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--bg-light);
+          color: var(--text-primary);
+          padding: 15px 25px;
+          border-radius: 30px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          z-index: 1003;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          opacity: 0;
+          visibility: hidden;
+          transition: var(--transition-smooth);
+        }
+        
+        .toast.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        
+        .toast i {
+          color: var(--accent-color);
+        }
+
+        /* --- Mobile Navigation --- */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+        
+        .hamburger .bar {
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-primary);
+            border-radius: 10px;
+            transition: var(--transition-smooth);
+        }
+        
+        .hamburger.is-active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger.is-active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.is-active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: var(--bg-medium);
+            z-index: 999;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            padding: 80px 20px 20px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mobile-nav.is-active {
+            right: 0;
+        }
+        
+        .mobile-navB {
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+        }
+        
+        .mobile-navB:hover {
+            color: var(--accent-color);
+            background: rgba(0, 170, 255, 0.1);
+        }
+
+        /* --- Feature Cards --- */
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 25px;
+          margin-top: 40px;
+        }
+        
+        .feature-card {
+          background: var(--bg-light);
+          border-radius: 15px;
+          padding: 25px;
+          text-align: center;
+          transition: var(--transition-smooth);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          box-shadow: var(--card-shadow);
+        }
+        
+        .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
+        }
+        
+        .feature-icon {
+          font-size: 2.5em;
+          margin-bottom: 15px;
+          color: var(--accent-color);
+        }
+        
+        .feature-card h3 {
+          margin-bottom: 10px;
+          color: var(--accent-color);
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 768px) {
+          header {
+              padding: 12px 1rem; 
+          }
+          
+          .logo h1 {
+            font-size: 1.2em;
+          }
+          
+          .main-title {
+            /* تم حذف padding-top: 100px; */
+            padding-top: 0; /* تم التعديل */
+          }
+          
+          .main-title h1 {
+            font-size: 2em;
+          }
+          
+          nav { 
+            display: none;
+          }
+          
+          .hamburger {
+            display: flex;
+          }
+          
+          section { 
+            padding: 60px 1rem; 
+          }
+          
+          .project-container { 
+            flex-direction: column; 
+            padding: 20px;
+          }
+          
+          .project-detail {
+            margin: 10px;
+          }
+          
+          .section-title h2 { 
+            font-size: 2em; 
+          }
+          
+          .back-to-top {
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+          }
+          
+          .theme-toggle {
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .main-title h1 { 
+            font-size: 1.8em; 
+          }
+          
+          section h2 {
+            font-size: 1.8em;
+          }
+          
+          .thumbnail {
+            width: 60px;
+            height: 60px;
+          }
+          
+          .features-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
 </head>
 
-<body>
-    <header>
-        <a href="index.html" class="LOGO">OMAR</a>
-        <nav class="navigation">
-            <a href="index.html">HOME</a>
-            <a href="https://www.youtube.com/@OMAR_CODEPLAY">YOUTUBE</a>
-        </nav>
-
-        <button class="hamburger">
-            <div class="bar"></div>
-        </button>
-    </header>
-
-    <nav class="mobile-nav">
-        <a href="index.html" class="mobile-navB">HOME</a>
-        <a href="Games.html" class="mobile-navB">PROJECTS</a>
-        <a href="https://www.youtube.com/@OMAR_CODEPLAY" class="mobile-navB">YOUTUBE</a>
+<body class="lang-en">
+  
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+  
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Language changed successfully!</span>
+  </div>
+  
+  <div class="parallax-bg"></div>
+  
+  <div class="floating-element floating-1"></div>
+  <div class="floating-element floating-2"></div>
+  <div class="floating-element floating-3"></div>
+  
+  <header id="mainHeader">
+    <div class="logo">
+      <div class="logo-icon pulse">OCP</div>
+      <h1>OmarCodePlay</h1>
+    </div>
+    <nav>
+      <a href="index.html" data-key="nav_home">Home</a>
+      <a href="https://www.youtube.com/@OMAR_CODEPLAY" data-key="nav_youtube">YouTube</a>
+      <a href="#" id="lang-switcher" data-key="nav_lang">عربي</a> 
     </nav>
 
-    <section>
-        <p class="title">
-            My Minecraft Resource Pack
-        </p>
-        <div>
-            <img id="mainImage" src="images/ores.png" alt="Main Image">
-        </div>
-        <div>
-            <img class="thumbnail" src="images/ores.png" alt="Thumbnail 1">
-            <img class="thumbnail" src="images/item.png" alt="Thumbnail 2">
-            <img class="thumbnail" src="images/item_down.png" alt="Thumbnail 3">
-            <img class="thumbnail" src="images/wool.png" alt="Thumbnail 4">
-            <img class="thumbnail" src="images/ingame.png" alt="Thumbnail 5">
-        </div>
+    <button class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+  </header>
 
-        <p class="a-title">About</p>
-        <p class="p-about">
-            This is my first resource pack that I have created, it is a 16x16 resource pack that is based on the default
-            Minecraft textures. I have made some changes to the textures to make them look better and more detailed. I
-            have also added some new textures to the game. It will boost your FPS too. I hope you enjoy using this
-            resource pack. <br> <br>
-            Only <span class="j-color">Java</span>
-        </p>
+  <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html" class="mobile-navB" data-key="nav_home">Home</a>
+      <a href="Games.html" class="mobile-navB" data-key="nav_projects">Projects</a>
+      <a href="https://www.youtube.com/@OMAR_CODEPLAY" class="mobile-navB" data-key="nav_youtube">YouTube</a>
+  </nav>
 
-        <h1 class="dow-tit">Download</h1>
-        <p>For new versions</p>
-        <a href="https://www.mediafire.com/file/ec785uf7qzwcqzs/OMAR_CP_RC.zip/file">
-            <button>Download</button>
-        </a>
-        <p>For V1.8.9</p>
-        <a href="https://www.mediafire.com/file/k47d809oky6px0d/OMAR_CP_RC_1.8.9.zip/file">
-            <button>Download</button>
-        </a>
-    </section>
-
-    <div class="copyrights">
-        <div class="container">
-            <p>Copyrights @OMAR_CODEPLAY</p>
-        </div>
+  <section class="first-section">
+    <a href="Games.html" class="back-button fade-in">
+      <i class="fas fa-arrow-left"></i>
+      <span data-key="back_button">Back to Projects</span> </a>
+    
+    <div class="main-title fade-in">
+      <h1>Minecraft Resource Pack</h1>
+      <p data-key="project_subtitle">Enhanced visuals and performance for Minecraft Java Edition</p>
     </div>
+  </section>
 
-    <script>
-        const mainImage = document.getElementById('mainImage');
-        const thumbnails = document.querySelectorAll('.thumbnail');
+  <section class="project-detail">
+    <div class="project-container">
+      <div class="project-image fade-in float">
+        <img id="mainImage" src="images/ores.png" alt="Minecraft Resource Pack Main Image">
+        <div class="thumbnails-container">
+            <img class="thumbnail highlight" src="images/ores.png" alt="Minecraft Ores">
+            <img class="thumbnail" src="images/item.png" alt="Minecraft Items">
+            <img class="thumbnail" src="images/item_down.png" alt="Minecraft Items Detail">
+            <img class="thumbnail" src="images/wool.png" alt="Minecraft Wool">
+            <img class="thumbnail" src="images/ingame.png" alt="Minecraft In-Game">
+        </div>
+      </div>
+      <div class="project-text fade-in delay-1">
+        <h2 class="a-title" data-key="about_title">About This Resource Pack</h2>
+        <p class="p-about" data-key="project_desc">
+          This is my first resource pack that I have created, it is a 16x16 resource pack that is based on the default
+          Minecraft textures. I have made some changes to the textures to make them look better and more detailed. I
+          have also added some new textures to the game. It will boost your FPS too. I hope you enjoy using this
+          resource pack. <br> <br>
+          Only <span class="j-color">Java Edition</span>
+        </p>
+        
+        <div class="features-grid">
+          <div class="feature-card fade-in delay-2">
+            <div class="feature-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3 data-key="feature1_title">Enhanced Textures</h3>
+            <p data-key="feature1_desc">Improved and detailed textures for better visual experience</p>
+          </div>
+          
+          <div class="feature-card fade-in delay-2">
+            <div class="feature-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3 data-key="feature2_title">Performance Boost</h3>
+            <p data-key="feature2_desc">Optimized to increase FPS and reduce lag</p>
+          </div>
+          
+          <div class="feature-card fade-in delay-2">
+            <div class="feature-icon">
+              <i class="fas fa-cube"></i>
+            </div>
+            <h3 data-key="feature3_title">16x16 Resolution</h3>
+            <p data-key="feature3_desc">Perfect balance between quality and performance</p>
+          </div>
+        </div>
+        
+        <div class="download-section">
+          <h2 class="dow-tit" data-key="download_title">Download</h2>
+          <p data-key="download_new">For new versions</p>
+          <a href="https://www.mediafire.com/file/ec785uf7qzwcqzs/OMAR_CP_RC.zip/file">
+            <button class="primary-button" data-key="btn_download">Download Now</button>
+          </a>
+          <p data-key="download_old">For V1.8.9</p>
+          <a href="https://www.mediafire.com/file/k47d809oky6px0d/OMAR_CP_RC_1.8.9.zip/file">
+            <button class="primary-button" data-key="btn_download">Download Now</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function () {
-                mainImage.src = this.src;
-                thumbnails.forEach(img => img.classList.remove('highlight'));
-                this.classList.add('highlight');
-            });
+  <footer>
+    <p data-key="footer_text">© 2025 OmarCodePlay — Gaming & Programming</p>
+  </footer>
+
+  <script>
+    const translations = {
+      "en": {
+        "nav_home": "Home",
+        "nav_youtube": "YouTube",
+        "nav_lang": "عربي",
+        "back_button": "Back to Projects", // *** تم التعديل هنا ***
+        "project_subtitle": "Enhanced visuals and performance for Minecraft Java Edition",
+        "about_title": "About This Resource Pack",
+        "project_desc": "This is my first resource pack that I have created, it is a 16x16 resource pack that is based on the default Minecraft textures. I have made some changes to the textures to make them look better and more detailed. I have also added some new textures to the game. It will boost your FPS too. I hope you enjoy using this resource pack. <br> <br> Only <span class='j-color'>Java Edition</span>",
+        "feature1_title": "Enhanced Textures",
+        "feature1_desc": "Improved and detailed textures for better visual experience",
+        "feature2_title": "Performance Boost",
+        "feature2_desc": "Optimized to increase FPS and reduce lag",
+        "feature3_title": "16x16 Resolution",
+        "feature3_desc": "Perfect balance between quality and performance",
+        "download_title": "Download",
+        "download_new": "For new versions",
+        "download_old": "For V1.8.9",
+        "btn_download": "Download Now",
+        "footer_text": "© 2025 OmarCodePlay — Gaming & Programming",
+        "toast_lang": "Language changed successfully!",
+        "toast_theme": "Theme changed successfully!"
+      },
+      "ar": {
+        "nav_home": "الرئيسية",
+        "nav_youtube": "يوتيوب",
+        "nav_lang": "English",
+        "back_button": "العودة إلى المشروعات", // *** تم التعديل هنا ***
+        "project_subtitle": "رسومات محسنة وأداء أفضل لإصدار Minecraft Java",
+        "about_title": "حول حزمة الموارد هذه",
+        "project_desc": "هذه أول حزمة موارد أقوم بإنشائها، وهي حزمة 16x16 تعتمد على قوام Minecraft الافتراضية. لقد أجريت بعض التغييرات على القوام لجعلها تبدو أفضل وأكثر تفصيلاً. كما أضفت بعض القوام الجديدة للعبة. ستعزز أيضًا معدل الإطارات لديك. آمل أن تستمتع باستخدام حزمة الموارد هذه. <br> <br> فقط <span class='j-color'>إصدار Java</span>",
+        "feature1_title": "قوام محسنة",
+        "feature1_desc": "قوام محسنة ومفصلة لتجربة بصرية أفضل",
+        "feature2_title": "تعزيز الأداء",
+        "feature2_desc": "مُحسّن لزيادة معدل الإطارات وتقليل التأخير",
+        "feature3_title": "دقة 16x16",
+        "feature3_desc": "توازن مثالي بين الجودة والأداء",
+        "download_title": "تحميل",
+        "download_new": "للإصدارات الجديدة",
+        "download_old": "للإصدار 1.8.9",
+        "btn_download": "تحميل الآن",
+        "footer_text": "© 2025 OmarCodePlay — ألعاب وبرمجة",
+        "toast_lang": "تم تغيير اللغة بنجاح!",
+        "toast_theme": "تم تغيير السمة بنجاح!"
+      }
+    };
+
+    const langSwitcher = document.getElementById('lang-switcher');
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const header = document.getElementById('mainHeader');
+    const progressBar = document.getElementById('progressBar');
+    const backToTop = document.getElementById('backToTop');
+    const themeToggle = document.getElementById('themeToggle');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+
+    // Image gallery functionality
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function () {
+            mainImage.src = this.src;
+            thumbnails.forEach(img => img.classList.remove('highlight'));
+            this.classList.add('highlight');
         });
-    </script>
+    });
 
-    <script>
-        const menu_btn = document.querySelector('.hamburger');
-        const mobile_menu = document.querySelector('.mobile-nav');
+    // Mobile menu functionality
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('is-active');
+        mobileNav.classList.toggle('is-active');
+    });
 
-        menu_btn.addEventListener('click', function () {
-            menu_btn.classList.toggle('is-active')
-            mobile_menu.classList.toggle('is-active')
+    document.querySelectorAll('.mobile-navB').forEach(item => {
+        item.addEventListener('click', event => {
+            hamburger.classList.toggle('is-active');
+            mobileNav.classList.toggle('is-active');
         });
+    });
 
-        document.querySelectorAll('.mobile-navB').forEach(item => {
-            item.addEventListener('click', event => {
-                menu_btn.classList.toggle('is-active')
-                mobile_menu.classList.toggle('is-active')
-            });
+    // ----------------------------------------------------
+    // 1. نظام الألوان الفاتح/الداكن
+    // ----------------------------------------------------
+    function toggleTheme() {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      htmlEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // تحديث الأيقونة
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      
+      showToast('toast_theme');
+    }
+
+    // التحقق من السمة المحفوظة
+    (function checkStoredTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      htmlEl.setAttribute('data-theme', savedTheme);
+      
+      // تحديث الأيقونة بناءً على السمة
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    })();
+
+    // ----------------------------------------------------
+    // 2. العناصر العائمة المتفاعلة
+    // ----------------------------------------------------
+    function initFloatingElements() {
+      const floatingElements = document.querySelectorAll('.floating-element');
+      
+      document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        floatingElements.forEach((el, index) => {
+          const speed = (index + 1) * 0.5;
+          const x = (mouseX - 0.5) * 20 * speed;
+          const y = (mouseY - 0.5) * 20 * speed;
+          
+          el.style.transform = `translate(${x}px, ${y}px)`;
         });
+      });
+    }
 
-        function saveUrlAndNavigate(encodedUrl) {
-            localStorage.setItem('nextPageUrl', encodedUrl); // Save the encoded URL in local storage
-            window.location.href = 'wait.html'; // Navigate to wait.html
+    // ----------------------------------------------------
+    // 3. تأثير Parallax للخلفية
+    // ----------------------------------------------------
+    function initParallax() {
+      const parallaxBg = document.querySelector('.parallax-bg');
+      
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        if (parallaxBg) {
+          parallaxBg.style.transform = `translate3d(0px, ${rate}px, 0px)`;
         }
+      });
+    }
 
-        function encodeURL(url) {
-            const randomString = Math.random().toString(36).substring(2, 15); // Generate a random string
-            const modifiedUrl = url + randomString; // Append the random string to the URL
-            return btoa(modifiedUrl); // Encode the modified URL
+    // ----------------------------------------------------
+    // 4. تحسين تحميل الصور
+    // ----------------------------------------------------
+    function initImageLoading() {
+      // إضافة تأثير تحميل بسيط للصور
+      document.querySelectorAll('img').forEach(img => {
+        // إذا كانت الصورة محملة بالفعل
+        if (img.complete) {
+          img.style.opacity = '1';
+        } else {
+          // إذا لم تكن محملة بعد، إضافة تأثير ظهور
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.5s ease';
+          img.onload = function() {
+            this.style.opacity = '1';
+          };
         }
-    </script>
+      });
+    }
+
+    // ----------------------------------------------------
+    // 5. الدالة الأساسية لتطبيق الترجمة
+    // ----------------------------------------------------
+    function applyLanguage(lang) {
+        // Set the primary attributes on the <html> element
+        htmlEl.setAttribute('lang', lang);
+        htmlEl.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        
+        // Set the class on the <body> element for CSS
+        bodyEl.className = `lang-${lang}`;
+
+        const elementsToTranslate = document.querySelectorAll('[data-key]');
+        
+        elementsToTranslate.forEach(el => {
+            const key = el.getAttribute('data-key');
+            const translation = translations[lang][key];
+            
+            if (translation) {
+                // Using innerHTML handles the <span> tag in project_desc
+                el.innerHTML = translation; 
+            }
+        });
+    }
+
+    // ----------------------------------------------------
+    // 6. الدالة المسؤولة عن تبديل وحفظ اللغة
+    // ----------------------------------------------------
+    function toggleLanguage() {
+        const currentLang = htmlEl.getAttribute('lang');
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+
+        // تطبيق اللغة الجديدة
+        applyLanguage(newLang);
+        
+        // حفظ اللغة الجديدة في التخزين المحلي
+        localStorage.setItem('userLang', newLang);
+        
+        // Show toast notification
+        showToast('toast_lang');
+    }
+
+    // ----------------------------------------------------
+    // 7. التحقق عند تحميل الصفحة (تطبيق اللغة المحفوظة)
+    // ----------------------------------------------------
+    (function checkStoredLanguage() {
+        // التحقق من وجود لغة محفوظة أو استخدام الافتراضية 'en'
+        const storedLang = localStorage.getItem('userLang');
+        const initialLang = storedLang || 'en';
+        
+        // تطبيق اللغة المحفوظة أو الافتراضية
+        applyLanguage(initialLang);
+        
+        // Ensure the correct lang attribute is set initially
+        htmlEl.setAttribute('lang', initialLang);
+    })();
+
+    // ----------------------------------------------------
+    // 8. تأثير التمرير على الهيدر وشريط التقدم
+    // ----------------------------------------------------
+    window.addEventListener('scroll', () => {
+        // Header scroll effect
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Progress bar
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset;
+        const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+        progressBar.style.width = scrollPercent + '%';
+        
+        // Back to top button
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    // ----------------------------------------------------
+    // 9. تأثيرات الظهور عند التمرير
+    // ----------------------------------------------------
+    function checkScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+            }
+        });
+    }
+    
+    // Initialize elements with opacity 0 for animation
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    });
+    
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+
+    // ----------------------------------------------------
+    // 10. Back to Top functionality
+    // ----------------------------------------------------
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // ----------------------------------------------------
+    // 11. Toast Notification functionality
+    // ----------------------------------------------------
+    function showToast(messageKey) {
+        const currentLang = htmlEl.getAttribute('lang');
+        toastMessage.textContent = translations[currentLang][messageKey];
+        toast.classList.add('visible');
+        
+        setTimeout(() => {
+            toast.classList.remove('visible');
+        }, 3000);
+    }
+
+    // ----------------------------------------------------
+    // 12. تهيئة جميع الميزات
+    // ----------------------------------------------------
+    function initAllFeatures() {
+      initFloatingElements();
+      initParallax();
+      initImageLoading();
+    }
+
+    // ----------------------------------------------------
+    // 13. إضافة مستمعي الأحداث
+    // ----------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      initAllFeatures();
+    });
+
+    langSwitcher.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleLanguage();
+    });
+
+    themeToggle.addEventListener('click', toggleTheme);
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+  </script>
 </body>
-
+</html>
 </html>
