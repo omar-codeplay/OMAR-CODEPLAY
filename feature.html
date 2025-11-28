@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>ثورة الذكاء الاصطناعي والطاقة النظيفة - Omar CodePlay</title>
   <meta name="description" content="مقال عن مستقبل البشرية بين الابتكار والانقراض في عصر الذكاء الاصطناعي والطاقة النظيفة" />
   <meta name="keywords" content="الذكاء الاصطناعي, الطاقة النظيفة, مستقبل البشرية, Omar CodePlay" />
@@ -70,19 +70,19 @@
       scroll-behavior: smooth; 
     }
 
-body {
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
-  line-height: 1.7;
-  transition: var(--transition-smooth);
-  overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
-    radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
-  font-family: 'Poppins', 'Cairo', sans-serif;
-  padding-top: 60px; /* تم تغيير من 80px إلى 60px */
-}
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: var(--transition-smooth);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+      font-family: 'Poppins', 'Cairo', sans-serif;
+      padding-top: 70px; /* تم تعديل من 60px إلى 70px */
+    }
 
     /* Parallax Background */
     .parallax-bg {
@@ -101,31 +101,34 @@ body {
 
     /* --- Header & Nav --- */
     header {
-  background: rgba(17, 22, 27, 0.95);
-  color: var(--accent-color);
-  padding: 12px 1rem; /* تم تقليل البادنج من 18px إلى 12px */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(20, 24, 31, 0.5);
-  backdrop-filter: blur(10px);
-  transition: var(--transition-smooth);
-  display: flex;
-  justify-content: center;
-  height: 60px; /* إضافة ارتفاع ثابت */
-}
+      background: rgba(17, 22, 27, 0.95);
+      color: var(--accent-color);
+      padding: 15px 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(20, 24, 31, 0.5);
+      backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px; /* إضافة ارتفاع ثابت */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
     
-[data-theme="light"] header {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-}
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
 
-header.scrolled {
-  padding: 8px 1rem; /* تم تقليل البادنج عند التمرير */
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-}
+    header.scrolled {
+      padding: 10px 1rem; /* تم تعديل البادنج عند التمرير */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
 
     .wrap {
       width: 100%;
@@ -133,53 +136,53 @@ header.scrolled {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 100%; /* إضافة ارتفاع كامل */
     }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* تم تقليل المسافة من 12px إلى 8px */
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.brand img {
-  width: 36px; /* تم تصغير الصورة من 44px إلى 36px */
-  height: 36px;
-  border-radius: 6px; /* تم تصغير الزوايا قليلاً */
-  background: rgba(255, 255, 255, 0.03);
-  padding: 4px; /* تم تقليل البادنج */
-}
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4px;
+    }
 
-.brand .name {
-  font-weight: 800;
-  letter-spacing: 0.4px; /* تم تقليل تباعد الحروف */
-  font-size: 1.3em; /* تم تصغير الحجم من 1.5em إلى 1.3em */
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+    .brand .name {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.3em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.brand .small-meta {
-  font-size: 0.7rem; /* تم تصغير الحجم من 0.78rem */
-  color: var(--text-secondary);
-}
+    .brand .small-meta {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
 
-nav.desktop {
-  display: flex;
-  gap: 12px; /* تم تقليل المسافة من 18px إلى 12px */
-  align-items: center;
-}
+    nav.desktop {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
-nav.desktop a {
-  color: var(--text-secondary);
-  font-weight: 500;
-  padding: 6px 10px; /* تم تقليل البادنج من 8px 12px */
-  border-radius: 6px;
-  transition: var(--transition-smooth);
-  text-decoration: none;
-  font-size: 0.9em; /* تصغير حجم الخط قليلاً */
-}
-
+    nav.desktop a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      font-size: 0.9em;
+    }
 
     nav.desktop a:hover, nav.desktop a:focus {
       color: var(--accent-color);
@@ -192,14 +195,14 @@ nav.desktop a {
     }
 
     .cta-primary, .cta-ghost {
-  padding: 6px 12px; /* تم تقليل البادنج من 8px 14px */
-  border-radius: 8px; /* تم تصغير الزوايا من 10px */
-  font-weight: 700;
-  transition: var(--transition-smooth);
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.9em; /* تصغير حجم الخط */
-}
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.9em;
+    }
 
     .cta-primary {
       background: var(--gradient-primary);
@@ -229,13 +232,14 @@ nav.desktop a {
     }
 
     .hamburger .bar {
-    width: 22px; /* تم تصغير من 25px */
-    height: 2px; /* تم تصغير من 3px */
-    background-color: var(--accent-color);
-    margin: 2.5px 0; /* تم تعديل من 3px */
-    transition: 0.3s;
-    border-radius: 2px;
-}
+        width: 22px;
+        height: 2px;
+        background-color: var(--accent-color);
+        margin: 2.5px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+
     .hamburger.is-active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -250,20 +254,20 @@ nav.desktop a {
 
     /* Mobile Navigation */
     .mobile-nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    background: var(--bg-medium);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    padding: 70px 20px 20px; /* تم تعديل من 80px إلى 70px */
-    transition: 0.5s;
-    z-index: 999;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-}
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--bg-medium);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: 0.5s;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
 
     .mobile-nav.is-active {
         right: 0;
@@ -286,7 +290,7 @@ nav.desktop a {
     /* --- Main Content --- */
     main {
       max-width: 800px;
-      margin: 40px auto 80px;
+      margin: 30px auto 80px; /* زيادة الهامش العلوي */
       padding: 0 20px;
     }
 
@@ -439,16 +443,15 @@ nav.desktop a {
     }
 
     /* --- Scroll Progress Bar --- */
-
-.progress-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px; /* تم تصغير من 4px */
-  background: transparent;
-  z-index: 1001;
-}
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      z-index: 1001;
+    }
     
     .progress-bar {
       height: 100%;
@@ -490,22 +493,22 @@ nav.desktop a {
     }
 
     /* --- Theme Toggle --- */
-   .theme-toggle {
-  position: fixed;
-  top: 15px; /* تم تعديل من 20px إلى 15px */
-  right: 15px; /* تم تعديل من 20px إلى 15px */
-  width: 40px; /* تم تصغير من 50px */
-  height: 40px;
-  background: var(--bg-light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1002;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: var(--transition-smooth);
-}
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1002;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-smooth);
+    }
     
     .theme-toggle:hover {
       transform: rotate(30deg);
@@ -553,6 +556,7 @@ nav.desktop a {
       
       header {
         padding: 12px 1rem;
+        height: 70px;
       }
       
       nav.desktop {
@@ -597,6 +601,19 @@ nav.desktop a {
       .mobile-nav {
         width: 85%;
       }
+    }
+
+    /* تحسينات للدعم المتصفحات المختلفة */
+    @supports (backdrop-filter: blur(10px)) {
+      header {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    }
+
+    /* منع أي تداخلات مع العناصر الأخرى */
+    header * {
+      box-sizing: border-box;
     }
   </style>
 </head>
@@ -825,66 +842,86 @@ nav.desktop a {
     })();
 
     // ----------------------------------------------------
-    // 2. تأثير التمرير على الهيدر وشريط التقدم
+    // 2. تحسين أداء الهيدر عند التمرير
     // ----------------------------------------------------
-    window.addEventListener('scroll', () => {
-        // Header scroll effect
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Progress bar
-        const winHeight = window.innerHeight;
-        const docHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset;
-        const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
-        progressBar.style.width = scrollPercent + '%';
-        
-        // Back to top button
-        if (window.scrollY > 500) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateHeader() {
+      if (lastScrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      ticking = false;
+    }
+
+    function onScroll() {
+      lastScrollY = window.scrollY;
+      
+      // Progress bar
+      const winHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset;
+      const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+      progressBar.style.width = scrollPercent + '%';
+      
+      // Back to top button
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+      
+      // Header effect with requestAnimationFrame
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // تأكد من أن الهيدر مضبوط بشكل صحيح عند التحميل
+    document.addEventListener('DOMContentLoaded', function() {
+      updateHeader();
     });
 
     // ----------------------------------------------------
     // 3. Back to Top functionality
     // ----------------------------------------------------
     backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
 
     // ----------------------------------------------------
     // 4. Toast Notification functionality
     // ----------------------------------------------------
     function showToast(message) {
-        toastMessage.textContent = message;
-        toast.classList.add('visible');
-        
-        setTimeout(() => {
-            toast.classList.remove('visible');
-        }, 3000);
+      toastMessage.textContent = message;
+      toast.classList.add('visible');
+      
+      setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 3000);
     }
 
     // ----------------------------------------------------
     // 5. Mobile Navigation
     // ----------------------------------------------------
     menu_btn.addEventListener('click', function () {
-        menu_btn.classList.toggle('is-active')
-        mobile_menu.classList.toggle('is-active')
+      menu_btn.classList.toggle('is-active')
+      mobile_menu.classList.toggle('is-active')
     })
 
     document.querySelectorAll('.mobile-nav a').forEach(item => {
-        item.addEventListener('click', event => {
-            menu_btn.classList.toggle('is-active')
-            mobile_menu.classList.toggle('is-active')
-        })
+      item.addEventListener('click', event => {
+        menu_btn.classList.toggle('is-active')
+        mobile_menu.classList.toggle('is-active')
+      })
     })
 
     // ----------------------------------------------------
