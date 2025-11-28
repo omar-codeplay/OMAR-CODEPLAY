@@ -84,7 +84,7 @@
       background-image: 
         radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
         radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
-        radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+        radial-gradient(#ffffff0a 1px, transparent 1px);
     }
     
     body.lang-en {
@@ -497,6 +497,7 @@
       background: var(--bg-medium); 
     }
     
+    /* Apply styles to <img> tags, including those inside <picture> */
     .card img {
       width: 100%;
       aspect-ratio: 1.6 / 1;
@@ -881,14 +882,14 @@
       right: 20px;
       width: 50px;
       height: 50px;
-      background: var(--bg-light);
+      background: var(--bg-light); /* Use variable for background */
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 1002;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--card-shadow);
       transition: var(--transition-smooth);
     }
     
@@ -898,8 +899,17 @@
     
     .theme-toggle i {
       font-size: 1.2em;
-      color: var(--accent-color);
+      color: var(--accent-color); /* Use variable for icon color */
+      transition: var(--transition-smooth);
     }
+    /* Light Mode specific icon coloring */
+    [data-theme="light"] .theme-toggle i.fa-sun {
+        color: var(--accent-secondary); /* A bright color for sun */
+    }
+    [data-theme="dark"] .theme-toggle i.fa-moon {
+        color: var(--accent-color); /* Default blue for moon */
+    }
+
 
     /* --- Notification Toast --- */
     .toast {
@@ -1112,7 +1122,7 @@
     </div>
     <div class="about-container">
       <div class="about-image fade-in float">
-        <img src="images/MY LOGO.png" alt="OmarCodePlay Profile Picture" data-src="images/MY LOGO.png" class="loading">
+        <img src="images/MY LOGO.png" alt="OmarCodePlay Profile Picture" class="loading">
       </div>
       <div class="about-text fade-in delay-1">
         <p data-key="about_p1">
@@ -1146,7 +1156,7 @@
         <div class="card" data-link-url="#project-taqyim">
           <picture>
             <source srcset="images/Untitled design_20251021_155417_0000.webp" type="image/webp">
-            <img src="images/Untitled design_20251021_155417_0000.png" alt="Taqyim App Image" data-src="images/Untitled design_20251021_155417_0000.png" class="loading">
+            <img src="images/Untitled design_20251021_155417_0000.png" alt="Taqyim App Image" class="loading">
           </picture>
           <div class="card-content">
             <h3 data-key="project1_title">Taqyim</h3>
@@ -1163,7 +1173,7 @@
         <div class="card" data-link-url="#project-cp-color">
           <picture>
             <source srcset="images/Logo.webp" type="image/webp">
-            <img src="images/Logo.jpg" alt="CP Color App Image" data-src="images/Logo.jpg" class="loading">
+            <img src="images/Logo.jpg" alt="CP Color App Image" class="loading">
           </picture>
           <div class="card-content">
             <h3 data-key="project2_title">CP Color</h3>
@@ -1178,10 +1188,7 @@
       
       <a href="pro3.html" class="fade-in delay-2">
         <div class="card" data-link-url="#project-recorder">
-          <picture>
-            <source srcset="images/recorder.webp" type="image/webp">
-            <img src="images/recorder.webp" alt="Screen Recorder Website Image" data-src="images/recorder.webp" class="loading">
-          </picture>
+          <img src="images/placeholder.svg" data-src="images/recorder.webp" alt="Screen Recorder Website Image" class="loading">
           <div class="card-content">
             <h3 data-key="project3_title">Screen Recorder</h3>
             <p data-key="project3_desc">A website to record screen 4k 240fps with no lag.</p>
@@ -1400,6 +1407,15 @@
     // ----------------------------------------------------
     // 1. نظام الألوان الفاتح/الداكن
     // ----------------------------------------------------
+    function updateThemeIcon(theme) {
+      const themeIcon = themeToggle.querySelector('i');
+      if (theme === 'dark') {
+          themeIcon.className = 'fas fa-moon';
+      } else {
+          themeIcon.className = 'fas fa-sun';
+      }
+    }
+
     function toggleTheme() {
       const currentTheme = htmlEl.getAttribute('data-theme');
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -1408,20 +1424,16 @@
       localStorage.setItem('theme', newTheme);
       
       // تحديث الأيقونة
-      const themeIcon = themeToggle.querySelector('i');
-      themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      updateThemeIcon(newTheme);
       
       showToast('toast_theme');
     }
 
-    // التحقق من السمة المحفوظة
+    // التحقق من السمة المحفوظة عند التحميل
     (function checkStoredTheme() {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       htmlEl.setAttribute('data-theme', savedTheme);
-      
-      // تحديث الأيقونة بناءً على السمة
-      const themeIcon = themeToggle.querySelector('i');
-      themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      updateThemeIcon(savedTheme); // تحديث الأيقونة في البداية
     })();
 
     // ----------------------------------------------------
@@ -1462,8 +1474,8 @@
     // 4. التحميل المتقطع للصور (Lazy Loading) - UPDATED
     // ----------------------------------------------------
     function initLazyLoading() {
-      // Select only <img> tags with data-src that are NOT inside a <picture> tag
-      const images = document.querySelectorAll('img[data-src]:not(picture img)');
+      // Select only <img> tags with data-src (excluding those inside <picture> where src should be used)
+      const images = document.querySelectorAll('img[data-src]');
       
       const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -1477,6 +1489,11 @@
             img.onload = () => {
               img.classList.add('loaded');
             };
+            
+            // In case the image is already in the browser cache
+            if (img.complete) {
+              img.classList.add('loaded');
+            }
             
             imageObserver.unobserve(img);
           }
@@ -1669,12 +1686,12 @@
     // ----------------------------------------------------
     function initGoogleAnalytics() {
       // Replace with your GA4 measurement ID
-      const GA_MEASUREMENT_ID = 'G-3XK98YF9PW'';
+      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
       
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', GA_MEASUREMENT_ID); // Adjusted to remove user-provided string template
+      gtag('config', 'G-3XK98YF9PW'); 
     }
 
     // ----------------------------------------------------
@@ -1723,25 +1740,17 @@
       initGoogleAnalytics();
       initVisitorTracking();
       
-      // Explicitly load images inside <picture> tags (the ones without data-src)
-      document.querySelectorAll('picture img').forEach(img => {
-        img.onload = () => { // ensure .loaded class is added after load
-            img.classList.add('loaded');
-        };
-        // If image is already loaded from src attribute, just add the class
-        if (img.complete) {
-            img.classList.add('loaded');
-        }
-      });
-
-      // Also ensure existing images without data-src (like the logo) get the loaded class
-      document.querySelectorAll('img[src]:not([data-src])').forEach(img => {
-          if (img.complete) {
-            img.classList.add('loaded');
-          } else {
-            img.onload = () => {
-                img.classList.add('loaded');
-            };
+      // Check all images with a direct src attribute (including those in <picture> and the logo) 
+      // to ensure they get the 'loaded' class after loading.
+      document.querySelectorAll('img[src]').forEach(img => {
+          if (!img.dataset.src) { // Ignore images that are part of the lazy loading process
+              if (img.complete) {
+                  img.classList.add('loaded');
+              } else {
+                  img.addEventListener('load', () => {
+                      img.classList.add('loaded');
+                  }, { once: true });
+              }
           }
       });
     }
