@@ -1,8 +1,44 @@
-self.addEventListener("install", function(event) {
-  console.log("Service Worker installed");
-  self.skipWaiting();
+const CACHE_NAME = 'omarcodeplay-v1.2';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/styles/main.css',
+  '/script/main.js',
+  '/images/My LOGO.png',
+  '/images/My LOGO.png',
+  '/images/My LOGO.png'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+  );
 });
 
-self.addEventListener("fetch", function(event) {
-  event.respondWith(fetch(event.request));
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      }
+    )
+  );
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
 });
