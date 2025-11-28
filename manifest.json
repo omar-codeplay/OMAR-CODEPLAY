@@ -1,11 +1,11 @@
 {
-  "name": "Omar CodePlay",
+  "name": "OmarCodePlay",
   "short_name": "CodePlay",
+  "description": "Where Gaming Meets Programming",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "orientation": "portrait",
+  "background_color": "#0b0d10",
+  "theme_color": "#00aaff",
   "icons": [
     {
       "src": "/images/MY LOGO.png",
