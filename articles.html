@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr" data-theme="dark">
 
 <head>
   <meta charset="utf-8" />
@@ -7,117 +7,287 @@
   <title>Articles & Tutorials — Omar CodePlay</title>
   <meta name="description" content="Game development tutorials, programming articles, and technical guides by Omar CodePlay." />
   <link rel="icon" href="images/MY LOGO.png" />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="keywords" content="articles, tutorials, game development, programming, unity, web development, omar code play">
+  <meta name="author" content="OmarCodePlay">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Articles & Tutorials - OmarCodePlay">
+  <meta property="og:description" content="Game development tutorials, programming articles, and technical guides by Omar CodePlay.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omarcodeplay.com/articles.html">
+  <meta property="og:image" content="https://omarcodeplay.com/images/og-image.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
-    /* Copy all your existing CSS from index.html */
+    /* 1. المتغيرات والألوان المحسنة */
     :root {
-      --bg: #0b0b0d;
-      --panel: #0f1720;
-      --muted: #9aa6b2;
-      --accent: #5b8cff;
-      --accent-2: #a55eff;
-      --glass: rgba(255, 255, 255, 0.03);
-      --card: #0e1114;
-      --radius: 14px;
-      --maxw: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
-      --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --bg-dark: #0b0d10;
+      --bg-medium: #11161b; 
+      --bg-light: #14181f;
+      --text-primary: #e8e8e8;
+      --text-secondary: #b0b0b0;
+      --accent-color: #00aaff;
+      --accent-secondary: #ff6b6b;
+      --accent-tertiary: #00ffcc;
+      --accent-hover: #66ccff;
+      --neon-glow: #00aaff50; 
+      --gradient-primary: linear-gradient(135deg, #00aaff 0%, #00ffcc 100%);
+      --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+      --gradient-dark: linear-gradient(135deg, #0b0d10 0%, #11161b 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    * {
-      box-sizing: border-box;
-      user-select: none;
-      scrollbar-width: none;
+    /* Light Theme Variables */
+    [data-theme="light"] {
+      --bg-dark: #f0f2f5;
+      --bg-medium: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --accent-color: #3182ce;
+      --accent-secondary: #e53e3e;
+      --accent-tertiary: #38a169;
+      --accent-hover: #4299e1;
+      --neon-glow: #3182ce50;
+      --gradient-primary: linear-gradient(135deg, #3182ce 0%, #38a169 100%);
+      --gradient-secondary: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
+      --gradient-dark: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: var(--ui);
-      background: linear-gradient(180deg, #0b0b0d 0%, #070709 100%);
-      color: #e6eef6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.4;
-      -webkit-tap-highlight-color: transparent;
-      padding-top: 72px;
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: var(--transition-smooth);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+      font-family: 'Poppins', sans-serif;
+      padding-top: 80px;
     }
 
-    /* Header Styles */
-    header {
+    /* Parallax Background */
+    .parallax-bg {
       position: fixed;
-      left: 0; right: 0; top: 0;
-      height: 72px;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 60;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(11, 12, 13, 0.6), rgba(11, 12, 13, 0.35));
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+      transform: translateZ(0);
+      pointer-events: none;
+    }
+
+    /* --- Header & Nav --- */
+    header {
+      background: rgba(17, 22, 27, 0.95);
+      color: var(--accent-color);
+      padding: 18px 1rem; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(20, 24, 31, 0.5);
+      backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+      display: flex;
+      justify-content: center;
+    }
+    
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    
+    header.scrolled {
+      padding: 12px 1rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     }
 
     .wrap {
-      width: 100%; max-width: var(--maxw);
-      padding: 0 20px;
-      display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .brand {
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .brand img {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 8px;
-      background: var(--glass); padding: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 6px;
     }
 
     .brand .name {
-      font-weight: 800; letter-spacing: 0.6px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      font-size: 1.5em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .brand .small-meta {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
     }
 
     nav.desktop {
-      display: flex; gap: 18px; align-items: center;
+      display: flex;
+      gap: 18px;
+      align-items: center;
     }
 
     nav.desktop a {
-      color: var(--muted); font-weight: 700;
-      padding: 8px 12px; border-radius: 8px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: var(--transition-smooth);
+      text-decoration: none;
     }
 
     nav.desktop a:hover, nav.desktop a:focus {
-      color: var(--accent);
+      color: var(--accent-color);
       background: rgba(255, 255, 255, 0.02);
     }
 
-    .cta-primary, .cta-ghost, .sbtn {
-      padding: 8px 14px; border-radius: 10px;
-      font-weight: 800; transition: all 0.2s ease;
+    nav.desktop a.active {
+      color: var(--accent-color);
+      background: rgba(0, 170, 255, 0.1);
+    }
+
+    .cta-primary, .cta-ghost {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      display: inline-block;
     }
 
     .cta-primary {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color: #001137;
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
     }
 
-    .cta-ghost, .sbtn {
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--muted); background: rgba(255, 255, 255, 0.02);
+    .cta-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .sbtn:hover, .cta-ghost:hover {
+    .cta-ghost:hover {
       background: rgba(255, 255, 255, 0.05);
       transform: translateY(-2px);
     }
 
-    /* Main Content */
+    /* Hamburger Menu */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1001;
+    }
+
+    .hamburger .bar {
+        width: 25px;
+        height: 3px;
+        background-color: var(--accent-color);
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+
+    .hamburger.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--bg-medium);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: 0.5s;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-nav.is-active {
+        right: 0;
+    }
+
+    .mobile-nav a {
+        padding: 15px;
+        text-decoration: none;
+        color: var(--text-primary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition-smooth);
+        font-weight: 500;
+    }
+
+    .mobile-nav a:hover {
+        color: var(--accent-color);
+        background: rgba(0, 170, 255, 0.05);
+    }
+
+    /* --- Main Content --- */
     main {
-      max-width: var(--maxw);
+      max-width: 1200px;
       margin: 40px auto 80px;
       padding: 0 20px;
     }
@@ -126,62 +296,36 @@
       margin-top: 40px;
     }
 
-    h1 { font-size: clamp(28px, 5vw, 42px); margin: 0 0 12px; }
-    h2 { font-size: 1.8rem; margin: 0 0 20px; }
-    h3 { font-size: 1.3rem; margin: 0 0 12px; }
-
-    .muted { color: var(--muted); }
-    .lead { color: var(--muted); font-size: 1.1rem; line-height: 1.5; }
-
-    /* Article Styles */
-    .article-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.025);
-      transition: transform .18s ease, box-shadow .18s ease;
-      margin-bottom: 20px;
+    h1 { 
+      font-size: clamp(28px, 5vw, 42px); 
+      margin: 0 0 12px; 
+      color: var(--accent-color);
+      text-shadow: 0 0 10px var(--neon-glow);
     }
 
-    .article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(11, 20, 40, 0.4);
+    h2 { 
+      font-size: 1.8rem; 
+      margin: 0 0 20px; 
+      color: var(--accent-color);
     }
 
-    .article-meta {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin: 8px 0 16px 0;
-      display: flex; gap: 12px; align-items: center;
+    h3 { 
+      font-size: 1.3rem; 
+      margin: 0 0 12px; 
     }
 
-    .article-excerpt {
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 16px 0;
-      font-size: 1rem;
+    .muted { color: var(--text-secondary); }
+    .lead { 
+      color: var(--text-secondary); 
+      font-size: 1.1rem; 
+      line-height: 1.5; 
+      max-width: 600px;
     }
 
-    .read-more {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: inline-block;
-      margin-top: 12px;
-    }
-
-    .article-tag {
-      background: rgba(91, 140, 255, 0.1);
-      color: var(--accent);
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: inline-block;
-    }
-
+    /* --- Article Cards --- */
     .articles-grid {
-      display: grid; gap: 24px;
+      display: grid;
+      gap: 30px;
     }
 
     @media (min-width: 768px) {
@@ -190,62 +334,370 @@
       }
     }
 
-    /* Footer */
+    .article-card {
+      background: var(--bg-light);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .article-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .article-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
+      background: var(--bg-medium);
+    }
+
+    .article-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .article-tag {
+      background: rgba(0, 170, 255, 0.1);
+      color: var(--accent-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .article-meta {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin: 8px 0 16px 0;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .article-excerpt {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 16px 0;
+      font-size: 1rem;
+    }
+
+    .read-more {
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-top: 12px;
+      transition: var(--transition-smooth);
+    }
+
+    .read-more:hover {
+      color: var(--accent-hover);
+      transform: translateX(5px);
+    }
+
+    /* --- Footer --- */
     footer {
+      background: var(--bg-medium);
+      color: var(--text-secondary);
+      padding: 30px 20px;
       margin-top: 60px;
-      padding: 28px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.02);
-      color: var(--muted);
-      text-align: center;
+      border-top: 1px solid var(--bg-light);
+      position: relative;
     }
 
-    /* Responsive */
-    @media (max-width: 720px) {
-      body { padding-top: 64px; }
-      header { height: 64px; }
-      .wrap { padding: 0 14px; }
-      nav.desktop { display: none; }
-      .hamb { display: block; }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-primary);
     }
 
-    .hamb {
-      display: none;
-      border: 0; background: transparent;
-      color: var(--muted); font-weight: 800;
-      padding: 8px; border-radius: 8px;
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    /* --- Scroll Progress Bar --- */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1001;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient-primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* --- Back to Top Button --- */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+    }
+
+    /* --- Theme Toggle --- */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1002;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-smooth);
+    }
+    
+    .theme-toggle:hover {
+      transform: rotate(30deg);
+    }
+    
+    .theme-toggle i {
+      font-size: 1.2em;
+      color: var(--accent-color);
+    }
+
+    /* --- Notification Toast --- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-light);
+      color: var(--text-primary);
+      padding: 15px 25px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1003;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+    
+    .toast.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .toast i {
+      color: var(--accent-color);
+    }
+
+    /* --- Responsiveness --- */
+    @media (max-width: 768px) {
+      body { 
+        padding-top: 70px; 
+      }
+      
+      header {
+        padding: 12px 1rem;
+      }
+      
+      nav.desktop {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .brand .name {
+        font-size: 1.3em;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+      }
+      
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .mobile-nav {
+        width: 85%;
+      }
+      
+      h1 { 
+        font-size: 1.8em; 
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <!-- Theme Toggle -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+  
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <!-- Notification Toast -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Theme changed successfully!</span>
+  </div>
+  
+  <!-- Parallax Background -->
+  <div class="parallax-bg"></div>
 
-  <header>
+  <header id="mainHeader">
     <div class="wrap">
       <div class="brand" aria-label="Omar CodePlay">
-        <img src="images/logo.png" alt="Omar CodePlay logo" onerror="this.style.display='none'">
+        <img src="images/MY LOGO.png" alt="Omar CodePlay logo">
         <div>
-          <div class="name">OMAR <span class="muted" style="font-weight:600">| CodePlay</span></div>
-          <div class="small-meta muted" style="font-size:.78rem">Game Dev · Programmer · Creator</div>
+          <div class="name">OMAR</div>
+          <div class="small-meta">Game Dev · Programmer · Creator</div>
         </div>
       </div>
 
       <nav class="desktop" aria-label="Primary navigation">
         <a href="index.html#projects">Projects</a>
-        <a href="index.html#articles" style="color: var(--accent);">Articles</a>
+        <a href="articles.html" class="active">Articles</a>
         <a href="index.html#about">About</a>
         <a href="index.html#contact">Contact</a>
         <a class="cta-ghost" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
       </nav>
 
-      <button class="hamb" aria-expanded="false" aria-controls="mobile-menu" id="hamb-btn">MENU</button>
+      <button class="hamburger" aria-expanded="false" aria-controls="mobile-nav">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
     </div>
   </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html#projects">Projects</a>
+    <a href="articles.html">Articles</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://github.com/omar-codeplay" target="_blank">GitHub</a>
+  </nav>
 
   <main>
     <!-- Hero Section for Articles Page -->
     <section class="section" style="margin-top: 20px;">
-      <h1>Articles & Tutorials</h1>
-      <p class="lead" style="max-width: 600px;">
+      <h1 class="fade-in">Articles & Tutorials</h1>
+      <p class="lead fade-in delay-1">
         Game development tutorials, programming insights, and technical guides. 
         Learn from my journey and discover tips for Unity, web development, and game design.
       </p>
@@ -256,9 +708,9 @@
       <div class="articles-grid">
         
         <!-- Article 1 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-            <h3 style="margin: 0;">Building a 2D Platformer in Unity: Complete Guide</h3>
+        <article class="article-card fade-in" role="article">
+          <div class="article-header">
+            <h3 style="margin: 0; flex: 1;">Building a 2D Platformer in Unity: Complete Guide</h3>
             <span class="article-tag">Tutorial</span>
           </div>
           <div class="article-meta">
@@ -277,9 +729,9 @@
         </article>
 
         <!-- Article 2 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-            <h3 style="margin: 0;">AI Enemy Systems: From Simple to Smart</h3>
+        <article class="article-card fade-in delay-1" role="article">
+          <div class="article-header">
+            <h3 style="margin: 0; flex: 1;">AI Enemy Systems: From Simple to Smart</h3>
             <span class="article-tag">Game Dev</span>
           </div>
           <div class="article-meta">
@@ -298,9 +750,9 @@
         </article>
 
         <!-- Article 3 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-            <h3 style="margin: 0;">Optimizing Unity Games for Mobile Devices</h3>
+        <article class="article-card fade-in delay-2" role="article">
+          <div class="article-header">
+            <h3 style="margin: 0; flex: 1;">Optimizing Unity Games for Mobile Devices</h3>
             <span class="article-tag">Performance</span>
           </div>
           <div class="article-meta">
@@ -319,9 +771,9 @@
         </article>
 
         <!-- Article 4 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-            <h3 style="margin: 0;">CSS Grid for Game UI Layouts</h3>
+        <article class="article-card fade-in delay-3" role="article">
+          <div class="article-header">
+            <h3 style="margin: 0; flex: 1;">CSS Grid for Game UI Layouts</h3>
             <span class="article-tag">Web Dev</span>
           </div>
           <div class="article-meta">
@@ -340,9 +792,9 @@
         </article>
 
         <!-- Article 5 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-            <h3 style="margin: 0;">C# Events and Delegates for Game Systems</h3>
+        <article class="article-card fade-in" role="article">
+          <div class="article-header">
+            <h3 style="margin: 0; flex: 1;">C# Events and Delegates for Game Systems</h3>
             <span class="article-tag">Programming</span>
           </div>
           <div class="article-meta">
@@ -361,9 +813,9 @@
         </article>
 
         <!-- Article 6 -->
-        <article class="article-card" role="article">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-            <h3 style="margin: 0;">Building a Portfolio Website from Scratch</h3>
+        <article class="article-card fade-in delay-1" role="article">
+          <div class="article-header">
+            <h3 style="margin: 0; flex: 1;">Building a Portfolio Website from Scratch</h3>
             <span class="article-tag">Web Design</span>
           </div>
           <div class="article-meta">
@@ -386,51 +838,144 @@
   </main>
 
   <footer>
-    <div style="max-width: var(--maxw); margin: 0 auto; padding: 14px 20px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <div class="muted">© 2024 <strong>OmarCodePlay</strong> • All rights reserved</div>
-        <div class="muted">Made with HTML, CSS & JavaScript • Built with passion for game development</div>
-      </div>
+    <div class="footer-content">
+      <div class="muted">© 2024 <strong style="color: var(--accent-color);">OmarCodePlay</strong> • All rights reserved</div>
+      <div class="muted">Made with HTML, CSS & JavaScript • Built with passion for game development</div>
     </div>
   </footer>
 
   <script>
-    // Mobile menu functionality (same as index.html)
-    const hamb = document.getElementById('hamb-btn');
-    let mobileOpen = false;
-    hamb?.addEventListener('click', () => {
-      mobileOpen = !mobileOpen;
-      hamb.setAttribute('aria-expanded', String(mobileOpen));
-      if (mobileOpen) {
-        const menu = document.createElement('div');
-        menu.id = 'mobile-menu';
-        menu.style.position = 'fixed';
-        menu.style.top = '72px';
-        menu.style.left = '0';
-        menu.style.right = '0';
-        menu.style.bottom = '0';
-        menu.style.background = 'linear-gradient(180deg, rgba(11,12,13,0.98), rgba(11,12,13,0.98))';
-        menu.style.padding = '28px';
-        menu.style.zIndex = 120;
-        menu.innerHTML = `
-          <a href="index.html#projects" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Projects</a>
-          <a href="index.html#articles" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Articles</a>
-          <a href="index.html#about" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">About</a>
-          <a href="index.html#contact" style="display:block;padding:14px 0;color:#e6eef6;font-weight:800">Contact</a>
-          <a href="https://github.com/omar-codeplay" target="_blank" style="display:block;padding:14px 0;color:#9aa6b2">GitHub</a>
-          <button id="mobile-close" style="margin-top:20px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#9aa6b2">Close</button>
-        `;
-        document.body.appendChild(menu);
-        document.getElementById('mobile-close')?.addEventListener('click', () => {
-          mobileOpen = false;
-          hamb.setAttribute('aria-expanded', 'false');
-          document.getElementById('mobile-menu')?.remove();
-        });
-      } else {
-        document.getElementById('mobile-menu')?.remove();
-      }
-    });
-  </script>
+    const menu_btn = document.querySelector('.hamburger');
+    const mobile_menu = document.querySelector('.mobile-nav');
+    const header = document.getElementById('mainHeader');
+    const progressBar = document.getElementById('progressBar');
+    const backToTop = document.getElementById('backToTop');
+    const themeToggle = document.getElementById('themeToggle');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const htmlEl = document.documentElement;
 
+    // ----------------------------------------------------
+    // 1. نظام الألوان الفاتح/الداكن
+    // ----------------------------------------------------
+    function toggleTheme() {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      htmlEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // تحديث الأيقونة
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      
+      showToast('Theme changed successfully!');
+    }
+
+    // التحقق من السمة المحفوظة
+    (function checkStoredTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      htmlEl.setAttribute('data-theme', savedTheme);
+      
+      // تحديث الأيقونة بناءً على السمة
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    })();
+
+    // ----------------------------------------------------
+    // 2. تأثير التمرير على الهيدر وشريط التقدم
+    // ----------------------------------------------------
+    window.addEventListener('scroll', () => {
+        // Header scroll effect
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Progress bar
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset;
+        const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+        progressBar.style.width = scrollPercent + '%';
+        
+        // Back to top button
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    // ----------------------------------------------------
+    // 3. تأثيرات الظهور عند التمرير
+    // ----------------------------------------------------
+    function checkScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+            }
+        });
+    }
+    
+    // Initialize elements with opacity 0 for animation
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    });
+    
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+
+    // ----------------------------------------------------
+    // 4. Back to Top functionality
+    // ----------------------------------------------------
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // ----------------------------------------------------
+    // 5. Toast Notification functionality
+    // ----------------------------------------------------
+    function showToast(message) {
+        toastMessage.textContent = message;
+        toast.classList.add('visible');
+        
+        setTimeout(() => {
+            toast.classList.remove('visible');
+        }, 3000);
+    }
+
+    // ----------------------------------------------------
+    // 6. Mobile Navigation
+    // ----------------------------------------------------
+    menu_btn.addEventListener('click', function () {
+        menu_btn.classList.toggle('is-active')
+        mobile_menu.classList.toggle('is-active')
+    })
+
+    document.querySelectorAll('.mobile-nav a').forEach(item => {
+        item.addEventListener('click', event => {
+            menu_btn.classList.toggle('is-active')
+            mobile_menu.classList.toggle('is-active')
+        })
+    })
+
+    // ----------------------------------------------------
+    // 7. إضافة مستمعي الأحداث
+    // ----------------------------------------------------
+    themeToggle.addEventListener('click', toggleTheme);
+  </script>
 </body>
 </html>
