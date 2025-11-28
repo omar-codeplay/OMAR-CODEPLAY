@@ -8,12 +8,11 @@
   <meta name="keywords" content="الذكاء الاصطناعي, الطاقة النظيفة, مستقبل البشرية, Omar CodePlay" />
   <meta name="author" content="OmarCodePlay" />
   
-  <!-- Open Graph -->
   <meta property="og:title" content="ثورة الذكاء الاصطناعي والطاقة النظيفة - Omar CodePlay">
   <meta property="og:description" content="مقال عن مستقبل البشرية بين الابتكار والانقراض في عصر الذكاء الاصطناعي والطاقة النظيفة">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://omarcodeplay.com/articles/ai-energy-revolution.html">
-  <meta property="og:image" content="https://omarcodeplay.com/images/og-image.jpg">
+  <meta property="og:url" content="https://omar-codeplay.netlify.app/articles/feature.html">
+  <meta property="og:image" content="https://omarcodeplay.com/images/My LOGO.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +80,6 @@
         radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
         radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
       font-family: 'Poppins', 'Cairo', sans-serif;
-      padding-top: 70px;
     }
 
     /* Parallax Background */
@@ -100,15 +98,13 @@
     }
 
     /* --- Header & Nav --- */
-    header {
+    /* *** تم التعديل هنا ***
+      تم تغيير header إلى #mainHeader لتجنب التعارض
+    */
+    #mainHeader {
       background: rgba(17, 22, 27, 0.95);
       color: var(--accent-color);
       padding: 15px 1rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
       border-bottom: 1px solid rgba(20, 24, 31, 0.5);
       backdrop-filter: blur(10px);
       transition: var(--transition-smooth);
@@ -116,16 +112,14 @@
       justify-content: center;
       align-items: center;
       height: 70px;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
     }
     
-    [data-theme="light"] header {
+    [data-theme="light"] #mainHeader {
       background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
 
-    header.scrolled {
+    #mainHeader.scrolled {
       padding: 10px 1rem;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     }
@@ -299,9 +293,17 @@
       font-size: 1.1rem;
       color: var(--text-primary);
     }
+    
+    /* *** تم إضافة هذا الكلاس ***
+      لفصل تنسيق هيدر المقالة عن الهيدر الرئيسي
+    */
+    .article-header {
+      margin-bottom: 40px; 
+      text-align: center;
+    }
 
     .article-content h1 {
-      font-size: clamp(28px, 5vw, 42px);
+      font-size: 2.3rem; 
       margin: 0 0 20px;
       color: var(--accent-color);
       text-shadow: 0 0 10px var(--neon-glow);
@@ -550,11 +552,8 @@
 
     /* --- Responsiveness --- */
     @media (max-width: 768px) {
-      body { 
-        padding-top: 70px; 
-      }
-      
-      header {
+      /* *** تم التعديل هنا *** */
+      #mainHeader {
         padding: 12px 1rem;
         height: 70px;
       }
@@ -604,53 +603,46 @@
     }
 
     /* تحسينات للدعم المتصفحات المختلفة */
+    /* *** تم التعديل هنا *** */
     @supports (backdrop-filter: blur(10px)) {
-      header {
+      #mainHeader {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
     }
 
     /* منع أي تداخلات مع العناصر الأخرى */
-    header * {
+    /* *** تم التعديل هنا *** */
+    #mainHeader * {
       box-sizing: border-box;
     }
   </style>
 </head>
 
 <body>
-  <!-- Scroll Progress Bar -->
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
   
-  <!-- Theme Toggle -->
   <div class="theme-toggle" id="themeToggle">
     <i class="fas fa-moon"></i>
   </div>
   
-  <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </div>
   
-  <!-- Notification Toast -->
   <div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Theme changed successfully!</span>
   </div>
   
-  <!-- Parallax Background -->
   <div class="parallax-bg"></div>
 
   <header id="mainHeader">
     <div class="wrap">
       <div class="brand" aria-label="Omar CodePlay">
         <img src="images/MY LOGO.png" alt="Omar CodePlay logo">
-        <div>
-          <div class="name">OMAR</div>
-          <div class="small-meta">Game Dev · Programmer · Creator</div>
-        </div>
       </div>
 
       <nav class="desktop" aria-label="Primary navigation">
@@ -685,17 +677,8 @@
         </a>
       </div>
 
-      <!-- العنوان الرئيسي الذي كان في الهيدر - تم نقله هنا -->
-      <header style="margin-bottom: 40px; text-align: center; border-bottom: 2px solid var(--accent-color); padding-bottom: 20px;">
-        <h1 style="font-size: clamp(24px, 4vw, 36px); margin-bottom: 15px;">ثورة الذكاء الاصطناعي والطاقة النظيفة</h1>
-        <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 10px;">مستقبل البشرية بين الابتكار والانقراض</p>
-        <div class="article-meta" style="justify-content: center;">
-          <span>إبريل 10, 2024</span>
-          <span>•</span>
-          <span>15 دقيقة قراءة</span>
-          <span>•</span>
-          <span class="article-tag">مستقبل التكنولوجيا</span>
-        </div>
+      <header class="article-header">
+        <h1>ثورة الذكاء الاصطناعي والطاقة النظيفة: مستقبل البشرية بين الابتكار والانقراض</h1>
       </header>
 
       <h2>مقدمة: لحظة التحول الحاسمة في تاريخ البشرية</h2>
@@ -759,7 +742,7 @@
       <h2>الجزء السادس: سيناريو الكارثة - ما ينتظرنا بدون تحول جذري</h2>
       
       <h3>التدهور المتوقع بحلول 2100</h3>
-      <p>في حال استمرار الوضع الحالي، من المتوقع أن ترتفع درجات الحرارة بمقدار 2.8°C إلى 3.2°C، مما يؤدي إلى موجات حر غير مسبوقة واختفاء الجليد القطبي. كما سيرتفع مستوى سطح البحر بين 0.5-1.1 متر، ما يهدد بغرق مدن ساحلية كاملة، وسيفقد العالم 30-50% من تنوعه البيولوجي، مما يؤدي إلى انهيار سلاسل غذائية كاملة.</p>
+      <p>في حال استمرار الوضع الحالي، من المتوقع أن ترتفع درجات الحرارة بمقدار 2.8°C إلى 3.2°C، مما يؤدي إلى موجات حر غير مسبوقة واختفاء الجليد القطبي. كما سيرتفع مستوى سطح البحر بين 0.5-1.1 متر، ما يهدد بغرق مدن ساحلية كاملة، وسيفقد العالم 30-50% من تنوعه البيئي، مما يؤدي إلى انهيار سلاسل غذائية كاملة.</p>
 
       <h3>التكاليف الاقتصادية والبشرية</h3>
       <p>ستخسر الاقتصادات العالمية 10-18% من الناتج المحلي الإجمالي، ما يعني كساداً اقتصادياً غير مسبوق، وستحدث هجرات جماعية لـ 200-500 مليون شخص بسبب تغير المناخ، بينما سيزداد عدد الوفيات المبكرة بسبب تلوث الهواء إلى 7-10 ملايين شخص سنوياً.</p>
