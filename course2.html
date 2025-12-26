@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Development with Unity - OmarCodePlay</title>
+  <meta name="description" content="Learn Unity game development from scratch. Create your first 3D game with our free course.">
+  <meta name="keywords" content="Unity, game development, C#, 3D games, OmarCodePlay">
+  <meta name="author" content="OmarCodePlay">
+  <meta name="robots" content="index, follow">
+
+  <meta name="google-site-verification" content="AE91C0E111062D63" />
+
+  
+  <meta property="og:title" content="Game Development with Unity - OmarCodePlay">
+  <meta property="og:description" content="Create your first 3D game with Unity. Learn C# and game development fundamentals.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omar-codeplay.netlify.app/course2.html">
+  <meta property="og:image" content="https://omar-codeplay.netlify.app/images/My LOGO.png">
+  
+  <link rel="icon" href="images/MY LOGO.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0b0d10;
+      --bg-medium: #11161b; 
+      --bg-light: #14181f;
+      --text-primary: #e8e8e8;
+      --text-secondary: #b0b0b0;
+      --accent-color: #00aaff;
+      --accent-secondary: #ff6b6b;
+      --accent-tertiary: #00ffcc;
+      --accent-hover: #66ccff;
+      --neon-glow: #00aaff50; 
+      --gradient-primary: linear-gradient(135deg, #00aaff 0%, #00ffcc 100%);
+      --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+      --gradient-dark: linear-gradient(135deg, #0b0d10 0%, #11161b 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #f0f2f5;
+      --bg-medium: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --accent-color: #3182ce;
+      --accent-secondary: #e53e3e;
+      --accent-tertiary: #38a169;
+      --accent-hover: #4299e1;
+      --neon-glow: #3182ce50;
+      --gradient-primary: linear-gradient(135deg, #3182ce 0%, #38a169 100%);
+      --gradient-secondary: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
+      --gradient-dark: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: var(--transition-smooth);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    header {
+      background: rgba(17, 22, 27, 0.95);
+      color: var(--accent-color);
+      padding: 15px 1rem;
+      border-bottom: 1px solid rgba(20, 24, 31, 0.5);
+      backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      position: sticky; 
+      top: 0;
+      z-index: 1000;
+    }
+    
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    header.scrolled {
+      padding: 10px 1rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4px;
+    }
+
+    .brand .name {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.3em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav.desktop {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    nav.desktop a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+
+    nav.desktop a:hover, nav.desktop a:focus {
+      color: var(--accent-color);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    nav.desktop a.active {
+      color: var(--accent-color);
+      background: rgba(0, 170, 255, 0.1);
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1001;
+    }
+
+    .hamburger .bar {
+        width: 22px;
+        height: 2px;
+        background-color: var(--accent-color);
+        margin: 2.5px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+
+    .hamburger.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--bg-medium);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: 0.5s;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-nav.is-active {
+        right: 0;
+    }
+
+    .mobile-nav a {
+        padding: 15px;
+        text-decoration: none;
+        color: var(--text-primary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition-smooth);
+        font-weight: 500;
+    }
+
+    .mobile-nav a:hover {
+        color: var(--accent-color);
+        background: rgba(0, 170, 255, 0.05);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto 80px;
+      padding: 0 20px;
+    }
+
+    .course-content {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+    
+    .course-header {
+      margin-bottom: 40px; 
+      text-align: center;
+    }
+
+    .course-content h1 {
+      font-size: 2.3rem; 
+      margin: 0 0 20px;
+      color: var(--accent-color);
+      text-shadow: 0 0 10px var(--neon-glow);
+      line-height: 1.3;
+    }
+
+    .course-content h2 {
+      font-size: 1.8rem;
+      margin: 40px 0 20px;
+      color: var(--accent-color);
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(0, 170, 255, 0.2);
+    }
+
+    .course-content h3 {
+      font-size: 1.4rem;
+      margin: 30px 0 15px;
+      color: var(--accent-tertiary);
+    }
+
+    .course-content p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .course-content blockquote {
+      border-left: 4px solid var(--accent-color);
+      padding: 15px 20px;
+      margin: 25px 0;
+      background: rgba(0, 170, 255, 0.05);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+
+    .course-content ul, .course-content ol {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+
+    .course-content li {
+      margin-bottom: 10px;
+    }
+
+    .course-meta {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 10px 0 30px 0;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .course-tag {
+      background: rgba(0, 170, 255, 0.1);
+      color: var(--accent-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 30px;
+      transition: var(--transition-smooth);
+    }
+
+    .back-button:hover {
+      transform: translateX(-5px);
+      color: var(--accent-hover);
+    }
+
+    .course-footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .course-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--bg-light);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-button:hover {
+      background: var(--bg-medium);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background: var(--bg-medium);
+      color: var(--text-secondary);
+      padding: 30px 20px;
+      margin-top: 60px;
+      border-top: 1px solid var(--bg-light);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-primary);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      z-index: 1001;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient-primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1002;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-smooth);
+    }
+    
+    .theme-toggle:hover {
+      transform: rotate(30deg);
+    }
+    
+    .theme-toggle i {
+      font-size: 1.2em;
+      color: var(--accent-color);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-light);
+      color: var(--text-primary);
+      padding: 15px 25px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1003;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+    
+    .toast.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .toast i {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 12px 1rem;
+        height: 70px;
+      }
+      
+      nav.desktop {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .brand .name {
+        font-size: 1.3em;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+      }
+      
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+      }
+      
+      .course-navigation {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .mobile-nav {
+        width: 85%;
+      }
+      
+      .course-content h1 {
+        font-size: 1.8rem;
+      }
+      
+      .course-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @supports (backdrop-filter: blur(10px)) {
+      header {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    }
+
+    header * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+  
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Theme changed successfully!</span>
+  </div>
+
+  <header id="mainHeader">
+    <div class="wrap">
+      <div class="brand" aria-label="Omar CodePlay">
+        <img src="images/MY LOGO.png" alt="Omar CodePlay logo">
+        <div class="name">OMAR</div>
+      </div>
+
+      <nav class="desktop" aria-label="Primary navigation">
+        <a href="index.html#projects">Projects</a>
+        <a href="articles.html">Articles</a>
+        <a href="courses.html" class="active">Courses</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="cta-ghost" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+
+      <button class="hamburger" aria-expanded="false" aria-controls="mobile-nav">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html#projects">Projects</a>
+    <a href="articles.html">Articles</a>
+    <a href="courses.html">Courses</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://github.com/omar-codeplay" target="_blank">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="course-content">
+      <div style="margin-bottom: 30px;">
+        <a href="courses.html" class="back-button">
+          <i class="fas fa-arrow-left"></i> Back to Courses
+        </a>
+      </div>
+
+      <header class="course-header">
+        <h1>Game Development with Unity: Create Your First 3D Game</h1>
+        <div class="course-meta">
+          <span class="course-tag">Intermediate</span>
+          <span class="course-tag">Free</span>
+          <span><i class="fas fa-calendar-alt"></i> 15 Lessons</span>
+          <span><i class="fas fa-user-circle"></i> Omar CodePlay</span>
+        </div>
+      </header>
+
+      <h2>Course Overview</h2>
+      <p>Welcome to our comprehensive Unity game development course! This course is designed for beginners who want to learn how to create 3D games using Unity and C#. By the end of this course, you'll have built your first complete 3D game and gained the skills to continue your journey as a game developer.</p>
+
+      <h2>What You'll Learn</h2>
+      <ul>
+        <li>Unity interface and core concepts</li>
+        <li>C# programming for game development</li>
+        <li>3D modeling and asset creation</li>
+        <li>Game mechanics and physics</li>
+        <li>User interface design</li>
+        <li>Audio implementation</li>
+        <li>Publishing your game to multiple platforms</li>
+      </ul>
+
+      <h2>Lesson 1: Introduction to Unity</h2>
+      <p>In this lesson, we'll cover the basics of Unity, the most popular game engine in the world. You'll learn about the interface, core concepts, and how to set up your first project.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>What is Unity and why use it?</li>
+        <li>Unity Hub and project setup</li>
+        <li>Interface overview: Scene, Game, Hierarchy, Project, Inspector</li>
+        <li>Creating and manipulating GameObjects</li>
+      </ul>
+
+      <h2>Lesson 2: C# Fundamentals for Game Development</h2>
+      <p>Unity uses C# as its primary scripting language. In this lesson, you'll learn the basics of C# programming specifically tailored for game development.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Variables, data types, and operators</li>
+        <li>Control structures: if statements, loops</li>
+        <li>Functions and methods</li>
+        <li>Classes and objects</li>
+      </ul>
+
+      <h2>Lesson 3: Working with 3D Objects</h2>
+      <p>In this lesson, you'll learn how to work with 3D objects in Unity, including importing assets, positioning, scaling, and rotating objects.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Importing 3D models and textures</li>
+        <li>Transform component: position, rotation, scale</li>
+        <li>Basic lighting and materials</li>
+        <li>Camera setup and navigation</li>
+      </ul>
+
+      <h2>Lesson 4: Unity Physics and Collisions</h2>
+      <p>Realistic physics are essential for many games. This lesson will teach you how to implement physics and collision detection in Unity.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Rigidbody component and forces</li>
+        <li>Collision detection and triggers</li>
+        <li>Physics materials</li>
+        <li>Gravity and friction</li>
+      </ul>
+
+      <h2>Lesson 5: Scripting Game Mechanics</h2>
+      <p>In this lesson, you'll start writing scripts to create interactive game mechanics. We'll cover player movement, input handling, and basic game logic.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Creating and attaching scripts</li>
+        <li>Input management (keyboard, mouse, gamepad)</li>
+        <li>Player movement and character controllers</li>
+        <li>Game state management</li>
+      </ul>
+
+      <h2>Lesson 6: User Interface Design</h2>
+      <p>A good user interface is crucial for player engagement. In this lesson, you'll learn how to create menus, HUDs, and interactive UI elements.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Canvas, panels, and layout groups</li>
+        <li>Text, images, and buttons</li>
+        <li>Event system and UI interactions</li>
+        <li>Responsive UI design</li>
+      </ul>
+
+      <h2>Lesson 7: Audio Implementation</h2>
+      <p>Sound and music greatly enhance the gaming experience. This lesson will teach you how to add and control audio in your Unity projects.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Audio sources and listeners</li>
+        <li>Background music and sound effects</li>
+        <li>Audio mixing and spatial sound</li>
+        <li>Dynamic audio control</li>
+      </ul>
+
+      <h2>Lesson 8: Project: Building a Simple 3D Game</h2>
+      <p>Apply everything you've learned by building a complete 3D game. This project will combine all the concepts from previous lessons.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Game design and planning</li>
+        <li>Implementing core gameplay mechanics</li>
+        <li>Creating levels and environments</li>
+        <li>Polishing and playtesting</li>
+      </ul>
+
+      <h2>Lesson 9: Advanced C# Concepts</h2>
+      <p>In this lesson, we'll dive deeper into C# programming concepts that are essential for more complex game development.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Inheritance and polymorphism</li>
+        <li>Interfaces and abstract classes</li>
+        <li>Delegates and events</li>
+        <li>Coroutines and asynchronous programming</li>
+      </ul>
+
+      <h2>Lesson 10: Animation and Visual Effects</h2>
+      <p>Bring your game to life with animations and visual effects. This lesson will teach you how to create and control animations in Unity.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Animation controllers and states</li>
+        <li>Blend trees and transitions</li>
+        <li>Particle systems and effects</li>
+        <li>Post-processing effects</li>
+      </ul>
+
+      <h2>Lesson 11: Saving and Loading Game Data</h2>
+      <p>Learn how to save player progress and game data so players can continue where they left off.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>PlayerPrefs for simple data</li>
+        <li>JSON serialization</li>
+        <li>File I/O operations</li>
+        <li>Data encryption and security</li>
+      </ul>
+
+      <h2>Lesson 12: Optimization and Performance</h2>
+      <p>Optimization is crucial for creating smooth, performant games. This lesson will teach you how to identify and fix performance issues.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Performance profiling tools</li>
+        <li>Object pooling</li>
+        <li>Level of detail (LOD)</li>
+        <li>Memory management</li>
+      </ul>
+
+      <h2>Lesson 13: Multiplatform Publishing</h2>
+      <p>Learn how to build and publish your game to multiple platforms including PC, mobile, and web.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Build settings and platform-specific considerations</li>
+        <li>App store requirements</li>
+        <li>Version control and deployment</li>
+        <li>Marketing and distribution</li>
+      </ul>
+
+      <h2>Lesson 14: Advanced Game Mechanics</h2>
+      <p>In this lesson, we'll explore more complex game mechanics that can take your games to the next level.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>AI behavior and pathfinding</li>
+        <li>Procedural generation</li>
+        <li>Networking and multiplayer</li>
+        <li>Advanced physics simulations</li>
+      </ul>
+
+      <h2>Lesson 15: Final Project and Portfolio</h2>
+      <p>In the final lesson, you'll create a showcase project that demonstrates all the skills you've learned throughout the course.</p>
+      
+      <h3>Key Topics:</h3>
+      <ul>
+        <li>Designing a portfolio-worthy project</li>
+        <li>Polishing and bug fixing</li>
+        <li>Creating promotional materials</li>
+        <li>Next steps in your game development journey</li>
+      </ul>
+
+      <blockquote>
+        <p>Congratulations on completing this Unity game development course! You now have the skills to create your own 3D games. Remember, the key to mastery is practice. Keep building projects, experimenting with new techniques, and learning from the Unity community.</p>
+      </blockquote>
+
+      <div class="course-footer">
+        <p class="muted">Created by <strong>Omar CodePlay</strong></p>
+        
+        <div class="course-navigation">
+          <a href="course1.html" class="nav-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Previous Course: HTML & CSS</span>
+          </a>
+          <a href="courses.html" class="nav-button">
+            <span>All Courses</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="muted">© 2024 <strong style="color: var(--accent-color);">OmarCodePlay</strong> • All rights reserved</div>
+      <div class="muted">Made with HTML, CSS & JavaScript • Built with passion for game development</div>
+    </div>
+  </footer>
+
+  <script>
+    const menu_btn = document.querySelector('.hamburger');
+    const mobile_menu = document.querySelector('.mobile-nav');
+    const header = document.getElementById('mainHeader');
+    const progressBar = document.getElementById('progressBar');
+    const backToTop = document.getElementById('backToTop');
+    const themeToggle = document.getElementById('themeToggle');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const htmlEl = document.documentElement;
+
+    function toggleTheme() {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      htmlEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      
+      showToast('Theme changed successfully!');
+    }
+
+    (function checkStoredTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      htmlEl.setAttribute('data-theme', savedTheme);
+      
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    })();
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateHeader() {
+      if (lastScrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      ticking = false;
+    }
+
+    function onScroll() {
+      lastScrollY = window.scrollY;
+      
+      const winHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset;
+      const scrollableHeight = docHeight - winHeight;
+      const scrollPercent = scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0;
+      progressBar.style.width = scrollPercent + '%';
+      
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+      
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateHeader();
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.classList.add('visible');
+      
+      setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 3000);
+    }
+
+    menu_btn.addEventListener('click', function () {
+      menu_btn.classList.toggle('is-active')
+      mobile_menu.classList.toggle('is-active')
+    })
+
+    document.querySelectorAll('.mobile-nav a').forEach(item => {
+      item.addEventListener('click', event => {
+        menu_btn.classList.remove('is-active')
+        mobile_menu.classList.remove('is-active')
+      })
+    })
+
+    themeToggle.addEventListener('click', toggleTheme);
+  </script>
+</body>
+</html>

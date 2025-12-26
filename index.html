@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OmarCodePlay | Gaming & Programming</title>
-  
-  <meta name="description" content="OmarCodePlay - Where Gaming Meets Programming. Explore projects, tutorials, and articles about game development and programming.">
+
+  <meta name="description"
+    content="OmarCodePlay - Where Gaming Meets Programming. Explore projects, tutorials, and articles about game development and programming.">
   <meta name="keywords" content="programming, gaming, game development, unity, web development, omar code play">
   <meta name="author" content="OmarCodePlay">
   <meta name="robots" content="index, follow">
+
+  <meta name="google-site-verification" content="AE91C0E111062D63" />
+
 
   <meta property="og:title" content="OmarCodePlay - Gaming & Programming">
   <meta property="og:description" content="Where Gaming Meets Programming. Explore projects, tutorials, and articles.">
@@ -20,21 +25,39 @@
   <meta name="theme-color" content="#00aaff">
   <link rel="apple-touch-icon" href="images/My LOGO.png">
   <link rel="icon" href="images/MY LOGO.png" />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print"
+    onload="this.media='all'">
 
- <style>
- 	
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "OmarCodePlay",
+  "url": "https://omar-codeplay.netlify.app/",
+  "description": "موقع لتعلم البرمجة وتطوير الألعاب",
+  "publisher": {
+    "@type": "Organization",
+    "name": "OmarCodePlay",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://omar-codeplay.netlify.app/images/MY LOGO.png"
+    }
+  }
+}
+</script>
+
+
+  <style>
     /* 1. المتغيرات والألوان المحسنة */
     :root {
       --bg-dark: #0b0d10;
-      --bg-medium: #11161b; 
+      --bg-medium: #11161b;
       --bg-light: #14181f;
       --text-primary: #e8e8e8;
       --text-secondary: #b0b0b0;
@@ -42,7 +65,7 @@
       --accent-secondary: #ff6b6b;
       --accent-tertiary: #00ffcc;
       --accent-hover: #66ccff;
-      --neon-glow: #00aaff50; 
+      --neon-glow: #00aaff50;
       --gradient-primary: linear-gradient(135deg, #00aaff 0%, #00ffcc 100%);
       --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
       --gradient-dark: linear-gradient(135deg, #0b0d10 0%, #11161b 100%);
@@ -69,14 +92,14 @@
       --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    html { 
-      scroll-behavior: smooth; 
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -85,15 +108,16 @@
       line-height: 1.7;
       transition: var(--transition-smooth);
       overflow-x: hidden;
-      background-image: 
+      background-image:
         radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
         radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
         radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
     }
-    
+
     body.lang-en {
       font-family: 'Poppins', 'Cairo', sans-serif;
     }
+
     body.lang-ar {
       font-family: 'Cairo', 'Poppins', sans-serif;
     }
@@ -106,7 +130,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background-image: 
+      background-image:
         radial-gradient(circle at 20% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
       transform: translateZ(0);
@@ -117,7 +141,7 @@
     header {
       background: rgba(17, 22, 27, 0.95);
       color: var(--accent-color);
-      padding: 18px 1rem; 
+      padding: 18px 1rem;
       text-align: center;
       position: fixed;
       top: 0;
@@ -128,12 +152,12 @@
       backdrop-filter: blur(10px);
       transition: var(--transition-smooth);
     }
-    
+
     [data-theme="light"] header {
       background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
-    
+
     header.scrolled {
       padding: 12px 1rem;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -146,7 +170,7 @@
       gap: 10px;
       margin-bottom: 10px;
     }
-    
+
     .logo-icon {
       width: 40px;
       height: 40px;
@@ -159,19 +183,19 @@
       font-size: 1.2em;
       font-weight: bold;
     }
-    
+
     .main-title {
-        color: var(--accent-color);
-        text-align: center;
-        padding-top: 100px;
-        padding-bottom: 20px;
-        background: var(--bg-dark);
-        position: relative;
-        overflow: hidden;
+      color: var(--accent-color);
+      text-align: center;
+      padding-top: 100px;
+      padding-bottom: 20px;
+      background: var(--bg-dark);
+      position: relative;
+      overflow: hidden;
     }
 
-    .main-title h1 { 
-      font-size: 2.5em; 
+    .main-title h1 {
+      font-size: 2.5em;
       font-weight: 700;
       text-shadow: 0 0 10px var(--neon-glow);
       background: var(--gradient-primary);
@@ -181,14 +205,14 @@
       display: inline-block;
       margin-bottom: 10px;
     }
-    
+
     .main-title p {
       font-size: 1.2em;
       color: var(--text-secondary);
       max-width: 600px;
       margin: 0 auto;
     }
-    
+
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -196,39 +220,42 @@
       align-items: center;
       gap: 8px 12px;
     }
+
     nav a {
       color: var(--text-primary);
       margin: 0 10px;
       text-decoration: none;
       font-weight: 500;
       transition: var(--transition-smooth);
-      position: relative; 
+      position: relative;
       padding-bottom: 5px;
     }
+
     nav a::after {
       content: '';
       position: absolute;
       width: 0%;
       height: 2px;
       bottom: 0;
-      left: 0; 
+      left: 0;
       background: var(--gradient-primary);
       transition: width 0.3s ease-out;
     }
+
     /* RTL adjustments for nav links underline */
     [dir="rtl"] nav a::after {
-        right: 0;
-        left: auto;
+      right: 0;
+      left: auto;
     }
 
     nav a:hover::after {
-      width: 100%; 
+      width: 100%;
     }
-    
-    nav a:hover { 
-      color: var(--accent-color); 
+
+    nav a:hover {
+      color: var(--accent-color);
     }
-    
+
     #lang-switcher {
       font-weight: 600;
       padding: 6px 12px;
@@ -239,30 +266,37 @@
       user-select: none;
       transition: var(--transition-smooth);
     }
+
     #lang-switcher:hover {
       background: var(--accent-color);
       color: var(--bg-dark);
       border-color: var(--accent-color);
       transform: translateY(-2px);
     }
-    body.lang-en #lang-switcher { font-family: 'Cairo', sans-serif; }
-    body.lang-ar #lang-switcher { font-family: 'Poppins', sans-serif; }
-    
+
+    body.lang-en #lang-switcher {
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body.lang-ar #lang-switcher {
+      font-family: 'Poppins', sans-serif;
+    }
+
 
     /* --- Sections --- */
     section {
-      padding: 100px 1rem; 
+      padding: 100px 1rem;
       max-width: 1200px;
       margin: auto;
       position: relative;
     }
-    
+
     .section-title {
       text-align: center;
       margin-bottom: 60px;
       position: relative;
     }
-    
+
     section h2 {
       color: var(--accent-color);
       font-size: 2.5em;
@@ -273,7 +307,7 @@
       position: relative;
       margin-bottom: 15px;
     }
-    
+
     .section-title::after {
       content: '';
       position: absolute;
@@ -285,9 +319,9 @@
       background: var(--gradient-primary);
       border-radius: 3px;
     }
-    
+
     section:hover h2 {
-       text-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--neon-glow);
+      text-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--neon-glow);
     }
 
     /* --- Hero Section --- */
@@ -298,7 +332,7 @@
       align-items: center;
       min-height: 100vh;
       text-align: center;
-      background-image: 
+      background-image:
         radial-gradient(circle at 20% 80%, rgba(0, 170, 255, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
         radial-gradient(#ffffff0a 1px, transparent 1px);
@@ -306,7 +340,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     #home::before {
       content: '';
       position: absolute;
@@ -317,9 +351,9 @@
       background: radial-gradient(ellipse at center, rgba(0, 170, 255, 0.1) 0%, transparent 70%);
       pointer-events: none;
     }
-    
-    #home h2 { 
-      font-size: 3.5em; 
+
+    #home h2 {
+      font-size: 3.5em;
       margin-bottom: 20px;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
@@ -328,7 +362,7 @@
       position: relative;
       z-index: 2;
     }
-    
+
     #home p {
       font-size: 1.3em;
       max-width: 700px;
@@ -337,7 +371,7 @@
       position: relative;
       z-index: 2;
     }
-    
+
     .cta-buttons {
       display: flex;
       gap: 20px;
@@ -350,11 +384,11 @@
 
     /* --- About Me Section --- */
     #about {
-        background-color: var(--bg-medium); 
-        position: relative;
-        overflow: hidden;
+      background-color: var(--bg-medium);
+      position: relative;
+      overflow: hidden;
     }
-    
+
     #about::before {
       content: '';
       position: absolute;
@@ -366,21 +400,23 @@
       background: radial-gradient(circle, rgba(0, 170, 255, 0.1) 0%, transparent 70%);
       z-index: 0;
     }
-    
+
     .about-container {
       display: flex;
       align-items: center;
       gap: 50px;
-      flex-wrap: wrap; 
+      flex-wrap: wrap;
       position: relative;
       z-index: 1;
     }
+
     .about-image {
       flex: 1;
       text-align: center;
       min-width: 250px;
       position: relative;
     }
+
     .about-image::before {
       content: '';
       position: absolute;
@@ -394,7 +430,7 @@
       opacity: 0.3;
       filter: blur(10px);
     }
-    
+
     .about-image img {
       width: 280px;
       height: 280px;
@@ -406,28 +442,30 @@
       position: relative;
       z-index: 1;
     }
-    
+
     .about-image img:hover {
-        transform: scale(1.05) rotate(5deg);
-        box-shadow: 0 0 40px var(--accent-color);
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 0 40px var(--accent-color);
     }
+
     .about-text {
       flex: 2;
       min-width: 300px;
     }
+
     .about-text p {
       font-size: 1.1em;
       margin-bottom: 20px;
       line-height: 1.8;
     }
-    
+
     .skills-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
     }
-    
+
     .skill-tag {
       background: rgba(0, 170, 255, 0.1);
       color: var(--accent-color);
@@ -437,7 +475,7 @@
       border: 1px solid rgba(0, 170, 255, 0.3);
       transition: var(--transition-smooth);
     }
-    
+
     .skill-tag:hover {
       background: var(--accent-color);
       color: var(--bg-dark);
@@ -450,27 +488,27 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
     }
-    
+
     .grid a {
-        text-decoration: none;
-        color: inherit;
+      text-decoration: none;
+      color: inherit;
     }
 
     /* --- Card Design --- */
     .card {
       background: var(--bg-light);
       border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.05); 
+      border: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: var(--card-shadow);
       transition: var(--transition-smooth);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      cursor: pointer; 
+      cursor: pointer;
       position: relative;
       height: 100%;
     }
-    
+
     .card::before {
       content: '';
       position: absolute;
@@ -483,17 +521,17 @@
       transform-origin: left;
       transition: transform 0.5s ease;
     }
-    
+
     .card:hover::before {
       transform: scaleX(1);
     }
-    
+
     .card:hover {
       transform: translateY(-10px) scale(1.02);
       box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
-      background: var(--bg-medium); 
+      background: var(--bg-medium);
     }
-    
+
     .card img {
       width: 100%;
       aspect-ratio: 1.6 / 1;
@@ -510,29 +548,29 @@
     .card-content {
       padding: 25px;
       flex-grow: 1;
-      color: inherit; 
+      color: inherit;
       display: flex;
       flex-direction: column;
     }
-    
-    .card h3 { 
-      color: var(--accent-color); 
-      margin-bottom: 15px; 
+
+    .card h3 {
+      color: var(--accent-color);
+      margin-bottom: 15px;
       font-size: 1.5em;
       transition: var(--transition-smooth);
     }
-    
+
     .card:hover h3 {
       color: var(--accent-hover);
     }
-    
+
     .card p {
       font-size: 1em;
       color: var(--text-primary);
       line-height: 1.6;
       flex-grow: 1;
     }
-    
+
     .card-footer {
       margin-top: 20px;
       display: flex;
@@ -541,7 +579,7 @@
       font-size: 0.9em;
       color: var(--text-secondary);
     }
-    
+
     .card-tag {
       background: rgba(0, 170, 255, 0.1);
       color: var(--accent-color);
@@ -564,12 +602,12 @@
       box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
       cursor: pointer;
       font-size: 1.1em;
-      font-family: inherit; 
+      font-family: inherit;
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
-    
+
     .primary-button::before {
       content: '';
       position: absolute;
@@ -587,7 +625,7 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
     }
-    
+
     .primary-button:hover::before {
       opacity: 1;
     }
@@ -604,9 +642,9 @@
       transition: var(--transition-smooth);
       cursor: pointer;
       font-size: 1.1em;
-      font-family: inherit; 
+      font-family: inherit;
     }
-    
+
     .secondary-button:hover {
       background: var(--accent-color);
       color: var(--bg-dark);
@@ -620,7 +658,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     #contact::before {
       content: '';
       position: absolute;
@@ -632,14 +670,14 @@
       background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
       z-index: 0;
     }
-    
-    #contact .section-title, 
-    #contact p, 
+
+    #contact .section-title,
+    #contact p,
     #contact .social-links {
       position: relative;
       z-index: 1;
     }
-    
+
     #contact p {
       font-size: 1.2em;
       margin-bottom: 40px;
@@ -647,14 +685,14 @@
       margin-left: auto;
       margin-right: auto;
     }
-    
+
     .social-links {
       display: flex;
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
     }
-    
+
     .social-links a {
       color: var(--text-secondary);
       width: 60px;
@@ -668,25 +706,27 @@
       background: var(--bg-light);
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
+
     .social-links a:hover {
       transform: translateY(-5px);
       color: white;
     }
-    
-    .social-links a.fa-github:hover { 
-      background: #333; 
+
+    .social-links a.fa-github:hover {
+      background: #333;
       box-shadow: 0 5px 15px rgba(51, 51, 51, 0.5);
     }
-    .social-links a.fa-discord:hover { 
-      background: #7289da; 
+
+    .social-links a.fa-discord:hover {
+      background: #7289da;
       box-shadow: 0 5px 15px rgba(114, 137, 218, 0.5);
     }
-    .social-links a.fa-youtube:hover { 
-      background: #ff0000; 
+
+    .social-links a.fa-youtube:hover {
+      background: #ff0000;
       box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
     }
-    
+
     /* --- Footer --- */
     footer {
       background: var(--bg-medium);
@@ -697,7 +737,7 @@
       border-top: 1px solid var(--bg-light);
       position: relative;
     }
-    
+
     footer::before {
       content: '';
       position: absolute;
@@ -718,14 +758,14 @@
       pointer-events: none;
       transition: transform 0.1s linear;
     }
-    
+
     .floating-1 {
       width: 200px;
       height: 200px;
       top: 10%;
       left: 5%;
     }
-    
+
     .floating-2 {
       width: 150px;
       height: 150px;
@@ -733,7 +773,7 @@
       right: 10%;
       background: rgba(255, 107, 107, 0.1);
     }
-    
+
     .floating-3 {
       width: 100px;
       height: 100px;
@@ -748,50 +788,57 @@
         opacity: 0;
         transform: translateY(30px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    
+
     @keyframes float {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-10px);
       }
     }
-    
+
     @keyframes pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
     }
-    
+
     .fade-in {
       animation: fadeInUp 0.8s ease forwards;
     }
-    
+
     .float {
       animation: float 5s ease-in-out infinite;
     }
-    
+
     .pulse {
       animation: pulse 2s ease-in-out infinite;
     }
-    
+
     .delay-1 {
       animation-delay: 0.2s;
     }
-    
+
     .delay-2 {
       animation-delay: 0.4s;
     }
-    
+
     .delay-3 {
       animation-delay: 0.6s;
     }
@@ -806,7 +853,7 @@
       background: transparent;
       z-index: 1001;
     }
-    
+
     .progress-bar {
       height: 100%;
       background: var(--gradient-primary);
@@ -835,12 +882,12 @@
       z-index: 999;
       box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
     }
-    
+
     .back-to-top.visible {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .back-to-top:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
@@ -856,7 +903,7 @@
       overflow: hidden;
       z-index: 0;
     }
-    
+
     .particle {
       position: absolute;
       background: rgba(255, 255, 255, 0.5);
@@ -881,11 +928,11 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       transition: var(--transition-smooth);
     }
-    
+
     .theme-toggle:hover {
       transform: rotate(30deg);
     }
-    
+
     .theme-toggle i {
       font-size: 1.2em;
       color: var(--accent-color);
@@ -910,12 +957,12 @@
       visibility: hidden;
       transition: var(--transition-smooth);
     }
-    
+
     .toast.visible {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .toast i {
       color: var(--accent-color);
     }
@@ -923,75 +970,75 @@
     /* --- Responsiveness --- */
     @media (max-width: 768px) {
       header {
-          padding: 12px 1rem; 
+        padding: 12px 1rem;
       }
-      
+
       .logo {
         flex-direction: column;
         gap: 5px;
       }
-      
+
       .main-title {
         padding-top: 80px;
       }
-      
+
       .main-title h1 {
         font-size: 2em;
       }
-      
-      nav { 
-        gap: 8px 12px; 
+
+      nav {
+        gap: 8px 12px;
       }
-      
-      section { 
-        padding: 70px 1rem; 
+
+      section {
+        padding: 70px 1rem;
       }
-      
-      .section-title h2 { 
-        font-size: 2em; 
+
+      .section-title h2 {
+        font-size: 2em;
       }
-      
-      #home { 
-        min-height: 80vh; 
-        
+
+      #home {
+        min-height: 80vh;
+
         margin-top: 200px;
-        
+
       }
-      
-      #home h2 { 
-        font-size: 2.5em; 
+
+      #home h2 {
+        font-size: 2.5em;
       }
-      
-      #home p { 
-        font-size: 1.1em; 
+
+      #home p {
+        font-size: 1.1em;
       }
-      
-      .about-container { 
-        flex-direction: column; 
+
+      .about-container {
+        flex-direction: column;
       }
-      
-      .grid { 
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       }
-      
+
       .cta-buttons {
         flex-direction: column;
         align-items: center;
       }
-      
+
       .cta-buttons a {
         width: 100%;
         max-width: 300px;
         text-align: center;
       }
-      
+
       .back-to-top {
         bottom: 20px;
         right: 20px;
         width: 45px;
         height: 45px;
       }
-      
+
       .theme-toggle {
         top: 15px;
         right: 15px;
@@ -999,64 +1046,62 @@
         height: 45px;
       }
     }
-    
+
     @media (max-width: 480px) {
-      .main-title h1 { 
-        font-size: 1.8em; 
+      .main-title h1 {
+        font-size: 1.8em;
       }
-      
-      nav a { 
-        font-size: 0.9em; 
+
+      nav a {
+        font-size: 0.9em;
         margin: 0 5px;
       }
-      
-      .card h3 { 
-        font-size: 1.3em; 
+
+      .card h3 {
+        font-size: 1.3em;
       }
-      
-      .social-links a { 
-        width: 50px; 
-        height: 50px; 
-        font-size: 1.3em; 
+
+      .social-links a {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3em;
       }
-      
+
       section h2 {
         font-size: 1.8em;
       }
     }
- 
- 
-</style>
-  
+  </style>
+
 </head>
 
 <body class="lang-en">
-  
+
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-  
+
   <div class="theme-toggle" id="themeToggle">
     <i class="fas fa-moon"></i>
   </div>
-  
+
   <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </div>
-  
+
   <div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Language changed successfully!</span>
   </div>
-  
+
   <div class="parallax-bg"></div>
-  
+
   <div class="floating-element floating-1"></div>
   <div class="floating-element floating-2"></div>
   <div class="floating-element floating-3"></div>
-  
+
   <div class="particles" id="particles"></div>
-  
+
   <header id="mainHeader">
     <div class="logo">
       <div class="logo-icon pulse">OCP</div>
@@ -1069,7 +1114,7 @@
       <a href="#courses" data-key="nav_courses">Courses</a>
       <a href="#articles" data-key="nav_articles">Articles</a>
       <a href="#contact" data-key="nav_contact">Contact</a>
-      <a href="#" id="lang-switcher" data-key="nav_lang">عربي</a> 
+      <a href="#" id="lang-switcher" data-key="nav_lang">عربي</a>
     </nav>
   </header>
 
@@ -1095,15 +1140,18 @@
       </div>
       <div class="about-text fade-in delay-1">
         <p data-key="about_p1">
-          Hello! I'm Omar, a passionate developer and gamer who loves blending the two worlds. My journey started with a simple "Hello, World!" and quickly evolved into building custom game mechanics in Unity. We will spend our journey learning a new programing language like HTML , CSS , JS and Dart .
+          Hello! I'm Omar, a passionate developer and gamer who loves blending the two worlds. My journey started with a
+          simple "Hello, World!" and quickly evolved into building custom game mechanics in Unity. We will spend our
+          journey learning a new programing language like HTML , CSS , JS and Dart .
         </p>
         <p data-key="about_p2">
-          This website is my digital playground—a place where I share my creations, document my learning process, and (hopefully) teach others a few things I've picked up along the way.
+          This website is my digital playground—a place where I share my creations, document my learning process, and
+          (hopefully) teach others a few things I've picked up along the way.
         </p>
         <p data-key="about_p3">
           Whether you're here to grab some code, learn a new skill, or just see what I'm up to, I'm glad to have you.
         </p>
-        
+
         <div class="skills-list">
           <span class="skill-tag">HTML/CSS</span>
           <span class="skill-tag">JavaScript</span>
@@ -1134,7 +1182,7 @@
           </div>
         </div>
       </a>
-      
+
       <a href="pro4.html" class="fade-in delay-1">
         <div class="card" data-link-url="#project-cp-color">
           <img src="images/Logo.jpg" alt="CP Color App Image">
@@ -1148,7 +1196,7 @@
           </div>
         </div>
       </a>
-      
+
       <a href="pro3.html" class="fade-in delay-2">
         <div class="card" data-link-url="#project-recorder">
           <img src="images/recorder.webp" alt="Screen Recorder Website Image">
@@ -1164,7 +1212,7 @@
       </a>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-        <a href="Games.html" class="primary-button fade-in delay-3" data-key="btn_more_projects">More Projects</a>
+      <a href="Games.html" class="primary-button fade-in delay-3" data-key="btn_more_projects">More Projects</a>
     </div>
   </section>
 
@@ -1186,7 +1234,7 @@
           </div>
         </div>
       </a>
-      
+
       <a href="course2.html" class="fade-in delay-1">
         <div class="card" data-link-url="#course-unity">
           <img src="images/images.jpeg" alt="Game Dev with Unity">
@@ -1202,7 +1250,7 @@
       </a>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-        <a href="courses.html" class="primary-button fade-in delay-2" data-key="btn_more_courses">More Courses</a>
+      <a href="courses.html" class="primary-button fade-in delay-2" data-key="btn_more_courses">More Courses</a>
     </div>
   </section>
 
@@ -1223,7 +1271,7 @@
           </div>
         </div>
       </a>
-      
+
       <a href="How to start.html" class="fade-in delay-1">
         <div class="card" data-link-url="#article-js-optimizing">
           <div class="card-content">
@@ -1238,7 +1286,7 @@
       </a>
     </div>
     <div style="text-align: center; margin-top: 40px;">
-        <a href="articles.html" class="primary-button fade-in delay-2" data-key="btn_more_articles">More Articles</a>
+      <a href="articles.html" class="primary-button fade-in delay-2" data-key="btn_more_articles">More Articles</a>
     </div>
   </section>
 
@@ -1250,17 +1298,22 @@
     <div class="social-links">
       <a href="https://github.com/omar-codeplay" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a href="https://discord.gg/e56xRbgF" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-      <a href="https://youtube.com/@omar_codeplay" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://youtube.com/@omar_codeplay" target="_blank" aria-label="YouTube"><i
+          class="fab fa-youtube"></i></a>
     </div>
   </section>
 
   <footer>
     <p data-key="footer_text">© 2025 OmarCodePlay — Gaming & Programming</p>
+    <div class="muted">
+  <a href="sitemap.html" style="color: var(--accent-color); text-decoration: none;">
+    <i class="fas fa-sitemap"></i> خريطة الموقع
+  </a>
+</div>
+
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
-
-
-

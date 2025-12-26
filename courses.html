@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - OmarCodePlay</title>
+  <meta name="description" content="Programming courses by OmarCodePlay - Learn HTML, CSS, JavaScript and Unity game development">
+  <meta name="keywords" content="programming courses, HTML CSS, Unity, game development, OmarCodePlay">
+  <meta name="author" content="OmarCodePlay">
+  <meta name="robots" content="index, follow">
+
+  <meta name="google-site-verification" content="AE91C0E111062D63" />
+
+  
+  <meta property="og:title" content="Programming Courses - OmarCodePlay">
+  <meta property="og:description" content="Learn programming with our comprehensive courses">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omar-codeplay.netlify.app/courses.html">
+  <meta property="og:image" content="https://omar-codeplay.netlify.app/images/My LOGO.png">
+  
+  <link rel="icon" href="images/MY LOGO.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0b0d10;
+      --bg-medium: #11161b; 
+      --bg-light: #14181f;
+      --text-primary: #e8e8e8;
+      --text-secondary: #b0b0b0;
+      --accent-color: #00aaff;
+      --accent-secondary: #ff6b6b;
+      --accent-tertiary: #00ffcc;
+      --accent-hover: #66ccff;
+      --neon-glow: #00aaff50; 
+      --gradient-primary: linear-gradient(135deg, #00aaff 0%, #00ffcc 100%);
+      --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+      --gradient-dark: linear-gradient(135deg, #0b0d10 0%, #11161b 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #f0f2f5;
+      --bg-medium: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --accent-color: #3182ce;
+      --accent-secondary: #e53e3e;
+      --accent-tertiary: #38a169;
+      --accent-hover: #4299e1;
+      --neon-glow: #3182ce50;
+      --gradient-primary: linear-gradient(135deg, #3182ce 0%, #38a169 100%);
+      --gradient-secondary: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
+      --gradient-dark: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: var(--transition-smooth);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+      font-family: 'Poppins', sans-serif;
+      padding-top: 80px;
+    }
+
+    header {
+      background: rgba(17, 22, 27, 0.95);
+      color: var(--accent-color);
+      padding: 18px 1rem; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(20, 24, 31, 0.5);
+      backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+      display: flex;
+      justify-content: center;
+    }
+    
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    
+    header.scrolled {
+      padding: 12px 1rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 6px;
+    }
+
+    .brand .name {
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      font-size: 1.5em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav.desktop {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    nav.desktop a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    nav.desktop a:hover, nav.desktop a:focus {
+      color: var(--accent-color);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    nav.desktop a.active {
+      color: var(--accent-color);
+      background: rgba(0, 170, 255, 0.1);
+    }
+
+    .cta-primary, .cta-ghost {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-primary {
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
+    }
+
+    .cta-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .cta-ghost:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1001;
+    }
+
+    .hamburger .bar {
+        width: 25px;
+        height: 3px;
+        background-color: var(--accent-color);
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+
+    .hamburger.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--bg-medium);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: 0.5s;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-nav.is-active {
+        right: 0;
+    }
+
+    .mobile-nav a {
+        padding: 15px;
+        text-decoration: none;
+        color: var(--text-primary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition-smooth);
+        font-weight: 500;
+    }
+
+    .mobile-nav a:hover {
+        color: var(--accent-color);
+        background: rgba(0, 170, 255, 0.05);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    h1 { 
+      font-size: clamp(28px, 5vw, 42px); 
+      margin: 0 0 12px; 
+      color: var(--accent-color);
+      text-shadow: 0 0 10px var(--neon-glow);
+    }
+
+    h2 { 
+      font-size: 1.8rem; 
+      margin: 0 0 20px; 
+      color: var(--accent-color);
+    }
+
+    .muted { color: var(--text-secondary); }
+    .lead { 
+      color: var(--text-secondary); 
+      font-size: 1.1rem; 
+      line-height: 1.5; 
+      max-width: 600px;
+    }
+
+    .courses-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .course-card {
+      background: var(--bg-light);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .course-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
+      background: var(--bg-medium);
+    }
+
+    .course-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .course-tag {
+      background: rgba(0, 170, 255, 0.1);
+      color: var(--accent-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .course-meta {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin: 8px 0 16px 0;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .course-excerpt {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 16px 0;
+      font-size: 1rem;
+    }
+
+    .primary-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      border: none;
+      transition: var(--transition-smooth);
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+      cursor: pointer;
+      font-size: 1.1em;
+      font-family: inherit; 
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      margin-top: 15px;
+    }
+    
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+    }
+
+    footer {
+      background: var(--bg-medium);
+      color: var(--text-secondary);
+      padding: 30px 20px;
+      margin-top: 60px;
+      border-top: 1px solid var(--bg-light);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-primary);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1001;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient-primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1002;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-smooth);
+    }
+    
+    .theme-toggle:hover {
+      transform: rotate(30deg);
+    }
+    
+    .theme-toggle i {
+      font-size: 1.2em;
+      color: var(--accent-color);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-light);
+      color: var(--text-primary);
+      padding: 15px 25px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1003;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+    
+    .toast.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .toast i {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      body { 
+        padding-top: 70px; 
+      }
+      
+      header {
+        padding: 12px 1rem;
+      }
+      
+      nav.desktop {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .brand .name {
+        font-size: 1.3em;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+      }
+      
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .mobile-nav {
+        width: 85%;
+      }
+      
+      h1 { 
+        font-size: 1.8em; 
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+  
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Theme changed successfully!</span>
+  </div>
+
+  <header id="mainHeader">
+    <div class="wrap">
+      <div class="brand" aria-label="Omar CodePlay">
+        <img src="images/MY LOGO.png" alt="Omar CodePlay logo">
+        <div>
+          <div class="name">OMAR</div>
+          <div class="small-meta">Game Dev · Programmer · Creator</div>
+        </div>
+      </div>
+
+      <nav class="desktop" aria-label="Primary navigation">
+        <a href="index.html#projects">Projects</a>
+        <a href="articles.html">Articles</a>
+        <a href="courses.html" class="active">Courses</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="cta-ghost" href="https://github.com/omar-codeplay" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+
+      <button class="hamburger" aria-expanded="false" aria-controls="mobile-nav">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html#projects">Projects</a>
+    <a href="articles.html">Articles</a>
+    <a href="courses.html">Courses</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://github.com/omar-codeplay" target="_blank">GitHub</a>
+  </nav>
+
+  <main>
+    <section class="section" style="margin-top: 20px;">
+      <h1 class="fade-in">Programming Courses</h1>
+      <p class="lead fade-in delay-1">
+        Learn programming from scratch with our comprehensive courses. 
+        Whether you're a beginner or looking to advance your skills, 
+        we have something for everyone.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="courses-grid">
+        <div class="course-card fade-in" role="article">
+          <div class="course-header">
+            <h3 style="margin: 0; flex: 1;">Learn HTML & CSS</h3>
+            <span class="course-tag">Beginner</span>
+          </div>
+          <div class="course-meta">
+            <span>Free</span>
+            <span>•</span>
+            <span>10 Lessons</span>
+            <span>•</span>
+            <span>Web Development</span>
+          </div>
+          <p class="course-excerpt">
+            Master the fundamentals of web development with HTML and CSS. 
+            Learn how to create beautiful, responsive websites from scratch.
+          </p>
+          <a href="course1.html" class="primary-button">Start Learning</a>
+        </div>
+
+        <div class="course-card fade-in delay-1" role="article">
+          <div class="course-header">
+            <h3 style="margin: 0; flex: 1;">Game Development with Unity</h3>
+            <span class="course-tag">Intermediate</span>
+          </div>
+          <div class="course-meta">
+            <span>Free</span>
+            <span>•</span>
+            <span>15 Lessons</span>
+            <span>•</span>
+            <span>Game Development</span>
+          </div>
+          <p class="course-excerpt">
+            Create your first 3D game with Unity. Learn C#, game mechanics, 
+            and how to publish your game to multiple platforms.
+          </p>
+          <a href="course2.html" class="primary-button">Start Learning</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="muted">© 2024 <strong style="color: var(--accent-color);">OmarCodePlay</strong> • All rights reserved</div>
+      <div class="muted">Made with HTML, CSS & JavaScript • Built with passion for game development</div>
+    </div>
+  </footer>
+
+  <script>
+    const menu_btn = document.querySelector('.hamburger');
+    const mobile_menu = document.querySelector('.mobile-nav');
+    const header = document.getElementById('mainHeader');
+    const progressBar = document.getElementById('progressBar');
+    const backToTop = document.getElementById('backToTop');
+    const themeToggle = document.getElementById('themeToggle');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const htmlEl = document.documentElement;
+
+    function toggleTheme() {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      htmlEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      
+      showToast('Theme changed successfully!');
+    }
+
+    (function checkStoredTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      htmlEl.setAttribute('data-theme', savedTheme);
+      
+      const themeIcon = themeToggle.querySelector('i');
+      themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    })();
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset;
+        const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+        progressBar.style.width = scrollPercent + '%';
+        
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    function checkScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+            }
+        });
+    }
+    
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    });
+    
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    function showToast(message) {
+        toastMessage.textContent = message;
+        toast.classList.add('visible');
+        
+        setTimeout(() => {
+            toast.classList.remove('visible');
+        }, 3000);
+    }
+
+    menu_btn.addEventListener('click', function () {
+        menu_btn.classList.toggle('is-active')
+        mobile_menu.classList.toggle('is-active')
+    })
+
+    document.querySelectorAll('.mobile-nav a').forEach(item => {
+        item.addEventListener('click', event => {
+            menu_btn.classList.toggle('is-active')
+            mobile_menu.classList.toggle('is-active')
+        })
+    })
+
+    themeToggle.addEventListener('click', toggleTheme);
+  </script>
+</body>
+</html>

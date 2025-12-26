@@ -1,18 +1,53 @@
-<!-- 404.html -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="AE91C0E111062D63" />
+
   <title>Page Not Found - OmarCodePlay</title>
   <style>
-    .error-container {
+    :root {
+      --bg-dark: #0b0d10;
+      --bg-medium: #11161b; 
+      --bg-light: #14181f;
+      --text-primary: #e8e8e8;
+      --text-secondary: #b0b0b0;
+      --accent-color: #00aaff;
+      --accent-secondary: #ff6b6b;
+      --accent-tertiary: #00ffcc;
+      --neon-glow: #00aaff50; 
+      --gradient-primary: linear-gradient(135deg, #00aaff 0%, #00ffcc 100%);
+      --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 170, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 204, 0.05) 0%, transparent 25%);
+    }
+
+    .error-container {
       text-align: center;
       padding: 2rem;
+      max-width: 600px;
     }
     
     .error-code {
@@ -23,6 +58,7 @@
       background-clip: text;
       color: transparent;
       margin-bottom: 1rem;
+      text-shadow: 0 0 20px var(--neon-glow);
     }
     
     .error-message {
@@ -30,13 +66,37 @@
       margin-bottom: 2rem;
       color: var(--text-secondary);
     }
+    
+    .primary-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--gradient-primary);
+      color: var(--bg-dark);
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      border: none;
+      transition: var(--transition-smooth);
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+      cursor: pointer;
+      font-size: 1.1em;
+      font-family: inherit; 
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+    }
   </style>
 </head>
 <body class="lang-en">
   <div class="error-container">
     <div class="error-code">404</div>
-    <h1 class="error-message" data-key="error_404">Oops! Page not found</h1>
-    <a href="/" class="primary-button" data-key="error_home">Back to Home</a>
+    <h1 class="error-message">Oops! Page not found</h1>
+    <a href="/" class="primary-button">Back to Home</a>
   </div>
 </body>
 </html>
